@@ -1,0 +1,41 @@
+import React from 'react'
+{{#ifIn "styled" feature}}
+import styled from 'styled-components'
+
+const Wrapper = styled.div``
+{{/ifIn}}
+{{#ifIn "usestate" feature}}
+
+type {{pascalCase name}}State = {}
+
+const initialState: {{pascalCase name}}State = {}
+{{/ifIn}}
+
+type {{pascalCase name}}Props = {
+children?: React.ReactNode
+}
+
+const {{pascalCase name}} = ({ children }: {{pascalCase name}}Props) => {
+{{#ifIn "usestate" feature}}
+const state = React.useState<{{pascalCase name}}State>({...initialState})
+
+  {{/ifIn}}
+  {{#ifIn "useeffect" feature}}
+  // This will only run once on mount due to the empty array as 2nd argument
+  React.useEffect(() => {
+  // Do stuff on mount here
+  }, [])
+
+  {{/ifIn}}
+  return (
+  {{#ifIn "styled" feature}}
+  <Wrapper>{children}</Wrapper>
+  {{else}}
+  <div>{children}</div>
+  {{/ifIn}}
+  )
+  }
+
+  {{pascalCase name}}.defaultProps = {}
+
+  export default {{pascalCase name}}

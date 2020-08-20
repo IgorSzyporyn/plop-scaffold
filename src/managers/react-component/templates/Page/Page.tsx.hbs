@@ -1,0 +1,76 @@
+import React from 'react'
+{{#ifIn "ssg" render}}
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
+{{/ifIn}}
+{{#ifIn "ssr" render}}
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+{{/ifIn}}
+{{#if datafetch}}
+import useSWR from 'swr'
+{{/if}}
+{{#ifIn "ssg" render}}
+import { NextSeo } from 'next-seo'
+import { {{camelCase name}}SEO } from 'seo/{{pascalCase name}}/index'
+
+type {{pascalCase name}}Props = InferGetStaticPropsType<typeof getStaticProps>
+{{/ifIn}}
+{{#ifIn "ssr" render}}
+
+type {{pascalCase name}}Props = InferGetServerSidePropsType<typeof getServerSideProps>
+{{/ifIn}}
+
+{{#ifIn "ssg" render}}
+const {{pascalCase name}} = ({ ssgData }: {{pascalCase name}}Props) => {
+{{else}}
+const {{pascalCase name}} = ({ ssrData }: {{pascalCase name}}Props) => {
+{{/ifIn}}
+  {{#if datafetch}}
+  const { data, error } = useSWR('/api/user', fetch)
+
+  {{/if}}
+  const pageSEO = {
+    ...{{camelCase name}}SEO
+  }
+
+  return (
+    <NextSeo {...pageSEO}>
+      <div></div>
+    </NextSeo>
+  )
+}
+{{#ifIn "ssg" render}}
+
+export const getStaticProps: GetStaticProps = async () => {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const res = await fetch('https://.../data')
+  const ssgData: any = await res.json()
+
+  // By returning { ssgData: ssgData }, the page
+  // will receive `ssgData` as a prop at build time
+  return {
+    props: {
+      ssgData,
+    },
+  }
+}
+{{/ifIn}}
+{{#ifIn "ssr" render}}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  // Call an external API endpoint to get posts.
+  // You can use any data fetching library
+  const res = await fetch('https://.../data')
+  const ssrData: any = await res.json()
+
+  // By returning { ssrData: ssrData }, the page
+  // will receive `ssrData` as a prop at build time
+  return {
+    props: {
+      ssrData,
+    },
+  }
+}
+{{/ifIn}}
+
+export default {{pascalCase name}}

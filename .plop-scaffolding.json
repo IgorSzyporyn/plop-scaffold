@@ -1,0 +1,14 @@
+{
+  "reactComponent": {
+    "rootDir": "src",
+    "name": null,
+    "type": null,
+    "storybook": null,
+    "jest": null,
+    "useState": null,
+    "useEffect": null,
+    "styled": null,
+    "emotion": null,
+    "typescript": null
+  }
+}
