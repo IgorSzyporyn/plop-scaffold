@@ -1,6 +1,6 @@
-#### 0.9.1 (2020-08-20)
+#### 0.9.2 (2020-08-21)
 
 ##### New Features
 
-*  first commit ([92eeb155](https://github.com/IgorSzyporyn/plop-scaffold/commit/92eeb155a3a73c6c3633e85174490655597a5048))
+*  help included ([a424644c](https://github.com/IgorSzyporyn/plop-scaffold/commit/a424644cd3257e9ed94ec7b8a803fbd4e0d81a70))
 
