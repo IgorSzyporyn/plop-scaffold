@@ -1,18 +1,18 @@
 import chalk from 'chalk'
 import { ParsedArgs } from 'minimist'
 import deepmerge from 'ts-deepmerge'
-import { getFileConfig } from './get-file-config'
+import { getConfigFile } from './get-config-file'
 import { getPackageConfig } from './get-package-config'
 import { print } from './print'
 
 export function getConfig(
-  name: ConfigType,
+  name: ConfigTypes,
   defaultConfig: Record<string, any> = {},
   argv: ParsedArgs,
   allowedArgs?: string[]
 ) {
   const packageConfig = getPackageConfig(name)
-  const rcConfig = getFileConfig(name)
+  const rcConfig = getConfigFile(name)
 
   const hasPackageConfig = Object.keys(packageConfig).length > 0
   const hasRcConfig = Object.keys(rcConfig).length > 0

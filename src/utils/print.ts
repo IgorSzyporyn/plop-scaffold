@@ -7,7 +7,7 @@ export const newline = () => {
 
 export const title = () => {
   const version = getVersion()
-  const title = chalk.bold.cyan(`Plop Scaffold Generator ${version}`)
+  const title = chalk.bold.cyan(`Plop Scaffold ${version}`)
 
   print(title)
 }
@@ -65,6 +65,10 @@ export const success = (text: string) => {
   print(`\u2705  ${chalk.green.bold(text)}`)
 }
 
+export const failure = (text: string) => {
+  print(`\u26D4  ${chalk.red.bold(text)}`)
+}
+
 export type PrintType = 'log' | 'info' | 'warn' | 'error' | 'task'
 
 export const print = (source: any, type: PrintType = 'log') => {
@@ -94,4 +98,5 @@ print.header = title
 print.border = border
 print.task = task
 print.success = success
+print.failure = failure
 print.subtitle = subtitle

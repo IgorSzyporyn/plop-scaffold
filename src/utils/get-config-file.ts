@@ -1,6 +1,6 @@
 import { getShared } from './shared'
 
-export function getFileConfig(name: ConfigType) {
+export function getConfigFile(name: ConfigTypes) {
   const { configPath } = getShared(name)
   let fileConfig = {}
 

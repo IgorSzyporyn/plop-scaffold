@@ -1,26 +1,35 @@
-const shared: Shared = {
-  reactComponent: {
-    cwd: '',
+import { PROJECT_ID } from '../constants'
+
+const root: Record<string, any> = global
+
+root[PROJECT_ID] = {
+  react: {
     configPath: '',
-  },
-  projectCli: {
     cwd: '',
+    running: false,
+  },
+  'project-cli': {
+    cwd: '',
+    running: false,
   },
   main: {
     cwd: '',
+    running: false,
+    argv: {},
+    liftoffEnv: {},
   },
 }
 
 export function getShared(name: SharedKey) {
-  return shared[name]
+  return root[PROJECT_ID][name] as Record<string, any>
 }
 
-export function setShared(name: SharedKey, toSet: Record<string, string>) {
-  if (!shared[name]) {
-    shared[name] = {}
+export function setShared(name: SharedKey, toSet: Record<string, any>) {
+  if (!root[PROJECT_ID][name]) {
+    root[PROJECT_ID][name] = {}
   }
 
   Object.keys(toSet).forEach((key) => {
-    shared[name][key] = toSet[key]
+    root[PROJECT_ID][name][key] = toSet[key]
   })
 }

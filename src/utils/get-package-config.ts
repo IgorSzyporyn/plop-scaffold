@@ -1,8 +1,8 @@
 import path from 'path'
 import { getShared } from './shared'
 
-export function getPackageConfig(name: ConfigType) {
-  const { cwd } = getShared('reactComponent')
+export function getPackageConfig(name: ConfigTypes) {
+  const { cwd } = getShared('react')
 
   const pckage = require(path.join(cwd, 'package.json'))
 

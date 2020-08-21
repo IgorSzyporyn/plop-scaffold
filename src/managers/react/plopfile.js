@@ -1,16 +1,17 @@
-// Inspiration and help https://blog.logrocket.com/automatically-generate-your-own-react-components-with-plop-js-2da3b39914f3/
+// Inspiration and help https://blog.logrocket.com/automatically-generate-your-own-reacts-with-plop-js-2da3b39914f3/
 export default (plop) => {
   const { plopHelper, requireField } = require('../../utils/plop-helper')
 
   plopHelper(plop)
 
   plop.setGenerator('component', {
-    description: 'Create a reusable component',
+    description: 'Create a component in "components"',
     prompts: [
       {
         type: 'input',
         name: 'name',
         message: 'What is your component name?',
+        description: 'Name of the component',
         validate: requireField('name'),
       },
       {
@@ -69,28 +70,28 @@ export default (plop) => {
         type: 'add',
         path: 'components/{{pascalCase name}}/{{pascalCase name}}.tsx',
         templateFile:
-          '../../../src/managers/react-component/templates/Component/Component.tsx.hbs',
+          '../../../src/managers/react/templates/component/component.tsx.hbs',
         skipIfExists: true,
       },
       {
         type: 'add',
         path: 'components/{{pascalCase name}}/{{pascalCase name}}.test.js',
         templateFile:
-          '../../../src/managers/react-component/templates/Component/Component.test.js.hbs',
+          '../../../src/managers/react/templates/component/component.test.js.hbs',
         skipIfExists: true,
       },
       {
         type: 'add',
         path: 'components/{{pascalCase name}}/{{pascalCase name}}.stories.tsx',
         templateFile:
-          '../../../src/managers/react-component/templates/Component/Component.stories.tsx.hbs',
+          '../../../src/managers/react/templates/component/component.stories.tsx.hbs',
         skipIfExists: true,
       },
     ],
   })
 
   plop.setGenerator('page', {
-    description: 'Create a reusable component',
+    description: 'Create a component in "pages"',
     prompts: [
       {
         type: 'input',
@@ -132,26 +133,26 @@ export default (plop) => {
       {
         type: 'add',
         path: '{{pascalCase name}}/{{pascalCase name}}.tsx',
-        templateFile: './templates/Component/Component.tsx.hbs',
+        templateFile: './templates/component/component.tsx.hbs',
         skipIfExists: true,
       },
       {
         type: 'add',
         path: '{{pascalCase name}}/{{pascalCase name}}.test.js',
-        templateFile: './templates/Component/Component.test.js.hbs',
+        templateFile: './templates/component/component.test.js.hbs',
         skipIfExists: true,
       },
       {
         type: 'add',
         path: '{{pascalCase name}}/{{pascalCase name}}.stories.tsx',
-        templateFile: './templates/Component/Component.stories.tsx.hbs',
+        templateFile: './templates/component/component.stories.tsx.hbs',
         skipIfExists: true,
       },
     ],
   })
 
   plop.setGenerator('container', {
-    description: 'Create a reusable component',
+    description: 'Create a component in "containers"',
     prompts: [
       {
         type: 'input',
@@ -193,31 +194,31 @@ export default (plop) => {
       {
         type: 'add',
         path: '{{pascalCase name}}/{{pascalCase name}}.tsx',
-        templateFile: './templates/Component/Component.tsx.hbs',
+        templateFile: './templates/component/component.tsx.hbs',
         skipIfExists: true,
       },
       {
         type: 'add',
         path: '{{pascalCase name}}/{{pascalCase name}}.test.js',
-        templateFile: './templates/Component/Component.test.js.hbs',
+        templateFile: './templates/component/component.test.js.hbs',
         skipIfExists: true,
       },
       {
         type: 'add',
         path: '{{pascalCase name}}/{{pascalCase name}}.stories.tsx',
-        templateFile: './templates/Component/Component.stories.tsx.hbs',
+        templateFile: './templates/component/component.stories.tsx.hbs',
         skipIfExists: true,
       },
     ],
   })
 
   plop.setGenerator('hook', {
-    description: 'Create a reusable component',
+    description: 'Create a react hook',
     prompts: [
       {
         type: 'input',
         name: 'name',
-        message: 'What is your component name?',
+        message: 'What is your hook name?',
         validate: requireField('name'),
       },
       {
@@ -254,19 +255,19 @@ export default (plop) => {
       {
         type: 'add',
         path: '{{pascalCase name}}/{{pascalCase name}}.tsx',
-        templateFile: './templates/Component/Component.tsx.hbs',
+        templateFile: './templates/component/component.tsx.hbs',
         skipIfExists: true,
       },
       {
         type: 'add',
         path: '{{pascalCase name}}/{{pascalCase name}}.test.js',
-        templateFile: './templates/Component/Component.test.js.hbs',
+        templateFile: './templates/component/component.test.js.hbs',
         skipIfExists: true,
       },
       {
         type: 'add',
         path: '{{pascalCase name}}/{{pascalCase name}}.stories.tsx',
-        templateFile: './templates/Component/Component.stories.tsx.hbs',
+        templateFile: './templates/component/component.stories.tsx.hbs',
         skipIfExists: true,
       },
     ],

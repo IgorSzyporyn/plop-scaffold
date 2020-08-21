@@ -19,7 +19,8 @@
   ],
   "bin": {
     "plop-scaffold": "dist/bin/main.js",
-    "plop-scaffold-react-component": "dist/bin/react-component.js"
+    "plop-scaffold-react-component": "dist/bin/react-component.js",
+    "ps-react-component": "dist/bin/react-component.js"
   },
   "scripts": {
     "dev": "tsc --watch",
@@ -101,17 +102,17 @@
     ]
   },
   "plop-scaffold": {
-    "reactComponent": {
+    "react": {
       "rootDir": "src",
-      "componentDir": "components",
-      "containerDir": "containers",
-      "hookDir": "hooks",
-      "pageDir": "pages",
+      "name": null,
+      "type": null,
       "storybook": null,
       "jest": null,
-      "name": "",
       "useState": null,
-      "useEffect": null
+      "useEffect": null,
+      "styled": null,
+      "emotion": null,
+      "typescript": null
     }
   }
 }

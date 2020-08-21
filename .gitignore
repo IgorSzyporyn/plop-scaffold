@@ -4,6 +4,9 @@
 # build
 /dist
 
+# NPM
+.npmrc
+
 # debug
 npm-debug.log*
 yarn-debug.log*
