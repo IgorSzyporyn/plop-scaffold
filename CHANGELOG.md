@@ -1,6 +1,6 @@
-#### 0.10.3 (2020-08-22)
+#### 0.10.4 (2020-08-22)
 
-##### New Features
+##### Bug Fixes
 
-* **package:**  added copyfiles to repo and copying template files ([dec4a790](https://github.com/IgorSzyporyn/plop-scaffold/commit/dec4a79081664d1999fa561084c2a0836f144402))
+* **package:**  removed build:post script ([5c20c40f](https://github.com/IgorSzyporyn/plop-scaffold/commit/5c20c40f696bdc8192b08fa1a39004642687a0bb))
 
