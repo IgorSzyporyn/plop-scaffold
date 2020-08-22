@@ -1,10 +1,17 @@
 import path from 'path'
 import { getShared } from './shared'
+import { print } from './print'
 
 export function getPackageConfig(name: RouteTypes) {
   const { cwd } = getShared()
   const pckJsonPath = path.join(cwd, 'package.json')
-  const pckJson = require(pckJsonPath)
+  let pckJson: false | Record<string, any> = false
+
+  try {
+    pckJson = require(pckJsonPath)
+  } catch (e) {
+    print('No package.json file found in your folder', 'info')
+  }
 
   let packageConfig = {}
 

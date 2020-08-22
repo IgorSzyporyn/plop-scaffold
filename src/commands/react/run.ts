@@ -1,4 +1,4 @@
-import { fork } from 'child_process'
+import { spawn } from 'child_process'
 import { checkForPrefilledValues } from '../../utils/check-for-prefilled-values'
 import { getCommandEnv } from '../../utils/get-command-env'
 import { getConfig } from '../../utils/get-config'
@@ -9,23 +9,26 @@ import { allowedArgs, defaultReactConfig, prefilledArgs } from './index'
 import { getPlopExecArgs } from './utils/get-plop-exec-args'
 import { getShared } from '../../utils/shared'
 
+const command = 'react'
+
 export function run() {
   const { argv, cwd } = getShared()
 
   print.header()
   print.subtitle('Create a React scaffold')
 
-  const { config } = getConfig('react', defaultReactConfig, argv, allowedArgs)
-  const plop = getPlopFilepath()
-  const plopConfigPath = getPlopConfigPath('react')
+  const { config } = getConfig(command, defaultReactConfig, argv, allowedArgs)
+  const plopBin = getPlopFilepath()
+  const plopConfigPath = getPlopConfigPath(command)
   const commandEnv = getCommandEnv(config)
   const prefilled = checkForPrefilledValues(config, prefilledArgs)
   const execArgs = getPlopExecArgs(prefilled, prefilledArgs)
 
   print.newline()
 
+  /*
   const child = fork(
-    plop,
+    plopBin,
     [
       `--cwd=${plopConfigPath}`,
       `--dest=${prefilled.baseDir || config.baseDir || 'src'}`,
@@ -33,6 +36,23 @@ export function run() {
     ],
     {
       silent: true,
+      cwd,
+      env: {
+        ...process.env,
+        ...commandEnv,
+      },
+    }
+  )
+  */
+
+  const child = spawn(
+    plopBin,
+    [
+      `--cwd=${plopConfigPath}`,
+      `--dest=${prefilled.baseDir || config.baseDir || 'src'}`,
+      ...execArgs,
+    ],
+    {
       cwd,
       env: {
         ...process.env,
