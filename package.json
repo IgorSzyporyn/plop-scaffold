@@ -10,9 +10,9 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist/**/*",
-    "dist/bin/*",
-    "dist/bin/**/*",
+    "dist",
+    "src/script/templates",
+    "src/commands/**/templates",
     "README.md",
     "*.js",
     "*.d.ts"

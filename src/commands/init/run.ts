@@ -17,8 +17,8 @@ export function runInit() {
     print.newline()
   } else {
     const _source = IS_DEV
-      ? `src/controller/templates/${CONFIG_FILE_NAME}`
-      : `node_modules/plop-scaffold/src/controller/templates/${CONFIG_FILE_NAME}`
+      ? `src/script/templates/${CONFIG_FILE_NAME}`
+      : `node_modules/plop-scaffold/src/script/templates/${CONFIG_FILE_NAME}`
 
     const source = pathJoin(cwd, _source)
     const destination = pathJoin(cwd, CONFIG_FILE_NAME)
