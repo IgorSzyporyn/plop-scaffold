@@ -34,7 +34,6 @@ export function run() {
       ...execArgs,
     ],
     {
-      silent: true,
       cwd,
       env: {
         ...process.env,
