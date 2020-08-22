@@ -1,6 +1,6 @@
-#### 0.10.2 (2020-08-22)
+#### 0.10.3 (2020-08-22)
 
-##### Bug Fixes
+##### New Features
 
-*  needed to pipe the template files into npm package also ([c0d6f12b](https://github.com/IgorSzyporyn/plop-scaffold/commit/c0d6f12b97d1357c0b4aca0f8d54bd120353034a))
+* **package:**  added copyfiles to repo and copying template files ([dec4a790](https://github.com/IgorSzyporyn/plop-scaffold/commit/dec4a79081664d1999fa561084c2a0836f144402))
 
