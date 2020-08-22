@@ -3,14 +3,14 @@ import { getShared } from './shared'
 
 export function getPackageConfig(name: ConfigTypes) {
   const { cwd } = getShared('react')
-
-  const pckage = require(path.join(cwd, 'package.json'))
+  const pckJsonPath = path.join(cwd, 'package.json')
+  const pckJson = require(pckJsonPath)
 
   let packageConfig = {}
 
-  if (pckage) {
+  if (pckJson) {
     packageConfig =
-      (pckage && pckage['plop-scaffold'] && pckage['plop-scaffold'][name]) || {}
+      (pckJson && pckJson['plop-scaffold'] && pckJson['plop-scaffold'][name]) || {}
   }
 
   return packageConfig
