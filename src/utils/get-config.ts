@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import { ParsedArgs } from 'minimist'
 import deepmerge from 'ts-deepmerge'
+import { CONFIG_FILE_NAME } from '../constants'
 import { getConfigFile } from './get-config-file'
 import { getPackageConfig } from './get-package-config'
 import { print } from './print'
@@ -19,14 +20,14 @@ export function getConfig(
 
   if (hasPackageConfig) {
     print.newline()
-    print.success('Using configuration found in package.json')
+    print.success(`Using configuration found in package.json`)
   }
 
   if (hasRcConfig) {
     if (!hasPackageConfig) {
       print.newline()
     }
-    print.success('Using configuration found in .psgrc.json')
+    print.success(`Using configuration found in ${CONFIG_FILE_NAME}`)
   }
 
   if (hasPackageConfig && hasRcConfig) {
@@ -34,11 +35,11 @@ export function getConfig(
     print(
       ` \u261D  You have configurations in both ${chalk.white.bold(
         'package.json'
-      )} and ${chalk.white.bold('.psgrc.json')}`,
+      )} and ${chalk.white.bold(CONFIG_FILE_NAME)}`,
       'error'
     )
     print(
-      '    Please only use one or the other (.psgrc.json will overwrite package.json)',
+      `    Please only use one or the other (${CONFIG_FILE_NAME} will overwrite package.json)`,
       'error'
     )
   }

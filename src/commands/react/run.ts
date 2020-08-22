@@ -13,7 +13,7 @@ export function run() {
   const { argv, cwd } = getShared()
 
   print.header()
-  print.subtitle('Create React Component Scaffold')
+  print.subtitle('Create a React scaffold')
 
   const { config } = getConfig('react', defaultReactConfig, argv, allowedArgs)
   const plop = getPlopFilepath()

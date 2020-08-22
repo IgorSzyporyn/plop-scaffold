@@ -1,5 +1,3 @@
-import { print } from './print'
-
 type PrefilledType = {
   key: string
   value: any
@@ -21,8 +19,6 @@ export function checkForPrefilledValues(
   })
 
   if (hasPrefilledValues) {
-    print.newline()
-    print.success(`Using found pre-selected options`)
     prefilledArray.forEach((prefilled) => {
       prefilledObject[prefilled.key] = prefilled.value
     })
