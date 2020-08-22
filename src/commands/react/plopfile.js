@@ -106,7 +106,7 @@ export default (plop) => {
         path: `${path}/{{pascalCase name}}/{{pascalCase name}}.${
           typescript ? 'tsx' : 'jsx'
         }`,
-        templateFile: `../../../src/commands/react/templates/component/component.${
+        templateFile: `../../../dist/commands/react/templates/component/component.${
           typescript ? 'tsx' : 'jsx'
         }.hbs`,
         skipIfExists: true,
@@ -119,7 +119,7 @@ export default (plop) => {
           path: `${path}/{{pascalCase name}}/{{pascalCase name}}.stories.${
             typescript ? 'tsx' : 'jsx'
           }`,
-          templateFile: `../../../src/commands/react/templates/component/component.stories.${
+          templateFile: `../../../dist/commands/react/templates/component/component.stories.${
             typescript ? 'tsx' : 'jsx'
           }.hbs`,
           skipIfExists: true,
@@ -135,7 +135,7 @@ export default (plop) => {
           path: `${path}/{{pascalCase name}}/{{pascalCase name}}.test.${
             typescript ? 'ts' : 'js'
           }`,
-          templateFile: `../../../src/commands/react/templates/component/test.${testTemplate}.${
+          templateFile: `../../../dist/commands/react/templates/component/test.${testTemplate}.${
             typescript ? 'ts' : 'js'
           }.hbs`,
           skipIfExists: true,
