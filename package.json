@@ -1,6 +1,6 @@
 {
   "name": "plop-scaffold",
-  "version": "0.9.3",
+  "version": "0.10.0",
   "description": "PlopJS based scaffold generator for React Components & Hooks, Node based projects and Next React Pages",
   "engineStrict": true,
   "engines": {
