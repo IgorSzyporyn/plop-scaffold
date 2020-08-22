@@ -1,0 +1,95 @@
+{{#hasHook}}
+import React, { {{#ifIn "usestate" hooks}}useState{{#ifIn "useEffect" hooks}}, {{/ifIn}}{{/ifIn}}{{#ifIn "useEffect" hooks}}useState{{/ifIn}} } from 'react'
+{{else}}
+import React from 'react'
+{{/hasHook}}
+{{#ifNotEqual "no" cssinjs}}
+import styled from '{{cssinjs}}'
+
+const Wrapper = styled.div``
+
+{{/ifNotEqual}}
+{{#ifIn "usestate" hooks}}
+  {{#ifIn "withexamplecode" aid}}
+type {{pascalCase name}}State = {
+  mounted: boolean
+}
+
+const initialState: {{pascalCase name}}State = {
+  mounted: false,
+}
+
+  {{else}}
+  {{#ifIn "withcomments" aid}}
+// @NOTE: Linter will most likely complain and suggest Record<string, unknown>
+// But left as {} for your to fill in your state signature
+  {{/ifIn}}
+type {{pascalCase name}}State = {}
+
+const initialState: {{pascalCase name}}State = {}
+
+  {{/ifIn}}
+{{/ifIn}}
+{{#ifIn "withexamplecode" aid}}
+type {{pascalCase name}}Props = {
+  title?: string
+  children?: React.ReactNode
+}
+
+const {{pascalCase name}} = ({ children }: {{pascalCase name}}Props) => {
+
+{{else}}
+{{#ifIn "withcomments" aid}}
+// @NOTE: Linter will most likely complain and suggest Record<string, unknown>
+// But left as {} for your to fill in your props signature
+{{/ifIn}}
+type {{pascalCase name}}Props = {}
+
+const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
+{{/ifIn}}
+{{#ifIn "usestate" hooks}}
+  const [state, setState] = useState({ ...initialState })
+  
+{{/ifIn}}
+{{#ifIn "useeffect" hooks}}
+  useEffect(() => {
+  {{#ifIn "withexamplecode" aid}}
+    {{#ifIn "withcomments" aid}}
+    // Do stuff on mount here
+    {{/ifIn}}
+    setState((currentState) => ({ ...currentState, mounted: true }))
+    {{#ifIn "withcomments" aid}}
+    // Do stuff on unmount here
+    {{/ifIn}}
+    return () => {}
+  {{/ifIn}}
+  }, [])
+
+{{/ifIn}}
+  return (
+  {{#ifNotEqual "no" cssinjs}}
+    {{#ifIn "withexamplecode" aid}}
+    <Wrapper>
+      <h1>{title}</h1>
+      {children}
+    </Wrapper>
+    {{else}}
+    <Wrapper>Here more TSX</Wrapper>
+    {{/ifIn}}
+  {{else}}
+    {{#ifIn "withexamplecode" aid}}
+    <div>
+      <h1>{title}</h1>
+      {children}
+    </div>
+    {{else}}
+    <div>Here more TSX</div>
+    {{/ifIn}}
+  {{/ifNotEqual}}
+  )
+}
+
+{{pascalCase name}}.displayName = '{{pascalCase name}}'
+{{pascalCase name}}.defaultProps = {}
+
+export default {{pascalCase name}}

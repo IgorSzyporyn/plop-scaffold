@@ -11,8 +11,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src/script/templates",
-    "src/commands/**/templates",
+    "templates",
     "README.md",
     "*.js",
     "*.d.ts"
@@ -22,8 +21,10 @@
   },
   "scripts": {
     "dev": "tsc --watch",
-    "build": "npm run build:pre && tsc",
     "build:pre": "rimraf dist",
+    "build": "npm run build:pre && tsc && build:post",
+    "build:post": "npm run build:copytemplates",
+    "build:copytemplates": "rimraf templates && copyfiles -u 1 \"src/script/templates/.plop-scaffold.json \" templates && copyfiles -u 1 \"src/commands/**/templates/**\" templates",
     "format": "prettier --write **/*.{js,ts,tsx}",
     "test": "npm run test:lint && npm run test:types",
     "test:types": "tsc --pretty --noEmit",
@@ -64,6 +65,7 @@
     "@types/node": "^14.6.0",
     "@typescript-eslint/eslint-plugin": "^3.9.0",
     "@typescript-eslint/parser": "^3.9.0",
+    "copyfiles": "^2.3.0",
     "eslint": "^7.7.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",

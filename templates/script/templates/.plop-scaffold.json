@@ -1,0 +1,26 @@
+{
+  "react": {
+    "baseDir": "src",
+    "componentDir": "components",
+    "pageDir": "pages",
+    "containerDir": "containers",
+    "hookDir": "hooks",
+    "cssInJs": null,
+    "storybook": null,
+    "type": null,
+    "typescript": null,
+    "useEffect": null,
+    "useState": null,
+    "withComments": null,
+    "withExampleCode": null,
+    "testing": null
+  },
+  "react-next-page": {
+    "rootDir": "src",
+    "typescript": null,
+    "useState": null,
+    "useEffect": null,
+    "styled": null,
+    "emotion": null
+  }
+}
