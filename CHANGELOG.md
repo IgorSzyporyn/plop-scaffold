@@ -1,6 +1,6 @@
-### 0.10.0 (2020-08-22)
+#### 0.10.1 (2020-08-22)
 
-##### New Features
+##### Bug Fixes
 
-*  routing and help done - so is react route ([276ef2be](https://github.com/IgorSzyporyn/plop-scaffold/commit/276ef2be4035b75c28fbd632207025755197556c))
+*  setting to production mode - need new system ([0c446a98](https://github.com/IgorSzyporyn/plop-scaffold/commit/0c446a98ec331505fc3dec26efcff4e6e0d5a0e2))
 
