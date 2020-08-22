@@ -1,4 +1,4 @@
-import { spawn } from 'child_process'
+import { fork } from 'child_process'
 import { checkForPrefilledValues } from '../../utils/check-for-prefilled-values'
 import { getCommandEnv } from '../../utils/get-command-env'
 import { getConfig } from '../../utils/get-config'
@@ -26,7 +26,6 @@ export function run() {
 
   print.newline()
 
-  /*
   const child = fork(
     plopBin,
     [
@@ -43,8 +42,8 @@ export function run() {
       },
     }
   )
-  */
 
+  /*
   const child = spawn(
     plopBin,
     [
@@ -60,6 +59,7 @@ export function run() {
       },
     }
   )
+  */
 
   child.on('disconnect', () => {
     print.newline()
