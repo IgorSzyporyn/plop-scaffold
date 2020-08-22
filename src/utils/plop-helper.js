@@ -5,6 +5,24 @@ export function plopHelper(plop) {
     }
     return options.inverse(this)
   })
+
+  plop.setHelper('hasCssInJs', function (cssinjs, options) {
+    return cssinjs && cssinjs.length > 0 ? options.fn(this) : options.inverse(this)
+  })
+
+  plop.setHelper('hasHook', function (hooks, options) {
+    return hooks && hooks.length > 0 ? options.fn(this) : options.inverse(this)
+  })
+
+  plop.setHelper('ifEqual', function (elem, match, options) {
+    const isEqual = elem === match
+    return isEqual ? options.fn(this) : options.inverse(this)
+  })
+
+  plop.setHelper('ifNotEqual', function (elem, match, options) {
+    const isEqual = elem !== match
+    return isEqual ? options.fn(this) : options.inverse(this)
+  })
 }
 
 export function requireField(fieldName) {

@@ -1,4 +1,5 @@
 type RouteTypes =
+  | 'init'
   | 'react'
   | 'project-cli'
   | 'project-react-component'

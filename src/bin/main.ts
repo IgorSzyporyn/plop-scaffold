@@ -1,7 +1,15 @@
 #!/usr/bin/env node
 
-import { run } from '../managers/main'
-import { Script } from '../managers/Script'
+import Liftoff from 'liftoff'
+import v8flags from 'v8flags'
 import { CONFIG_FILE_NAME } from '../constants'
+import { jsVariants } from 'interpret'
+import { run } from '../script'
 
-Script.launch({ configPath: CONFIG_FILE_NAME }, run)
+const PlopScaffold = new Liftoff({
+  name: 'plop-scaffold',
+  extensions: jsVariants,
+  v8flags,
+})
+
+PlopScaffold.launch({ configPath: CONFIG_FILE_NAME }, run)

@@ -6,8 +6,8 @@ export function getPlopConfigPath(name: SharedKey) {
   const { cwd } = getShared(name)
 
   const _path = IS_DEV
-    ? `dist/managers/${name}/`
-    : `node_modules/plop-scaffold/dist/managers/${name}/`
+    ? `dist/commands/${name}/`
+    : `node_modules/plop-scaffold/dist/commands/${name}/`
 
   const plopConfigFilepath = path.relative(cwd, _path)
 

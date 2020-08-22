@@ -1,0 +1,25 @@
+import React from 'react'
+import {cleanup, render} from '@testing-library/react'
+import {{pascalCase name}} from './{{pascalCase name}}'
+
+// Note: running cleanup afterEach is done automatically for you in @testing-library/react@9.0.0 or higher
+// unmount and cleanup DOM after the test is finished.
+afterEach(cleanup);
+
+  {{#ifIn "withexamplecode" aid}}
+it('Should be able to query by text if text is set', () => {
+  const { queryByText } = render(
+    <{{pascalCase name}} title="Hello World" />,
+  )
+  {{else}}
+it('Awaits your test', () => {
+  // Tip: all queries are also exposed to the object "queries"
+  const { queries } = render(
+    <{{pascalCase name}} />,
+  )
+  {{/ifIn}}
+  {{#ifIn "withexamplecode" aid}}
+
+    expect(queryByText(/Hello World/i)).toBeTruthy()
+  {{/ifIn}}
+})

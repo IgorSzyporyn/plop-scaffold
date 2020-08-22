@@ -7,13 +7,13 @@ export const newline = () => {
 
 export const title = () => {
   const version = getVersion()
-  const title = chalk.bold.cyan(`Plop Scaffold ${version}`)
+  const title = chalk.yellow(`Plop Scaffold ${version}`)
 
   print(title)
 }
 
 export const subtitle = (name: string) => {
-  const subtitle = chalk.white(`Using sub-route for: ${name}`)
+  const subtitle = chalk.blue(`${name}`)
 
   print(subtitle)
 }

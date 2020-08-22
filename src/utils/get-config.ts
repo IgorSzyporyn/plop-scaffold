@@ -41,7 +41,6 @@ export function getConfig(
       '    Please only use one or the other (.psgrc.json will overwrite package.json)',
       'error'
     )
-    print.newline()
   }
 
   const baseConfig = deepmerge(packageConfig, rcConfig)

@@ -18,9 +18,7 @@
     "*.d.ts"
   ],
   "bin": {
-    "plop-scaffold": "dist/bin/main.js",
-    "plop-scaffold-react-component": "dist/bin/react-component.js",
-    "ps-react-component": "dist/bin/react-component.js"
+    "plop-scaffold": "dist/bin/main.js"
   },
   "scripts": {
     "dev": "tsc --watch",
