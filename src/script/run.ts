@@ -1,4 +1,5 @@
 import minimist from 'minimist'
+import path from 'path'
 import { runInit } from '../commands/init/run'
 import { argsHasRoute } from '../utils/args-has-route'
 import { setShared } from '../utils/shared'
@@ -18,7 +19,7 @@ export function run(env: LiftoffEnv) {
     cwd,
     liftoffEnv: env,
     running: true,
-    projectPath: __dirname,
+    projectPath: path.join(__dirname, '../'),
   })
 
   const hasInit = argv._.indexOf('init') > -1
