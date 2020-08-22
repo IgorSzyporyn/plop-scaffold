@@ -1,15 +1,10 @@
 import path from 'path'
 import { getShared } from './shared'
-import { IS_DEV } from '../constants'
 
-export function getPlopFilepath(name: SharedKey) {
-  const { cwd } = getShared(name)
+export function getPlopFilepath() {
+  const { projectPath } = getShared('main')
 
-  const _path = IS_DEV
-    ? 'node_modules/plop/bin/plop.js'
-    : 'node_modules/plop-scaffold/node_modules/plop/bin/plop.js'
-
-  const filepath = path.relative(cwd, _path)
+  const filepath = path.join(projectPath, 'node_modules/plop/', 'plop.js')
 
   return filepath
 }

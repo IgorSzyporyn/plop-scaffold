@@ -1,6 +1,5 @@
-import { fork } from 'child_process'
 import minimist from 'minimist'
-import { IS_DEV } from '../../constants'
+import { fork } from 'child_process'
 import { checkForPrefilledValues } from '../../utils/check-for-prefilled-values'
 import { getCommandEnv } from '../../utils/get-command-env'
 import { getConfig } from '../../utils/get-config'
@@ -20,11 +19,11 @@ export function run(liftoffEnv: LiftoffEnv, argv: minimist.ParsedArgs) {
   print.subtitle('Create React Component Scaffold')
 
   const { config } = getConfig('react', defaultReactConfig, argv, allowedArgs)
-  const prefilled = checkForPrefilledValues(config, prefilledArgs)
-  const plop = getPlopFilepath('react')
+  const plop = getPlopFilepath()
   const plopConfigPath = getPlopConfigPath('react')
-  const execArgs = getPlopExecArgs(prefilled, prefilledArgs)
   const commandEnv = getCommandEnv(config)
+  const prefilled = checkForPrefilledValues(config, prefilledArgs)
+  const execArgs = getPlopExecArgs(prefilled, prefilledArgs)
 
   print.newline()
 
@@ -36,7 +35,7 @@ export function run(liftoffEnv: LiftoffEnv, argv: minimist.ParsedArgs) {
       ...execArgs,
     ],
     {
-      silent: !IS_DEV,
+      silent: true,
       cwd,
       env: {
         ...process.env,

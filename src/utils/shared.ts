@@ -7,6 +7,7 @@ root[PROJECT_ID] = {
     configPath: '',
     cwd: '',
     running: false,
+    projectPath: '',
   },
   'project-cli': {
     cwd: '',

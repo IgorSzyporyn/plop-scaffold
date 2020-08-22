@@ -3,10 +3,11 @@ import { print } from '../../utils/print'
 import { copyFileSync } from 'fs'
 import { join as pathJoin } from 'path'
 import { getShared } from '../../utils/shared'
-import { IS_DEV, CONFIG_FILE_NAME } from '../../constants'
+import { CONFIG_FILE_NAME } from '../../constants'
+import path from 'path'
 
 export function runInit() {
-  const { cwd } = getShared('main')
+  const { cwd, projectPath } = getShared('main')
   const initFileExists = getConfigFileExists('main')
 
   print.header()
@@ -16,11 +17,11 @@ export function runInit() {
     print(`Folder already has a configuration file`, 'error')
     print.newline()
   } else {
-    const _source = IS_DEV
-      ? `src/script/templates/${CONFIG_FILE_NAME}`
-      : `node_modules/plop-scaffold/src/script/templates/${CONFIG_FILE_NAME}`
-
-    const source = pathJoin(cwd, _source)
+    const source = path.join(
+      projectPath,
+      'templates/script/templates/',
+      CONFIG_FILE_NAME
+    )
     const destination = pathJoin(cwd, CONFIG_FILE_NAME)
 
     let didCopyFile = false
