@@ -1,7 +1,6 @@
-#### 0.10.7 (2020-08-22)
+#### 0.10.8 (2020-08-22)
 
 ##### Bug Fixes
 
-*  paths had wrong ../ ([04757ccb](https://github.com/IgorSzyporyn/plop-scaffold/commit/04757ccb8ff02d669bc5afbc730e35271572b22b))
-*  corrected package.json ([5d155357](https://github.com/IgorSzyporyn/plop-scaffold/commit/5d1553573a30df0f0a29ffd1938ba2c985e12583))
+*  trying to set dist as projectPath ([b50015cd](https://github.com/IgorSzyporyn/plop-scaffold/commit/b50015cdd33ef3aabe423a996d80be0b4b158750))
 
