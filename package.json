@@ -21,9 +21,8 @@
   },
   "scripts": {
     "dev": "tsc --watch",
+    "build": "npm run build:pre && tsc && build:copytemplates",
     "build:pre": "rimraf dist",
-    "build": "npm run build:pre && tsc && build:post",
-    "build:post": "npm run build:copytemplates",
     "build:copytemplates": "rimraf templates && copyfiles -u 1 \"src/script/templates/.plop-scaffold.json \" templates && copyfiles -u 1 \"src/commands/**/templates/**\" templates",
     "format": "prettier --write **/*.{js,ts,tsx}",
     "test": "npm run test:lint && npm run test:types",
