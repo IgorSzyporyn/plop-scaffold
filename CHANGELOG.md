@@ -1,6 +1,6 @@
-#### 0.10.10 (2020-08-22)
+#### 0.10.11 (2020-08-22)
 
 ##### Bug Fixes
 
-*  path relation to plop file was wrong ([13cb830a](https://github.com/IgorSzyporyn/plop-scaffold/commit/13cb830a934e537ab42d63d3371d04a949380356))
+*  path relation to plop file was wrong ([f62fd2bd](https://github.com/IgorSzyporyn/plop-scaffold/commit/f62fd2bd8f5137a3d88824c1e68838a3a11e1a30))
 
