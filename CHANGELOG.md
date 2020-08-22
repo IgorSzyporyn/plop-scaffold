@@ -1,6 +1,6 @@
-### 0.11.0 (2020-08-22)
+#### 0.11.1 (2020-08-22)
 
 ##### Bug Fixes
 
-*  silent made interface not show in plop ([8e26ceea](https://github.com/IgorSzyporyn/plop-scaffold/commit/8e26ceeaae19bd9086716e69e9c67bf98d0dd866))
+*  template path was still wrong ([be058fa1](https://github.com/IgorSzyporyn/plop-scaffold/commit/be058fa1e00dcee85f653f97b27032bba04758e3))
 
