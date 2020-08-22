@@ -1,36 +1,30 @@
 import { PROJECT_ID } from '../constants'
+import minimist from 'minimist'
+
+export type Shared = {
+  argv: minimist.ParsedArgs
+  configPath: string
+  cwd: string
+  distPath: string
+  liftoffEnv: LiftoffEnv
+}
 
 const root: Record<string, any> = global
 
 root[PROJECT_ID] = {
-  react: {
-    configPath: '',
-    cwd: '',
-    running: false,
-    projectPath: '',
-  },
-  'project-cli': {
-    cwd: '',
-    running: false,
-  },
-  main: {
-    cwd: '',
-    running: false,
-    argv: {},
-    liftoffEnv: {},
-  },
+  argv: {},
+  configPath: '',
+  cwd: '',
+  distPath: '',
+  liftoffEnv: {},
 }
 
-export function getShared(name: SharedKey) {
-  return root[PROJECT_ID][name] as Record<string, any>
+export function getShared() {
+  return root[PROJECT_ID] as Shared
 }
 
-export function setShared(name: SharedKey, toSet: Record<string, any>) {
-  if (!root[PROJECT_ID][name]) {
-    root[PROJECT_ID][name] = {}
-  }
-
+export function setShared(toSet: Record<string, any>) {
   Object.keys(toSet).forEach((key) => {
-    root[PROJECT_ID][name][key] = toSet[key]
+    root[PROJECT_ID][key] = toSet[key]
   })
 }

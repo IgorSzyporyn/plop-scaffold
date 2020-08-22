@@ -2,9 +2,9 @@ import path from 'path'
 import { getShared } from './shared'
 
 export function getPlopFilepath() {
-  const { projectPath } = getShared('main')
+  const { distPath } = getShared()
 
-  const filepath = path.join(projectPath, 'node_modules/plop/', 'plop.js')
+  const filepath = path.join(distPath, 'node_modules/plop/', 'plop.js')
 
   return filepath
 }

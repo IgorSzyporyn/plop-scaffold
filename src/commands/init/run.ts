@@ -7,8 +7,8 @@ import { CONFIG_FILE_NAME } from '../../constants'
 import path from 'path'
 
 export function runInit() {
-  const { cwd, projectPath } = getShared('main')
-  const initFileExists = getConfigFileExists('main')
+  const { cwd, distPath } = getShared()
+  const initFileExists = getConfigFileExists()
 
   print.header()
 
@@ -18,7 +18,7 @@ export function runInit() {
     print.newline()
   } else {
     const source = path.join(
-      projectPath,
+      distPath,
       'templates/script/templates/',
       CONFIG_FILE_NAME
     )

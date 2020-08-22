@@ -4,13 +4,12 @@ import { getShared } from '../utils/shared'
 import { allowedRoutes } from './index'
 
 export function runRoute() {
-  const { liftoffEnv: _liftoffEnv, argv } = getShared('main')
-  const liftoffEnv = _liftoffEnv as LiftoffEnv
+  const { argv } = getShared()
   const route = getRouteFromCommands(argv._, allowedRoutes)
 
   switch (route) {
     case 'react':
-      reactRun(liftoffEnv, argv)
+      reactRun()
       break
     case 'react-next-page':
       break

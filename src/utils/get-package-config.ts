@@ -1,8 +1,8 @@
 import path from 'path'
 import { getShared } from './shared'
 
-export function getPackageConfig(name: ConfigTypes) {
-  const { cwd } = getShared('react')
+export function getPackageConfig(name: RouteTypes) {
+  const { cwd } = getShared()
   const pckJsonPath = path.join(cwd, 'package.json')
   const pckJson = require(pckJsonPath)
 

@@ -13,13 +13,13 @@ export function run(env: LiftoffEnv) {
   const argv = minimist(args)
   const { configPath = '', cwd } = env
 
-  setShared('main', {
+  setShared({
     argv: argv,
     configPath,
     cwd,
     liftoffEnv: env,
     running: true,
-    projectPath: path.join(__dirname, '../'),
+    distPath: path.join(__dirname, '../'),
   })
 
   const hasInit = argv._.indexOf('init') > -1

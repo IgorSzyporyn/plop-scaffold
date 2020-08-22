@@ -6,7 +6,7 @@ import { getPackageConfig } from './get-package-config'
 import { print } from './print'
 
 export function getConfig(
-  name: ConfigTypes,
+  name: RouteTypes,
   defaultConfig: Record<string, any> = {},
   argv: ParsedArgs,
   allowedArgs?: string[]

@@ -7,7 +7,7 @@ import { getShared } from '../utils/shared'
 import { helpMain } from './help'
 
 export function runHelp() {
-  const { argv } = getShared('main')
+  const { argv } = getShared()
   const key = argv.help ? 'help' : 'h'
   const type: true | RouteTypes = argv[key]
 
