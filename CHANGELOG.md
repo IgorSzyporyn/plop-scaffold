@@ -1,6 +1,6 @@
-#### 0.11.1 (2020-08-22)
+#### 0.11.2 (2020-08-23)
 
 ##### Bug Fixes
 
-*  template path was still wrong ([be058fa1](https://github.com/IgorSzyporyn/plop-scaffold/commit/be058fa1e00dcee85f653f97b27032bba04758e3))
+*  forgot to send in array to handlebars helper ([1c59ba6e](https://github.com/IgorSzyporyn/plop-scaffold/commit/1c59ba6e85ce26444cfac3157bcf9452ce271953))
 
