@@ -1,6 +1,6 @@
-#### 0.11.3 (2020-08-23)
+#### 0.11.4 (2020-08-23)
 
 ##### Bug Fixes
 
-*  path to output is not working in relation to type chosen ([46b73760](https://github.com/IgorSzyporyn/plop-scaffold/commit/46b73760367317f0b55423442040dbc1ff54e860))
+*  found a way to get generator into actions ([519b4a07](https://github.com/IgorSzyporyn/plop-scaffold/commit/519b4a0793ac9be06be2143efa9277d9f0afcb19))
 
