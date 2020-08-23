@@ -1,6 +1,6 @@
-#### 0.11.6 (2020-08-23)
+#### 0.11.7 (2020-08-23)
 
 ##### Bug Fixes
 
-*  dunno where plop puts files now ([b553f787](https://github.com/IgorSzyporyn/plop-scaffold/commit/b553f787ba83ad3078e02af9edb050d8654b6d21))
+*  typescript arg is no longer boolean ([e84fe4cb](https://github.com/IgorSzyporyn/plop-scaffold/commit/e84fe4cb89242cb6d2010dba750e63654023d441))
 
