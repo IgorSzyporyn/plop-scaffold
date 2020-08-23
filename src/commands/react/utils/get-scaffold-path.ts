@@ -9,13 +9,13 @@ export function getScaffoldPath(type: string) {
   let scaffoldDir = ''
 
   switch (type) {
-    case 'component':
+    case 'components':
       scaffoldDir = componentDir
       break
-    case 'container':
+    case 'containers':
       scaffoldDir = containerDir
       break
-    case 'page':
+    case 'pages':
       scaffoldDir = pageDir
       break
     default:
