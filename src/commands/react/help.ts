@@ -10,14 +10,14 @@ export function helpReact() {
   print(
     'optional css-in-js framework support from styled-components or emotion and the ability to add'
   )
-  print('supportive files for storybook and/or jest')
+  print('scaffolds for storybook and/or jest')
   print.newline()
   print('List of arguments')
   print.newline()
 
   print(
     `${chalk.cyan(`  --type ${chalk.green('<option>')}`)}            ${chalk.white(
-      'Choose the generator to start'
+      'Choose where to save component as'
     )}`
   )
   print(
@@ -55,12 +55,6 @@ export function helpReact() {
   print(
     `${chalk.cyan(`  --pageDir ${chalk.green('<string>')}`)}         ${chalk.white(
       `Name of folder where pages are placed (defaults to ${chalk.green('pages')})`
-    )}`
-  )
-
-  print(
-    `${chalk.cyan(`  --hookDir ${chalk.green('<string>')}`)}         ${chalk.white(
-      `Name of folder where hooks are placed (defaults to ${chalk.green('hooks')})`
     )}`
   )
 

@@ -4,7 +4,6 @@
     "componentDir": "components",
     "pageDir": "pages",
     "containerDir": "containers",
-    "hookDir": "hooks",
     "testDir": null,
     "storybookDir": null,
     "cssinjs": null,

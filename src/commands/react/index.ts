@@ -5,7 +5,6 @@
  * --componentDir components
  * --pageDir pages
  * --containerDir containers
- * --hookDir hooks
  * --testDir "name of test folder"
  *
  * Values that can be predefined and bypassed in plop
@@ -26,14 +25,13 @@ export type ReactConfig = {
   componentDir: string | null
   pageDir: string | null
   containerDir: string | null
-  hookDir: string | null
   testDir: string | null
   storybookDir: string | null
   storybook: boolean | null
   usestate: boolean | null
   useeffect: boolean | null
   cssinjs: 'no' | 'styled-components' | '@emotion/styled' | null
-  type: 'component' | 'container' | 'page' | 'hook' | null
+  type: 'component' | 'container' | 'page' | null
   typescript: 'yes' | 'no' | null
   examples: 'yes' | 'no' | null
   test: 'no' | '@testing-library/react' | 'react-test-renderer' | 'enzyme' | null
@@ -44,7 +42,6 @@ export const defaultReactConfig: Readonly<ReactConfig> = {
   componentDir: 'components',
   pageDir: 'pages',
   containerDir: 'containers',
-  hookDir: 'hooks',
   testDir: null,
   storybookDir: null,
   cssinjs: null,
@@ -62,7 +59,6 @@ export const allowedArgs = [
   'componentDir',
   'pageDir',
   'containerDir',
-  'hookDir',
   'testDir',
   'storybookDir',
   'cssinjs',
@@ -80,7 +76,6 @@ export const prefilledArgs = [
   'componentDir',
   'pageDir',
   'containerDir',
-  'hookDir',
   'testDir',
   'storybookDir',
   'cssinjs',
