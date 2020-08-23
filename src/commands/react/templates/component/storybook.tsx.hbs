@@ -10,7 +10,7 @@ export default {
   parameters: [],
 } as Meta
 
-{{#ifEqual "yes" withexamples}}
+{{#ifEqual "yes" examples}}
 const Template: Story<{{pascalCase name}}Props> = (args) => <{{pascalCase name}} {...args} />
 
 export const Basic = Template.bind({})

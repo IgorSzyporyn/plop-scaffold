@@ -43,7 +43,9 @@ const {{pascalCase name}} = (props) => {
   useEffect(() => {
   {{#ifEqual "yes" examples}}
     // Do stuff on mount here
+      {{#ifIn "usestate" hooks}}
     setMyState((state) => ({ ...state, mounted: true }))
+      {{/ifIn}}
     // Do stuff on unmount here
     return () => {}
   {{/ifEqual}}
