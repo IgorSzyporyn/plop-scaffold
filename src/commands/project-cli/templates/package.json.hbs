@@ -1,0 +1,69 @@
+{
+  "name": "{{lowerCase name}}",
+  "version": "0.1.0",
+  "description": "{{description}}",
+  "main": "dist/index.js",
+  {{#ifEqual "yes" typescript}}
+  "types": "dist/index.d.ts",
+  {{/ifEqual}}
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "bin": {
+    "{{lowerCase name}}": "dist/bin/main.js"
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "npm run build:pre && tsc",
+    "build:pre": "rimraf dist",
+    "format": "prettier --write **/*.{js{{#ifEqual "yes" typescript}},ts{{/ifEqual}}}",
+    "test": "npm run test:lint{{#ifEqual "yes" typescript}} && npm run test:types{{/ifEqual}}",
+    {{#ifEqual "yes" typescript}}
+    "test:types": "tsc --pretty --noEmit",
+    {{/ifEqual}}
+    "test:lint": "eslint . {{#ifEqual "yes" typescript}}--ext ts {{/ifEqual}}--ext js",
+    "github:release": "git push origin && git push origin --tags",
+    "github:commit-changelog": "git add CHANGELOG.md && git commit -m \"updated CHANGELOG.md\" --no-verify",
+    "changelog:major": "npm run changelog:clean && changelog -M && npm run github:commit-changelog",
+    "changelog:minor": "npm run changelog:clean && changelog -m && npm run github:commit-changelog",
+    "changelog:patch": "npm run changelog:clean && changelog -p && npm run github:commit-changelog",
+    "changelog:clean": "rimraf CHANGELOG.md",
+    "release:major": "npm run changelog:major && npm version major && npm run github:release && npm run build && npm publish",
+    "release:minor": "npm run changelog:minor && npm version minor && npm run github:release && npm run build && npm publish",
+    "release:patch": "npm run changelog:patch && npm version patch && npm run github:release && npm run build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/{{username}}/{{lowerCase name}}.git"
+  },
+  "keywords": [
+    "nodejs",
+    "cli"
+  ],
+  "author": {
+    "name": "{{username}}",
+    "email": "{{useremail}}"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/{{username}}/{{lowerCase name}}/issues"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test:types",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "post-commit": "git update-index --again"
+    }
+  },
+  "lint-staged": {
+    "*.@(js{{#ifEqual "yes" typescript}}|ts{{/ifEqual}})": [
+      "npm run test:lint",
+      "npm run format"
+    ]
+  }
+}

@@ -1,28 +1,26 @@
 export function getPlopExecArgs(
-  prefilled: Record<string, any>,
-  prefilledArgs: string[]
+  prefilledConfig: Record<string, any>,
+  prefilledArgs: Readonly<string[]>
 ) {
   const execArgs: string[] = ['component']
+  const hooks: ('usestate' | 'useeffect')[] = []
 
-  prefilledArgs.forEach((_, index) => {
+  prefilledArgs.forEach((arg, index) => {
     switch (index) {
       case 0:
-        if (prefilled.type !== undefined) {
-          execArgs.push(prefilled.type)
+        if (prefilledConfig.type) {
+          execArgs.push(prefilledConfig.type)
         } else {
           execArgs.push('_')
         }
         break
       case 1:
-        if (prefilled.name !== undefined) {
-          execArgs.push(`${prefilled.name}`)
-        } else {
-          execArgs.push('_')
-        }
+        // We do not allow prefil of name for this route
+        execArgs.push('_')
         break
       case 2:
-        if (prefilled.typescript !== undefined) {
-          const reply = prefilled.typescript === 'yes' ? 'yes' : 'no'
+        if (prefilledConfig.typescript) {
+          const reply = prefilledConfig.typescript === 'yes' ? 'yes' : 'no'
           execArgs.push(reply)
         } else {
           execArgs.push('_')
@@ -31,13 +29,9 @@ export function getPlopExecArgs(
       default:
         break
     }
-  })
 
-  const hooks: string[] = []
-
-  prefilledArgs.forEach((prefilledName) => {
-    if (prefilled[prefilledName] !== undefined) {
-      switch (prefilledName) {
+    if (prefilledConfig[arg] !== undefined) {
+      switch (arg) {
         case 'useeffect':
           hooks.push('useeffect')
           break
@@ -54,27 +48,27 @@ export function getPlopExecArgs(
     execArgs.push('_')
   }
 
-  if (prefilled.cssinjs !== undefined) {
-    execArgs.push(`${prefilled.cssinjs}`)
+  if (prefilledConfig.cssinjs) {
+    execArgs.push(`${prefilledConfig.cssinjs}`)
   } else {
     execArgs.push('_')
   }
 
-  if (prefilled.examples !== undefined) {
-    const reply = prefilled.examples === 'yes' ? 'yes' : 'no'
+  if (prefilledConfig.examples) {
+    const reply = prefilledConfig.examples === 'yes' ? 'yes' : 'no'
     execArgs.push(reply)
   } else {
     execArgs.push('_')
   }
 
-  if (prefilled.test !== undefined) {
-    execArgs.push(`${prefilled.test}`)
+  if (prefilledConfig.test) {
+    execArgs.push(`${prefilledConfig.test}`)
   } else {
     execArgs.push('_')
   }
 
-  if (prefilled.storybook !== undefined) {
-    const reply = prefilled.storybook === 'yes' ? 'yes' : 'no'
+  if (prefilledConfig.storybook) {
+    const reply = prefilledConfig.storybook === 'yes' ? 'yes' : 'no'
     execArgs.push(reply)
   } else {
     execArgs.push('_')

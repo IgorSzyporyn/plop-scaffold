@@ -10,7 +10,7 @@ export function getConfig(
   name: RouteTypes,
   defaultConfig: Record<string, any> = {},
   argv: ParsedArgs,
-  allowedArgs?: string[]
+  allowedArgs?: Readonly<string[]>
 ) {
   const packageConfig = getPackageConfig(name)
   const rcConfig = getConfigFile(name)

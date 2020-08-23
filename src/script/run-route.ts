@@ -1,4 +1,5 @@
 import { run as reactRun } from '../commands/react/run'
+import { run as projectCliRun } from '../commands/project-cli/run'
 import { getRouteFromCommands } from '../utils/get-route-from-commands'
 import { getShared } from '../utils/shared'
 import { allowedRoutes } from './index'
@@ -14,6 +15,7 @@ export function runRoute() {
     case 'react-next-page':
       break
     case 'project-cli':
+      projectCliRun()
       break
     case 'project-react-component':
       break

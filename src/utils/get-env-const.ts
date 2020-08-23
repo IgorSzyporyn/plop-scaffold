@@ -1,13 +1,8 @@
-import { PROJECT_ID } from '../constants'
+import { getEnv } from './get-env'
 
 export function getEnvConst(name: string) {
-  const { env } = process
-
-  const envConst = env[`${PROJECT_ID}-${name}`]
-    ? env[`${PROJECT_ID}-${name}`] !== 'NULL'
-      ? env[`${PROJECT_ID}-${name}`]
-      : ''
-    : ''
+  const env = getEnv()
+  const envConst = env[name] !== 'NULL' ? env[name] : ''
 
   return envConst
 }

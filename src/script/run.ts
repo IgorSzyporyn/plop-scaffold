@@ -7,11 +7,13 @@ import { allowedRoutes } from './index'
 import { runHelp } from './run-help'
 import { runRoute } from './run-route'
 import { runVersion } from './run-version'
+import { getGitInfo } from '../utils/get-git-info'
 
 export function run(env: LiftoffEnv) {
   const args = process.argv.slice(2)
   const argv = minimist(args)
   const { configPath = '', cwd } = env
+  const { username, useremail } = getGitInfo()
 
   setShared({
     argv: argv,
@@ -20,6 +22,8 @@ export function run(env: LiftoffEnv) {
     liftoffEnv: env,
     running: true,
     distPath: path.join(__dirname, '../'),
+    username,
+    useremail,
   })
 
   const hasInit = argv._.indexOf('init') > -1

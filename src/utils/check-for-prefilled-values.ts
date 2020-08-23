@@ -5,7 +5,7 @@ type PrefilledType = {
 
 export function checkForPrefilledValues(
   config: Record<string, any>,
-  keys: string[]
+  keys: Readonly<string[]>
 ) {
   let hasPrefilledValues = false
   const prefilledArray: PrefilledType[] = []

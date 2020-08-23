@@ -3,89 +3,103 @@
  *
  * --baseDir src
  * --componentDir components
- * --pageDir pages
  * --containerDir containers
+ * --pageDir pages
  * --testDir "name of test folder"
- *
- * Values that can be predefined and bypassed in plop
- *
- * --type (component/page/hook/container)
- * --typescript
- * --usestate
- * --useeffect
+ * --storybookDir "name of test folder"
  * --cssinjs
+ * --examples
  * --storybook
  * --test
- * --examples
+ * --type (component/page/hook/container)
+ * --typescript
+ * --useeffect
+ * --usestate
  *
  **/
+
+export type ReactConfigTypes =
+  | 'baseDir'
+  | 'componentDir'
+  | 'containerDir'
+  | 'pageDir'
+  | 'storybookDir'
+  | 'testDir'
+  | 'cssinjs'
+  | 'examples'
+  | 'storybook'
+  | 'test'
+  | 'type'
+  | 'typescript'
+  | 'useeffect'
+  | 'usestate'
 
 export type ReactConfig = {
   baseDir: string | null
   componentDir: string | null
-  pageDir: string | null
   containerDir: string | null
-  testDir: string | null
+  pageDir: string | null
   storybookDir: string | null
-  storybook: boolean | null
-  usestate: boolean | null
-  useeffect: boolean | null
+  testDir: string | null
   cssinjs: 'no' | 'styled-components' | '@emotion/styled' | null
+  examples: 'yes' | 'no' | null
+  storybook: 'yes' | 'no' | null
+  test: 'no' | '@testing-library/react' | 'react-test-renderer' | 'enzyme' | null
   type: 'component' | 'container' | 'page' | null
   typescript: 'yes' | 'no' | null
-  examples: 'yes' | 'no' | null
-  test: 'no' | '@testing-library/react' | 'react-test-renderer' | 'enzyme' | null
+  useeffect: boolean | null
+  usestate: boolean | null
 }
 
 export const defaultReactConfig: Readonly<ReactConfig> = {
   baseDir: 'src',
   componentDir: 'components',
-  pageDir: 'pages',
   containerDir: 'containers',
-  testDir: null,
+  pageDir: 'pages',
   storybookDir: null,
+  testDir: null,
   cssinjs: null,
+  examples: null,
   storybook: null,
+  test: null,
   type: null,
   typescript: null,
   useeffect: null,
   usestate: null,
-  examples: null,
-  test: null,
 }
 
-export const allowedArgs = [
+export const allowedArgs: Readonly<ReactConfigTypes[]> = [
   'baseDir',
   'componentDir',
-  'pageDir',
   'containerDir',
-  'testDir',
+  'pageDir',
   'storybookDir',
+  'testDir',
   'cssinjs',
+  'examples',
   'storybook',
+  'test',
   'type',
   'typescript',
   'useeffect',
   'usestate',
-  'examples',
-  'test',
 ]
 
-export const prefilledArgs = [
+export const prefilledArgs: Readonly<ReactConfigTypes[]> = [
   'baseDir',
   'componentDir',
-  'pageDir',
   'containerDir',
-  'testDir',
+  'pageDir',
   'storybookDir',
+  'testDir',
   'cssinjs',
+  'examples',
   'storybook',
+  'test',
   'type',
   'typescript',
   'useeffect',
   'usestate',
-  'examples',
-  'test',
 ]
 
 export * from './run'

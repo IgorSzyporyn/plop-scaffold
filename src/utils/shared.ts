@@ -7,6 +7,8 @@ export type Shared = {
   cwd: string
   distPath: string
   liftoffEnv: LiftoffEnv
+  username: string
+  useremail: string
 }
 
 const root: Record<string, any> = global
@@ -17,6 +19,8 @@ root[PROJECT_ID] = {
   cwd: '',
   distPath: '',
   liftoffEnv: {},
+  username: '',
+  useremail: '',
 }
 
 export function getShared() {
