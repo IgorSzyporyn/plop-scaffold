@@ -46,7 +46,7 @@ export default (plop) => {
         },
         {
           type: 'list',
-          name: 'cssinjs',
+          name: 'cssInJs',
           message: 'CSS-in-JS?',
           choices: [
             {
@@ -65,7 +65,7 @@ export default (plop) => {
         },
         {
           type: 'list',
-          name: 'withexamples',
+          name: 'withExamples',
           message: 'Example code & comments?',
           choices: [
             {

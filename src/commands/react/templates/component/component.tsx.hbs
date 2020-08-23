@@ -2,23 +2,23 @@
   {{#hasBothHooks hooks}}
 import React, { useEffect, useState } from 'react'
   {{else}}
-    {{#ifIn  "useEffect" hooks}}
+    {{#ifIn  "usestate" hooks}}
 import React, { useEffect } from 'react'
     {{/ifIn}}
-    {{#ifIn  "useState" hooks}}
+    {{#ifIn  "usestate" hooks}}
 import React, { useState } from 'react'
     {{/ifIn}}
   {{/hasBothHooks}}
 {{else}}
 import React from 'react'
 {{/hasHook}}
-{{#ifNotEqual "no" cssinjs}}
-import styled from '{{cssinjs}}'
+{{#ifNotEqual "no" cssInJs}}
+import styled from '{{cssInJs}}'
 
 const Wrapper = styled.div``
 {{/ifNotEqual}}
 {{#ifIn "usestate" hooks}}
-  {{#ifEqual "yes" withexamples}}
+  {{#ifEqual "yes" withExamples}}
 
 type {{pascalCase name}}State = {
   mounted: boolean
@@ -36,14 +36,14 @@ type {{pascalCase name}}State = {}
 const initialState: {{pascalCase name}}State = {}
   {{/ifEqual}}
 {{/ifIn}}
-{{#ifEqual "yes" withexamples}}
+{{#ifEqual "yes" withExamples}}
 
 type {{pascalCase name}}Props = {
   title?: string
   children?: React.ReactNode
 }
 
-const {{pascalCase name}} = ({ children }: {{pascalCase name}}Props) => {
+const {{pascalCase name}} = ({ children, title }: {{pascalCase name}}Props) => {
 {{else}}
 
 // @NOTE: Linter will most likely complain and suggest Record<string, unknown>
@@ -53,14 +53,14 @@ type {{pascalCase name}}Props = {}
 const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
 {{/ifEqual}}
 {{#ifIn "usestate" hooks}}
-  const [state, setState] = useState({ ...initialState })
+  const [myState, setMyState] = useState({ ...initialState })
 
 {{/ifIn}}
 {{#ifIn "useeffect" hooks}}
   useEffect(() => {
-  {{#ifEqual "yes" withexamples}}
+  {{#ifEqual "yes" withExamples}}
     // Do stuff on mount here
-    setState((currentState) => ({ ...currentState, mounted: true }))
+    setState((state) => ({ ...state, mounted: true }))
     // Do stuff on unmount here
     return () => {}
   {{/ifEqual}}
@@ -68,8 +68,8 @@ const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
 {{/ifIn}}
 
   return (
-  {{#ifNotEqual "no" cssinjs}}
-    {{#ifEqual "yes" withexamples}}
+  {{#ifNotEqual "no" cssInJs}}
+    {{#ifEqual "yes" withExamples}}
     <Wrapper>
       <h1>{title}</h1>
       {children}
@@ -78,7 +78,7 @@ const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
     <Wrapper>Here more TSX</Wrapper>
     {{/ifEqual}}
   {{else}}
-    {{#ifEqual "yes" withexamples}}
+    {{#ifEqual "yes" withExamples}}
     <div>
       <h1>{title}</h1>
       {children}

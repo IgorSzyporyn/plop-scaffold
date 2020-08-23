@@ -6,7 +6,7 @@ import {{pascalCase name}} from './{{pascalCase name}}'
 // unmount and cleanup DOM after the test is finished.
 afterEach(cleanup);
 
-  {{#ifEqual "yes" withexamples}}
+  {{#ifEqual "yes" withExamples}}
 it('Should be able to query by text if text is set', () => {
   const { queryByText } = render(
     <{{pascalCase name}} title="Hello World" />,
@@ -18,7 +18,7 @@ it('Awaits your test', () => {
     <{{pascalCase name}} />,
   )
   {{/ifEqual}}
-  {{#ifEqual "yes" withexamples}}
+  {{#ifEqual "yes" withExamples}}
 
     expect(queryByText(/Hello World/i)).toBeTruthy()
   {{/ifEqual}}

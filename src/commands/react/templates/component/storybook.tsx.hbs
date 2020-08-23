@@ -8,13 +8,16 @@ export default {
   component: {{pascalCase name}},
 } as Meta
 
+{{#ifEqual "yes" withExamples}}
 const Template: Story<{{pascalCase name}}> = (args) => <{{pascalCase name}} {...args} />
 
-const Template = (args) => <{{pascalCase name}} {...args} />
-
-export const Basic = () => {
-  return (<{{pascalCase name}} />)
+export const Basic = Template.bind({})
+Basic.args = {
+  title: 'Hello World'
 }
+{{else}}
+const Template: Story<{{pascalCase name}}> = (args) => <{{pascalCase name}} {...args} />
 
 export const Basic = Template.bind({})
 Basic.args = {}
+{{#ifEqual}}
