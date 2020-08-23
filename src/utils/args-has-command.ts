@@ -1,4 +1,4 @@
-export function argsHasRoute(args: string[], allowed: string[]) {
+export function argsHasCommand(args: string[], allowed: string[]) {
   let hasRoute = false
 
   args.some((arg) => {

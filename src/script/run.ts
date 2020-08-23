@@ -1,7 +1,7 @@
 import minimist from 'minimist'
 import path from 'path'
 import { runInit } from '../commands/init/run'
-import { argsHasRoute } from '../utils/args-has-route'
+import { argsHasCommand } from '../utils/args-has-command'
 import { setShared } from '../utils/shared'
 import { allowedRoutes } from './index'
 import { runHelp } from './run-help'
@@ -23,7 +23,7 @@ export function run(env: LiftoffEnv) {
   })
 
   const hasInit = argv._.indexOf('init') > -1
-  const hasRoute = argsHasRoute(argv._, allowedRoutes)
+  const hasRoute = argsHasCommand(argv._, allowedRoutes)
 
   if (hasInit) {
     runInit()
