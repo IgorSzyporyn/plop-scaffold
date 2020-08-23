@@ -6,10 +6,6 @@ export function plopHelper(plop) {
     return options.inverse(this)
   })
 
-  plop.setHelper('hasCssInJs', function (cssinjs, options) {
-    return cssinjs && cssinjs.length > 0 ? options.fn(this) : options.inverse(this)
-  })
-
   plop.setHelper('hasHook', function (hooks, options) {
     return hooks && hooks.length > 0 ? options.fn(this) : options.inverse(this)
   })

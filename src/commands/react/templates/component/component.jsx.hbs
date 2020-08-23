@@ -1,4 +1,4 @@
-{{#hasHook}}
+{{#hasHook hooks}}
 import React, { {{#ifIn "usestate" hooks}}useState{{#ifIn "useEffect" hooks}}, {{/ifIn}}{{/ifIn}}{{#ifIn "useEffect" hooks}}useState{{/ifIn}} } from 'react'
 {{else}}
 import React from 'react'
