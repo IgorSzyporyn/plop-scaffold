@@ -1,8 +1,3 @@
-type Input = {
-  aid: string[]
-  hooks: string[]
-}
-
 export function getPlopExecArgs(
   prefilled: Record<string, any>,
   prefilledArgs: string[]
@@ -38,25 +33,23 @@ export function getPlopExecArgs(
     }
   })
 
-  const input: Input = {
-    hooks: [],
-  }
+  const hooks: string[] = []
 
   prefilledArgs.forEach((prefilledName) => {
     if (prefilled[prefilledName] !== undefined) {
       switch (prefilledName) {
         case 'useEffect':
-          input.hooks.push('useeffect')
+          hooks.push('useeffect')
           break
         case 'useState':
-          input.hooks.push('usestate')
+          hooks.push('usestate')
           break
       }
     }
   })
 
-  if (input.hooks.length > 0) {
-    execArgs.push(`${input.hooks.join(',')}`)
+  if (hooks.length > 0) {
+    execArgs.push(`${hooks.join(',')}`)
   } else {
     execArgs.push('_')
   }
