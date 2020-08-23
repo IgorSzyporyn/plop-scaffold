@@ -1,6 +1,6 @@
-#### 0.11.2 (2020-08-23)
+#### 0.11.3 (2020-08-23)
 
 ##### Bug Fixes
 
-*  forgot to send in array to handlebars helper ([1c59ba6e](https://github.com/IgorSzyporyn/plop-scaffold/commit/1c59ba6e85ce26444cfac3157bcf9452ce271953))
+*  path to output is not working in relation to type chosen ([46b73760](https://github.com/IgorSzyporyn/plop-scaffold/commit/46b73760367317f0b55423442040dbc1ff54e860))
 
