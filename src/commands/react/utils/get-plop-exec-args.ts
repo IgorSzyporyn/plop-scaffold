@@ -38,10 +38,10 @@ export function getPlopExecArgs(
   prefilledArgs.forEach((prefilledName) => {
     if (prefilled[prefilledName] !== undefined) {
       switch (prefilledName) {
-        case 'useEffect':
+        case 'useeffect':
           hooks.push('useeffect')
           break
-        case 'useState':
+        case 'usestate':
           hooks.push('usestate')
           break
       }
