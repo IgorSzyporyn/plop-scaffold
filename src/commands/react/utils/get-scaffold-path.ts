@@ -1,6 +1,6 @@
 import { getEnvConst } from '../../../utils/get-env-const'
 
-export function getTemplatePath(type: string) {
+export function getScaffoldPath(type: string) {
   const baseDir = getEnvConst('baseDir') || 'src'
   const componentDir = getEnvConst('componentDir') || 'components'
   const containerDir = getEnvConst('containerDir') || 'containers'

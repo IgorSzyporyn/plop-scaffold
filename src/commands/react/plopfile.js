@@ -18,7 +18,7 @@ export default (plop) => {
       {
         type: 'list',
         name: 'type',
-        message: `Create in ${baseDir}/?`,
+        message: `Create in ${baseDir} /`,
         choices: [
           {
             name: componentDir,
