@@ -10,8 +10,6 @@ export function runInit() {
   const { cwd, distPath } = getShared()
   const initFileExists = getConfigFileExists()
 
-  print.title()
-
   if (initFileExists) {
     print.newline()
     print(`Folder already has a configuration file`, 'error')
