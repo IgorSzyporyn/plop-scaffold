@@ -1,0 +1,31 @@
+import React from 'react'
+import { cleanup, render, RenderResult } from '@testing-library/react'
+import {{pascalCase name}} from './{{pascalCase name}}'
+
+// Note: running cleanup afterEach is done automatically for you in @testing-library/react@9.0.0 or higher
+// unmount and cleanup DOM after the test is finished.
+afterEach(cleanup)
+
+describe('<{{pascalCase name}} />', () => {
+  it('can perform a shallow render', () => {
+    const { container } = render(<{{pascalCase name}} />)
+    expect(container).toBeInTheDocument()
+  })
+
+  it('can match snapshot for a shallow render', () => {
+    const { container } = render(<{{pascalCase name}} />)
+    expect(container).toMatchSnapshot()
+  })
+
+  {{#ifEqual "yes" examples}}
+  it('can render with default title', () => {
+    const { getByText } = render(<{{pascalCase name}} />)
+    getByText({{pascalCase name}}.defaultProps.title)
+  })
+
+  it('can render with custom title', () => {
+    const { queryByText } = render(<{{pascalCase name}} title="Hello User" />)
+    expect(queryByText(/Hello User/i)).toBeTruthy()
+  })
+  {{/ifEqual}}
+})

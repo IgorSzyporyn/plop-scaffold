@@ -158,7 +158,7 @@ export default (plop) => {
           actions.push({
             type: 'add',
             path: `${templatePath}/{{pascalCase name}}/${testTemplatePath}/{{pascalCase name}}.test.${
-              typescript ? 'ts' : 'js'
+              typescript ? 'tsx' : 'jsx'
             }`,
             templateFile: `../../../dist/templates/commands/react/templates/component/test.${testTemplateName}.${
               typescript ? 'tsx' : 'jsx'

@@ -38,7 +38,7 @@ const initialState: {{pascalCase name}}State = {}
 {{/ifIn}}
 {{#ifEqual "yes" examples}}
 
-type {{pascalCase name}}Props = {
+export type {{pascalCase name}}Props = {
   title?: string
   children?: React.ReactNode
 }
@@ -48,7 +48,7 @@ const {{pascalCase name}} = ({ children, title }: {{pascalCase name}}Props) => {
 
 // @NOTE: Linter will most likely complain and suggest Record<string, unknown>
 // But left as {} for your to fill in your props signature
-type {{pascalCase name}}Props = {}
+export type {{pascalCase name}}Props = {}
 
 const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
 {{/ifEqual}}
