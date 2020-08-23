@@ -68,8 +68,13 @@ export function helpReact() {
 
   print(
     `${chalk.cyan(
-      '  --typescript'
+      `  --typescript ${chalk.green('<option>')}`
     )}               Implement typescript in your component`
+  )
+  print(
+    chalk.white(
+      `                     "${chalk.green('yes')}" | "${chalk.green('no')}"`
+    )
   )
 
   print.newline()
@@ -96,6 +101,18 @@ export function helpReact() {
       `                             "${chalk.green('no')}" | "${chalk.green(
         'styled-components'
       )}" | "${chalk.green('@emotion/styled')}"`
+    )
+  )
+  print.newline()
+
+  print(
+    `${chalk.cyan(
+      `  --withExamples ${chalk.green('<option>')}`
+    )}         Add example code and comments`
+  )
+  print(
+    chalk.white(
+      `                     "${chalk.green('yes')}" | "${chalk.green('no')}"`
     )
   )
 

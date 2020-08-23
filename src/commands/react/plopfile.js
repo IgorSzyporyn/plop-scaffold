@@ -15,9 +15,19 @@ export default (plop) => {
           validate: requireField('name'),
         },
         {
-          type: 'confirm',
+          type: 'list',
           name: 'typescript',
           message: 'Typescript?',
+          choices: [
+            {
+              name: 'Yes',
+              value: 'yes',
+            },
+            {
+              name: 'No',
+              value: 'no',
+            },
+          ],
         },
         {
           type: 'checkbox',
@@ -54,17 +64,17 @@ export default (plop) => {
           ],
         },
         {
-          type: 'checkbox',
-          name: 'aid',
-          message: 'Coding aid?',
+          type: 'list',
+          name: 'withexamples',
+          message: 'Example code & comments?',
           choices: [
             {
-              name: 'Comments',
-              value: 'withcomments',
+              name: 'No',
+              value: 'no',
             },
             {
-              name: 'Example code',
-              value: 'withexamplecode',
+              name: 'Yes',
+              value: 'yes',
             },
           ],
         },
@@ -92,9 +102,19 @@ export default (plop) => {
           ],
         },
         {
-          type: 'confirm',
+          type: 'list',
           name: 'storybook',
           message: 'Add a storybook file?',
+          choices: [
+            {
+              name: 'No',
+              value: 'no',
+            },
+            {
+              name: 'Yes',
+              value: 'yes',
+            },
+          ],
         },
       ],
       actions: ({ typescript, testing, storybook }) => {
@@ -114,7 +134,7 @@ export default (plop) => {
         })
 
         // If storybook is set - then we add this template
-        if (storybook) {
+        if (storybook === 'yes') {
           actions.push({
             type: 'add',
             path: `${path}/{{pascalCase name}}/{{pascalCase name}}.stories.${

@@ -27,7 +27,8 @@ export function getPlopExecArgs(
         break
       case 2:
         if (prefilled.typescript !== undefined) {
-          execArgs.push('y')
+          const reply = prefilled.typescript === 'yes' ? 'yes' : 'no'
+          execArgs.push(reply)
         } else {
           execArgs.push('_')
         }
@@ -38,7 +39,6 @@ export function getPlopExecArgs(
   })
 
   const input: Input = {
-    aid: [],
     hooks: [],
   }
 
@@ -50,14 +50,6 @@ export function getPlopExecArgs(
           break
         case 'useState':
           input.hooks.push('usestate')
-          break
-        case 'withComments':
-          input.aid.push('withcomments')
-          break
-        case 'withExampleCode':
-          input.aid.push('withexamplecode')
-          break
-        default:
           break
       }
     }
@@ -75,8 +67,9 @@ export function getPlopExecArgs(
     execArgs.push('_')
   }
 
-  if (input.aid.length > 0) {
-    execArgs.push(`${input.aid.join(',')}`)
+  if (prefilled.withExamples !== undefined) {
+    const reply = prefilled.withExamples === 'yes' ? 'yes' : 'no'
+    execArgs.push(reply)
   } else {
     execArgs.push('_')
   }
@@ -88,7 +81,8 @@ export function getPlopExecArgs(
   }
 
   if (prefilled.storybook !== undefined) {
-    execArgs.push(`${prefilled.storybook}`)
+    const reply = prefilled.storybook === 'yes' ? 'yes' : 'no'
+    execArgs.push(reply)
   } else {
     execArgs.push('_')
   }

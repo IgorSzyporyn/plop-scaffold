@@ -11,8 +11,7 @@
     "typescript": null,
     "useEffect": null,
     "useState": null,
-    "withComments": null,
-    "withExampleCode": null,
+    "withExamples": null,
     "testing": null
   },
   "react-next-page": {
