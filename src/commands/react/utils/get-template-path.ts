@@ -2,7 +2,13 @@ import { PROJECT_ID } from '../../../constants'
 
 export function getTemplatePath(type: string) {
   const env = process.env
-  let templatePath = ''
+  let templateDir = ''
+
+  const baseDir = env[`${PROJECT_ID}-baseDir`]
+    ? env[`${PROJECT_ID}-baseDir`] !== 'NULL'
+      ? env[`${PROJECT_ID}-baseDir`]
+      : 'src'
+    : 'src'
 
   const componentDir = env[`${PROJECT_ID}-componentDir`]
     ? env[`${PROJECT_ID}-componentDir`] !== 'NULL'
@@ -30,20 +36,20 @@ export function getTemplatePath(type: string) {
 
   switch (type) {
     case 'component':
-      templatePath = componentDir as string
+      templateDir = componentDir as string
       break
     case 'container':
-      templatePath = containerDir as string
+      templateDir = containerDir as string
       break
     case 'page':
-      templatePath = pageDir as string
+      templateDir = pageDir as string
       break
     case 'hook':
-      templatePath = hookDir as string
+      templateDir = hookDir as string
       break
     default:
       break
   }
 
-  return templatePath
+  return `${baseDir}/${templateDir}`
 }
