@@ -1,10 +1,6 @@
-#### 0.12.3 (2020-08-23)
-
-##### New Features
-
-*  added storybookDir and testDir options to react command ([31fa18ea](https://github.com/IgorSzyporyn/plop-scaffold/commit/31fa18ea934b167fa4383cb72389fbe9bb45e3a7))
+### 0.13.0 (2020-08-23)
 
 ##### Bug Fixes
 
-*  cleaned up and updated all template files and renamed some ([a649732f](https://github.com/IgorSzyporyn/plop-scaffold/commit/a649732f96e607f94640b718ebaa24413f7ce62f))
+*  more template fixes about relative path import if support file has parent ([50479a04](https://github.com/IgorSzyporyn/plop-scaffold/commit/50479a04de2de5576e287505a68caf57b999e682))
 
