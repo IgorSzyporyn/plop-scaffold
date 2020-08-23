@@ -1,6 +1,6 @@
-#### 0.16.3 (2020-08-23)
+#### 0.16.4 (2020-08-23)
 
 ##### Bug Fixes
 
-*  react route help cleaned and definitions of removed hook ([b9430215](https://github.com/IgorSzyporyn/plop-scaffold/commit/b943021528b0d772eba1fa11480b93dfd39bfc78))
+*  forgot to rename gettemplatepath to getscaffoldpath ([529679e9](https://github.com/IgorSzyporyn/plop-scaffold/commit/529679e9f0fbb1b49de94ad9c6dec3bfcae1bf18))
 
