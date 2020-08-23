@@ -1,6 +1,6 @@
-#### 0.16.7 (2020-08-23)
+#### 0.16.8 (2020-08-23)
 
 ##### Bug Fixes
 
-*  renamed value for type back to without s ([c5823b78](https://github.com/IgorSzyporyn/plop-scaffold/commit/c5823b784034eea949b7def016b064c4171dc6f2))
+*  routes are now finally called commands all over ([a53a7732](https://github.com/IgorSzyporyn/plop-scaffold/commit/a53a77329a343eb48143eb27d460c5d2e5eb8584))
 
