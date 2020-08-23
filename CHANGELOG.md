@@ -1,6 +1,6 @@
-### 0.13.0 (2020-08-23)
+### 0.14.0 (2020-08-23)
 
 ##### Bug Fixes
 
-*  more template fixes about relative path import if support file has parent ([50479a04](https://github.com/IgorSzyporyn/plop-scaffold/commit/50479a04de2de5576e287505a68caf57b999e682))
+*  help files updated ([23d0dce6](https://github.com/IgorSzyporyn/plop-scaffold/commit/23d0dce6bf7aaefde4da44793c71a05572a84698))
 
