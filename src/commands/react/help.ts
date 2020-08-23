@@ -17,14 +17,14 @@ export function helpReact() {
 
   print(
     `${chalk.cyan(`  --type ${chalk.green('<option>')}`)}            ${chalk.white(
-      'Choose where to save component as'
+      'Choose what to save component as'
     )}`
   )
   print(
     chalk.white(
       `                             ${chalk.green('component')} | ${chalk.green(
         'container'
-      )} | ${chalk.green('page')} | ${chalk.green('hook')}`
+      )} | ${chalk.green('page')}`
     )
   )
 

@@ -22,15 +22,15 @@ export default (plop) => {
         choices: [
           {
             name: componentDir,
-            value: componentDir,
+            value: 'component',
           },
           {
             name: containerDir,
-            value: containerDir,
+            value: 'container',
           },
           {
             name: pageDir,
-            value: pageDir,
+            value: 'page',
           },
         ],
       },
