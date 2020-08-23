@@ -13,7 +13,7 @@ export default (plop) => {
   plopHelper(plop)
 
   plop.setGenerator('component', {
-    description,
+    description: 'Create a react component',
     prompts: [
       {
         type: 'list',
