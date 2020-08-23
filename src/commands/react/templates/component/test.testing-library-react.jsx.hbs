@@ -1,6 +1,6 @@
 import React from 'react'
-import { cleanup, render, RenderResult } from '@testing-library/react'
-import {{pascalCase name}} from './{{pascalCase name}}'
+import { cleanup, render{{#ifEqual "yes" withexamples}}, RenderResult{{/ifEqual}} } from '@testing-library/react'
+import {{pascalCase name}} from '{{#if hasParentFolder}}.{{/if}}./{{pascalCase name}}'
 
 // Note: running cleanup afterEach is done automatically for you in @testing-library/react@9.0.0 or higher
 // unmount and cleanup DOM after the test is finished.

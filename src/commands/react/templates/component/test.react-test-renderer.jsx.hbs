@@ -1,6 +1,6 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import {{pascalCase name}} from './{{pascalCase name}}'
+import {{pascalCase name}} from '{{#if hasParentFolder}}.{{/if}}./{{pascalCase name}}'
 
 test('Should match snapshot', () => {
   const component = renderer.create(

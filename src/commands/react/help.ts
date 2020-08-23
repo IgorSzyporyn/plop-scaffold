@@ -143,8 +143,13 @@ export function helpReact() {
 
   print(
     `${chalk.cyan(
-      '  --storybook'
-    )}                Add a storybook file for the component`
+      `  --storybook ${chalk.green('<string>')}`
+    )}       Add a storybook file for the component`
+  )
+  print(
+    chalk.white(
+      `                             ${chalk.green('yes')} | ${chalk.green('no')}`
+    )
   )
 
   print.newline()

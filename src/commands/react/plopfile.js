@@ -141,6 +141,7 @@ export default (plop) => {
 
           actions.push({
             type: 'add',
+            data: { hasParentFolder: !!storybookTemplatePath },
             path: `${templatePath}/{{pascalCase name}}/${storybookTemplatePath}/{{pascalCase name}}.stories.${
               typescript ? 'tsx' : 'jsx'
             }`,
@@ -157,6 +158,7 @@ export default (plop) => {
 
           actions.push({
             type: 'add',
+            data: { hasParentFolder: !!testTemplatePath },
             path: `${templatePath}/{{pascalCase name}}/${testTemplatePath}/{{pascalCase name}}.test.${
               typescript ? 'tsx' : 'jsx'
             }`,

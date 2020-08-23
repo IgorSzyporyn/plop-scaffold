@@ -1,5 +1,5 @@
 import React from 'react'
-import {{pascalCase name}} from './{{pascalCase name}}'
+import {{pascalCase name}} from '{{#if hasParentFolder}}.{{/if}}./{{pascalCase name}}'
 
 export default {
   title: '{{pascalCase name}}',
@@ -8,7 +8,7 @@ export default {
   parameters: [],
 }
 
-{{#ifEqual "yes" withExamples}}
+{{#ifEqual "yes" withexamples}}
 const Template: Story = (args) => <{{pascalCase name}} {...args} />
 
 export const Basic = Template.bind({})
