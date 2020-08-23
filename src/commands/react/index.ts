@@ -11,12 +11,12 @@
  *
  * --type (component/page/hook/container)
  * --typescript
- * --useState
- * --useEffect
- * --cssInJs
+ * --usestate
+ * --useeffect
+ * --cssinjs
  * --storybook
- * --testing
- * --withExamples
+ * --test
+ * --withexamples
  *
  **/
 
@@ -27,13 +27,13 @@ export type ReactConfig = {
   containerDir: string | null
   hookDir: string | null
   storybook: boolean | null
-  useState: boolean | null
-  useEffect: boolean | null
-  cssInJs: 'no' | 'styled-components' | '@emotion/styled' | null
+  usestate: boolean | null
+  useeffect: boolean | null
+  cssinjs: 'no' | 'styled-components' | '@emotion/styled' | null
   type: 'component' | 'container' | 'page' | 'hook' | null
-  typescript: boolean | null
-  withExamples: boolean | null
-  testing: 'no' | '@testing-library/react' | 'react-test-renderer' | 'enzyme' | null
+  typescript: 'yes' | 'no' | null
+  withexamples: 'yes' | 'no' | null
+  test: 'no' | '@testing-library/react' | 'react-test-renderer' | 'enzyme' | null
 }
 
 export const defaultReactConfig: Readonly<ReactConfig> = {
@@ -42,14 +42,14 @@ export const defaultReactConfig: Readonly<ReactConfig> = {
   pageDir: 'pages',
   containerDir: 'containers',
   hookDir: 'hooks',
-  cssInJs: null,
+  cssinjs: null,
   storybook: null,
   type: null,
   typescript: null,
-  useEffect: null,
-  useState: null,
-  withExamples: null,
-  testing: null,
+  useeffect: null,
+  usestate: null,
+  withexamples: null,
+  test: null,
 }
 
 export const allowedArgs = [
@@ -58,14 +58,14 @@ export const allowedArgs = [
   'pageDir',
   'containerDir',
   'hookDir',
-  'cssInJs',
+  'cssinjs',
   'storybook',
   'type',
   'typescript',
-  'useEffect',
-  'useState',
-  'withExamples',
-  'testing',
+  'useeffect',
+  'usestate',
+  'withexamples',
+  'test',
 ]
 
 export const prefilledArgs = [
@@ -74,14 +74,14 @@ export const prefilledArgs = [
   'pageDir',
   'containerDir',
   'hookDir',
-  'cssInJs',
+  'cssinjs',
   'storybook',
   'type',
   'typescript',
-  'useEffect',
-  'useState',
-  'withExamples',
-  'testing',
+  'useeffect',
+  'usestate',
+  'withexamples',
+  'test',
 ]
 
 export * from './run'

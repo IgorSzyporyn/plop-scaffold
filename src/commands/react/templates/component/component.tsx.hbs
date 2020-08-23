@@ -12,13 +12,13 @@ import React, { useState } from 'react'
 {{else}}
 import React from 'react'
 {{/hasHook}}
-{{#ifNotEqual "no" cssInJs}}
-import styled from '{{cssInJs}}'
+{{#ifNotEqual "no" cssinjs}}
+import styled from '{{cssinjs}}'
 
 const Wrapper = styled.div``
 {{/ifNotEqual}}
 {{#ifIn "usestate" hooks}}
-  {{#ifEqual "yes" withExamples}}
+  {{#ifEqual "yes" withexamples}}
 
 type {{pascalCase name}}State = {
   mounted: boolean
@@ -36,7 +36,7 @@ type {{pascalCase name}}State = {}
 const initialState: {{pascalCase name}}State = {}
   {{/ifEqual}}
 {{/ifIn}}
-{{#ifEqual "yes" withExamples}}
+{{#ifEqual "yes" withexamples}}
 
 type {{pascalCase name}}Props = {
   title?: string
@@ -58,7 +58,7 @@ const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
 {{/ifIn}}
 {{#ifIn "useeffect" hooks}}
   useEffect(() => {
-  {{#ifEqual "yes" withExamples}}
+  {{#ifEqual "yes" withexamples}}
     // Do stuff on mount here
     setState((state) => ({ ...state, mounted: true }))
     // Do stuff on unmount here
@@ -68,8 +68,8 @@ const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
 {{/ifIn}}
 
   return (
-  {{#ifNotEqual "no" cssInJs}}
-    {{#ifEqual "yes" withExamples}}
+  {{#ifNotEqual "no" cssinjs}}
+    {{#ifEqual "yes" withexamples}}
     <Wrapper>
       <h1>{title}</h1>
       {children}
@@ -78,7 +78,7 @@ const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
     <Wrapper>Here more TSX</Wrapper>
     {{/ifEqual}}
   {{else}}
-    {{#ifEqual "yes" withExamples}}
+    {{#ifEqual "yes" withexamples}}
     <div>
       <h1>{title}</h1>
       {children}

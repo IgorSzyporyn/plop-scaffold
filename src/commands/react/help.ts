@@ -81,19 +81,19 @@ export function helpReact() {
 
   print(
     `${chalk.cyan(
-      '  --useState'
+      '  --usestate'
     )}                 Add state managment hook to component`
   )
 
   print(
-    `${chalk.cyan('  --useEffect')}                Add lifecycle hook to component`
+    `${chalk.cyan('  --useeffect')}                Add lifecycle hook to component`
   )
 
   print.newline()
 
   print(
     `${chalk.cyan(
-      `  --cssInJs ${chalk.green('<option>')}`
+      `  --cssinjs ${chalk.green('<option>')}`
     )}         Add a css-in-js framework for a styled component`
   )
   print(
@@ -107,7 +107,7 @@ export function helpReact() {
 
   print(
     `${chalk.cyan(
-      `  --withExamples ${chalk.green('<option>')}`
+      `  --withexamples ${chalk.green('<option>')}`
     )}         Add example code and comments`
   )
   print(
@@ -119,7 +119,7 @@ export function helpReact() {
   print.newline()
 
   print(
-    `${chalk.cyan('  --testing')} ${chalk.green(
+    `${chalk.cyan('  --test')} ${chalk.green(
       '<option>'
     )}         Add a test file for the component`
   )

@@ -5,20 +5,20 @@
     "pageDir": "pages",
     "containerDir": "containers",
     "hookDir": "hooks",
-    "cssInJs": null,
+    "cssinjs": null,
     "storybook": null,
     "type": null,
     "typescript": null,
-    "useEffect": null,
-    "useState": null,
-    "withExamples": null,
-    "testing": null
+    "useeffect": null,
+    "usestate": null,
+    "withexamples": null,
+    "test": null
   },
   "react-next-page": {
     "rootDir": "src",
     "typescript": null,
-    "useState": null,
-    "useEffect": null,
+    "usestate": null,
+    "useeffect": null,
     "styled": null,
     "emotion": null
   }

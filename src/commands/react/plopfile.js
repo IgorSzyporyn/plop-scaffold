@@ -46,7 +46,7 @@ export default (plop) => {
         },
         {
           type: 'list',
-          name: 'cssInJs',
+          name: 'cssinjs',
           message: 'CSS-in-JS?',
           choices: [
             {
@@ -65,7 +65,7 @@ export default (plop) => {
         },
         {
           type: 'list',
-          name: 'withExamples',
+          name: 'withexamples',
           message: 'Example code & comments?',
           choices: [
             {
@@ -80,7 +80,7 @@ export default (plop) => {
         },
         {
           type: 'list',
-          name: 'testing',
+          name: 'test',
           message: 'Add a test file?',
           choices: [
             {
@@ -117,7 +117,7 @@ export default (plop) => {
           ],
         },
       ],
-      actions: ({ typescript: _typescript, testing, storybook }) => {
+      actions: ({ typescript: _typescript, test, storybook }) => {
         const path = getTemplatePath(generator)
         const actions = []
         const typescript = _typescript === 'yes'
@@ -148,9 +148,9 @@ export default (plop) => {
           })
         }
 
-        // If testing is not "no" then we add a testing template
-        if (testing !== 'no') {
-          const testTemplate = getTestTemplatePath(testing)
+        // If test is not "no" then we add a test template
+        if (test !== 'no') {
+          const testTemplate = getTestTemplatePath(test)
 
           actions.push({
             type: 'add',

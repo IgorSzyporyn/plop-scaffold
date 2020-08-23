@@ -54,21 +54,21 @@ export function getPlopExecArgs(
     execArgs.push('_')
   }
 
-  if (prefilled.cssInJs !== undefined) {
-    execArgs.push(`${prefilled.cssInJs}`)
+  if (prefilled.cssinjs !== undefined) {
+    execArgs.push(`${prefilled.cssinjs}`)
   } else {
     execArgs.push('_')
   }
 
-  if (prefilled.withExamples !== undefined) {
-    const reply = prefilled.withExamples === 'yes' ? 'yes' : 'no'
+  if (prefilled.withexamples !== undefined) {
+    const reply = prefilled.withexamples === 'yes' ? 'yes' : 'no'
     execArgs.push(reply)
   } else {
     execArgs.push('_')
   }
 
-  if (prefilled.testing !== undefined) {
-    execArgs.push(`${prefilled.testing}`)
+  if (prefilled.test !== undefined) {
+    execArgs.push(`${prefilled.test}`)
   } else {
     execArgs.push('_')
   }
