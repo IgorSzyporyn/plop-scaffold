@@ -1,7 +1,7 @@
 import React from 'react'
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/react/types-6-0'
-import {{pascalCase name}} from './{{pascalCase name}}'
+import {{pascalCase name}}, { {{pascalCase name}}Type } from './{{pascalCase name}}'
 
 export default {
   title: '{{pascalCase name}}',
@@ -9,7 +9,7 @@ export default {
 } as Meta
 
 {{#ifEqual "yes" withExamples}}
-const Template: Story<{{pascalCase name}}> = (args) => <{{pascalCase name}} {...args} />
+const Template: Story<{{pascalCase name}}Type> = (args) => <{{pascalCase name}} {...args} />
 
 export const Basic = Template.bind({})
 Basic.args = {
