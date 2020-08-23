@@ -2,10 +2,10 @@
   {{#hasBothHooks hooks}}
 import React, { useEffect, useState } from 'react'
   {{else}}
-    {{#ifIn  "usestate" hooks}}
+    {{#ifIn "useeffect" hooks}}
 import React, { useEffect } from 'react'
     {{/ifIn}}
-    {{#ifIn  "usestate" hooks}}
+    {{#ifIn "usestate" hooks}}
 import React, { useState } from 'react'
     {{/ifIn}}
   {{/hasBothHooks}}
@@ -18,7 +18,7 @@ import styled from '{{cssinjs}}'
 const Wrapper = styled.div``
 {{/ifNotEqual}}
 {{#ifIn "usestate" hooks}}
-  {{#ifEqual "yes" withexamples}}
+  {{#ifEqual "yes" examples}}
 
 type {{pascalCase name}}State = {
   mounted: boolean
@@ -36,7 +36,7 @@ type {{pascalCase name}}State = {}
 const initialState: {{pascalCase name}}State = {}
   {{/ifEqual}}
 {{/ifIn}}
-{{#ifEqual "yes" withexamples}}
+{{#ifEqual "yes" examples}}
 
 type {{pascalCase name}}Props = {
   title?: string
@@ -58,9 +58,9 @@ const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
 {{/ifIn}}
 {{#ifIn "useeffect" hooks}}
   useEffect(() => {
-  {{#ifEqual "yes" withexamples}}
+  {{#ifEqual "yes" examples}}
     // Do stuff on mount here
-    setState((state) => ({ ...state, mounted: true }))
+    setMyState((state) => ({ ...state, mounted: true }))
     // Do stuff on unmount here
     return () => {}
   {{/ifEqual}}
@@ -69,7 +69,7 @@ const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
 
   return (
   {{#ifNotEqual "no" cssinjs}}
-    {{#ifEqual "yes" withexamples}}
+    {{#ifEqual "yes" examples}}
     <Wrapper>
       <h1>{title}</h1>
       {children}
@@ -78,7 +78,7 @@ const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
     <Wrapper>Here more TSX</Wrapper>
     {{/ifEqual}}
   {{else}}
-    {{#ifEqual "yes" withexamples}}
+    {{#ifEqual "yes" examples}}
     <div>
       <h1>{title}</h1>
       {children}

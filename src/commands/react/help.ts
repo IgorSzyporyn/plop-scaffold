@@ -69,11 +69,11 @@ export function helpReact() {
   print(
     `${chalk.cyan(
       `  --typescript ${chalk.green('<option>')}`
-    )}               Implement typescript in your component`
+    )}      Implement typescript in your component`
   )
   print(
     chalk.white(
-      `                     "${chalk.green('yes')}" | "${chalk.green('no')}"`
+      `                             "${chalk.green('yes')}" | "${chalk.green('no')}"`
     )
   )
 
@@ -107,7 +107,7 @@ export function helpReact() {
 
   print(
     `${chalk.cyan(
-      `  --withexamples ${chalk.green('<option>')}`
+      `  --examples ${chalk.green('<option>')}`
     )}         Add example code and comments`
   )
   print(

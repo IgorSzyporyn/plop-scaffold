@@ -16,7 +16,7 @@
  * --cssinjs
  * --storybook
  * --test
- * --withexamples
+ * --examples
  *
  **/
 
@@ -32,7 +32,7 @@ export type ReactConfig = {
   cssinjs: 'no' | 'styled-components' | '@emotion/styled' | null
   type: 'component' | 'container' | 'page' | 'hook' | null
   typescript: 'yes' | 'no' | null
-  withexamples: 'yes' | 'no' | null
+  examples: 'yes' | 'no' | null
   test: 'no' | '@testing-library/react' | 'react-test-renderer' | 'enzyme' | null
 }
 
@@ -48,7 +48,7 @@ export const defaultReactConfig: Readonly<ReactConfig> = {
   typescript: null,
   useeffect: null,
   usestate: null,
-  withexamples: null,
+  examples: null,
   test: null,
 }
 
@@ -64,7 +64,7 @@ export const allowedArgs = [
   'typescript',
   'useeffect',
   'usestate',
-  'withexamples',
+  'examples',
   'test',
 ]
 
@@ -80,7 +80,7 @@ export const prefilledArgs = [
   'typescript',
   'useeffect',
   'usestate',
-  'withexamples',
+  'examples',
   'test',
 ]
 

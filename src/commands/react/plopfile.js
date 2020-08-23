@@ -65,7 +65,7 @@ export default (plop) => {
         },
         {
           type: 'list',
-          name: 'withexamples',
+          name: 'examples',
           message: 'Example code & comments?',
           choices: [
             {

@@ -60,8 +60,8 @@ export function getPlopExecArgs(
     execArgs.push('_')
   }
 
-  if (prefilled.withexamples !== undefined) {
-    const reply = prefilled.withexamples === 'yes' ? 'yes' : 'no'
+  if (prefilled.examples !== undefined) {
+    const reply = prefilled.examples === 'yes' ? 'yes' : 'no'
     execArgs.push(reply)
   } else {
     execArgs.push('_')

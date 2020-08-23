@@ -14,12 +14,26 @@ export function plopHelper(plop) {
     return hooks && hooks.length > 1 ? options.fn(this) : options.inverse(this)
   })
   plop.setHelper('ifEqual', function (elem, match, options) {
-    const isEqual = elem === match
+    let isEqual = false
+
+    if (typeof elem === 'string' && typeof match === 'string') {
+      isEqual = elem.toLowerCase() === match.toLowerCase()
+    } else {
+      isEqual = elem === match
+    }
+
     return isEqual ? options.fn(this) : options.inverse(this)
   })
 
   plop.setHelper('ifNotEqual', function (elem, match, options) {
-    const isEqual = elem !== match
+    let isEqual = false
+
+    if (typeof elem === 'string' && typeof match === 'string') {
+      isEqual = elem.toLowerCase() !== match.toLowerCase()
+    } else {
+      isEqual = elem !== match
+    }
+
     return isEqual ? options.fn(this) : options.inverse(this)
   })
 }
