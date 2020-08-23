@@ -76,6 +76,12 @@ const {{pascalCase name}} = (props) => {
 }
 
 {{pascalCase name}}.displayName = '{{pascalCase name}}'
+{{#ifEqual "yes" examples}}
+{{pascalCase name}}.defaultProps = {
+  title: 'Hello World'
+}
+{{else}}
 {{pascalCase name}}.defaultProps = {}
+{{/ifEqual}}
 
 export default {{pascalCase name}}

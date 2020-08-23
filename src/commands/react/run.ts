@@ -15,7 +15,7 @@ export function run() {
   const { argv, cwd } = getShared()
 
   print.title()
-  print.subtitle('Create a React scaffold')
+  print.subtitle('Create a React component')
 
   const { config } = getConfig(command, defaultReactConfig, argv, allowedArgs)
   const plopBin = getPlopFilepath()
