@@ -1,14 +1,8 @@
-import { ProcessEnvOptions } from 'child_process'
 import { PROJECT_ID } from '../../../constants'
 
-export function getTemplatePath(env: ProcessEnvOptions['env'] = {}) {
+export function getTemplatePath(type: string) {
+  const env = process.env
   let templatePath = ''
-
-  const type = env[`${PROJECT_ID}-type`]
-
-  if (!type || type === 'NULL') {
-    return templatePath
-  }
 
   const componentDir = env[`${PROJECT_ID}-componentDir`]
     ? env[`${PROJECT_ID}-componentDir`] !== 'NULL'

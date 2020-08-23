@@ -96,8 +96,8 @@ export default (plop) => {
         message: 'Add a storybook file?',
       },
     ],
-    actions: ({ typescript, testing, storybook }) => {
-      const path = getTemplatePath(process.env)
+    actions: ({ typescript, testing, storybook, ...rest }) => {
+      const path = getTemplatePath(rest.type)
       const actions = []
 
       // Add the component template
