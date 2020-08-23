@@ -83,7 +83,7 @@ export function getPlopExecArgs(
   // If args are just full of _ then it should be empty
   let isEmpty = true
 
-  execArgs.some((arg) => {
+  execArgs.forEach((arg) => {
     if (arg !== '_') {
       isEmpty = false
     }
