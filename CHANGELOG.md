@@ -1,6 +1,6 @@
-#### 0.11.7 (2020-08-23)
+#### 0.11.8 (2020-08-23)
 
 ##### Bug Fixes
 
-*  typescript arg is no longer boolean ([e84fe4cb](https://github.com/IgorSzyporyn/plop-scaffold/commit/e84fe4cb89242cb6d2010dba750e63654023d441))
+*  template for react component now properly imports ([3feaf55b](https://github.com/IgorSzyporyn/plop-scaffold/commit/3feaf55bd1953da7cc640e623e419a62bfff6ef4))
 
