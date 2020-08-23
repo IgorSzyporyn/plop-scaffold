@@ -26,13 +26,17 @@ export function run() {
 
   print.newline()
 
-  const child = fork(plopBin, [`--cwd=${plopConfigPath}`, ...execArgs], {
-    cwd,
-    env: {
-      ...process.env,
-      ...commandEnv,
-    },
-  })
+  const child = fork(
+    plopBin,
+    [`--cwd=${plopConfigPath}`, `--dest=${cwd}`, ...execArgs],
+    {
+      cwd,
+      env: {
+        ...process.env,
+        ...commandEnv,
+      },
+    }
+  )
 
   child.on('disconnect', () => {
     print.newline()
