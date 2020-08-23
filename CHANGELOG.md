@@ -1,6 +1,6 @@
-#### 0.11.8 (2020-08-23)
+#### 0.11.9 (2020-08-23)
 
 ##### Bug Fixes
 
-*  template for react component now properly imports ([3feaf55b](https://github.com/IgorSzyporyn/plop-scaffold/commit/3feaf55bd1953da7cc640e623e419a62bfff6ef4))
+*  tweaked names of template variables and the templates ([e8b4a277](https://github.com/IgorSzyporyn/plop-scaffold/commit/e8b4a277ed3a1eb9bb59da3aa07cdb2242631f59))
 
