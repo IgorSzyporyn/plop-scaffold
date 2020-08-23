@@ -2,7 +2,8 @@
 export default (plop) => {
   const { plopHelper, requireField } = require('../../utils/plop-helper')
   const { getTemplatePath } = require('./utils/get-template-path')
-  const { getTestTemplatePath } = require('./utils/get-test-template-path')
+  const { getTestTemplateInfo } = require('./utils/get-test-template-info')
+  const { getStorybookTemplateInfo } = require('./utils/get-storybook-template-info')
 
   function getInquirer(generator) {
     const inquirer = {
@@ -118,14 +119,14 @@ export default (plop) => {
         },
       ],
       actions: ({ typescript: _typescript, test, storybook }) => {
-        const path = getTemplatePath(generator)
+        const templatePath = getTemplatePath(generator)
         const actions = []
         const typescript = _typescript === 'yes'
 
         // Add the component template
         actions.push({
           type: 'add',
-          path: `${path}/{{pascalCase name}}/{{pascalCase name}}.${
+          path: `${templatePath}/{{pascalCase name}}/{{pascalCase name}}.${
             typescript ? 'tsx' : 'jsx'
           }`,
           templateFile: `../../../dist/templates/commands/react/templates/component/component.${
@@ -136,9 +137,11 @@ export default (plop) => {
 
         // If storybook is set - then we add this template
         if (storybook === 'yes') {
+          const { storybookTemplatePath } = getStorybookTemplateInfo()
+
           actions.push({
             type: 'add',
-            path: `${path}/{{pascalCase name}}/{{pascalCase name}}.stories.${
+            path: `${templatePath}/{{pascalCase name}}/${storybookTemplatePath}/{{pascalCase name}}.stories.${
               typescript ? 'tsx' : 'jsx'
             }`,
             templateFile: `../../../dist/templates/commands/react/templates/component/storybook.${
@@ -150,15 +153,15 @@ export default (plop) => {
 
         // If test is not "no" then we add a test template
         if (test !== 'no') {
-          const testTemplate = getTestTemplatePath(test)
+          const { testTemplatePath, testTemplateName } = getTestTemplateInfo(test)
 
           actions.push({
             type: 'add',
-            path: `${path}/{{pascalCase name}}/{{pascalCase name}}.test.${
+            path: `${templatePath}/{{pascalCase name}}/${testTemplatePath}/{{pascalCase name}}.test.${
               typescript ? 'ts' : 'js'
             }`,
-            templateFile: `../../../dist/templates/commands/react/templates/component/test.${testTemplate}.${
-              typescript ? 'ts' : 'js'
+            templateFile: `../../../dist/templates/commands/react/templates/component/test.${testTemplateName}.${
+              typescript ? 'tsx' : 'jsx'
             }.hbs`,
             skipIfExists: true,
           })

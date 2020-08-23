@@ -22,9 +22,9 @@ export function helpReact() {
   )
   print(
     chalk.white(
-      `                             "${chalk.green('component')}" | "${chalk.green(
+      `                             ${chalk.green('component')} | ${chalk.green(
         'container'
-      )}" | "${chalk.green('page')}" | "${chalk.green('hook')}"`
+      )} | ${chalk.green('page')} | ${chalk.green('hook')}`
     )
   )
 
@@ -32,35 +32,35 @@ export function helpReact() {
 
   print(
     `${chalk.cyan(`  --baseDir ${chalk.green('<string>')}`)}         ${chalk.white(
-      `Name of base folder for your scaffolds (defaults to "${chalk.green('src')}")`
+      `Name of base folder for your scaffolds (defaults to ${chalk.green('src')})`
     )}`
   )
 
   print(
     `${chalk.cyan(`  --componentDir ${chalk.green('<string>')}`)}    ${chalk.white(
-      `Name of folder where components are placed (defaults to "${chalk.green(
+      `Name of folder where components are placed (defaults to ${chalk.green(
         'components'
-      )}")`
+      )})`
     )}`
   )
 
   print(
     `${chalk.cyan(`  --containerDir ${chalk.green('<string>')}`)}    ${chalk.white(
-      `Name of folder where containers are placed (defaults to "${chalk.green(
+      `Name of folder where containers are placed (defaults to ${chalk.green(
         'containers'
-      )}")`
+      )})`
     )}`
   )
 
   print(
     `${chalk.cyan(`  --pageDir ${chalk.green('<string>')}`)}         ${chalk.white(
-      `Name of folder where pages are placed (defaults to "${chalk.green('pages')}")`
+      `Name of folder where pages are placed (defaults to ${chalk.green('pages')})`
     )}`
   )
 
   print(
     `${chalk.cyan(`  --hookDir ${chalk.green('<string>')}`)}         ${chalk.white(
-      `Name of folder where hooks are placed (defaults to "${chalk.green('hooks')}")`
+      `Name of folder where hooks are placed (defaults to ${chalk.green('hooks')})`
     )}`
   )
 
@@ -73,7 +73,7 @@ export function helpReact() {
   )
   print(
     chalk.white(
-      `                             "${chalk.green('yes')}" | "${chalk.green('no')}"`
+      `                             ${chalk.green('yes')} | ${chalk.green('no')}`
     )
   )
 
@@ -98,9 +98,9 @@ export function helpReact() {
   )
   print(
     chalk.white(
-      `                             "${chalk.green('no')}" | "${chalk.green(
+      `                             ${chalk.green('no')} | ${chalk.green(
         'styled-components'
-      )}" | "${chalk.green('@emotion/styled')}"`
+      )} | ${chalk.green('@emotion/styled')}`
     )
   )
   print.newline()
@@ -108,11 +108,11 @@ export function helpReact() {
   print(
     `${chalk.cyan(
       `  --examples ${chalk.green('<option>')}`
-    )}         Add example code and comments`
+    )}        Add example code and comments`
   )
   print(
     chalk.white(
-      `                     "${chalk.green('yes')}" | "${chalk.green('no')}"`
+      `                             ${chalk.green('yes')} | ${chalk.green('no')}`
     )
   )
 
@@ -121,14 +121,22 @@ export function helpReact() {
   print(
     `${chalk.cyan('  --test')} ${chalk.green(
       '<option>'
-    )}         Add a test file for the component`
+    )}            Add a test file for the component`
   )
   print(
     chalk.white(
-      `                             "${chalk.green('no')}" | "${chalk.green(
+      `                             ${chalk.green('no')} | ${chalk.green(
         '@testing-library/react'
-      )}" | "${chalk.green('react-test-renderer')}" | "${chalk.green('enzyme')}"`
+      )} | ${chalk.green('react-test-renderer')} | ${chalk.green('enzyme')}`
     )
+  )
+
+  print.newline()
+
+  print(
+    `${chalk.cyan('  --testDir')} ${chalk.green(
+      '<string>'
+    )}         Create a folder of this name to place the test file in`
   )
 
   print.newline()
@@ -138,5 +146,14 @@ export function helpReact() {
       '  --storybook'
     )}                Add a storybook file for the component`
   )
+
+  print.newline()
+
+  print(
+    `${chalk.cyan('  --storybookDir')} ${chalk.green(
+      '<string>'
+    )}    Create a folder of this name to place the storybook file in`
+  )
+
   print.newline()
 }

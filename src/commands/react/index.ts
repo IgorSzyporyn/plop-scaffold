@@ -6,6 +6,7 @@
  * --pageDir pages
  * --containerDir containers
  * --hookDir hooks
+ * --testDir "name of test folder"
  *
  * Values that can be predefined and bypassed in plop
  *
@@ -26,6 +27,8 @@ export type ReactConfig = {
   pageDir: string | null
   containerDir: string | null
   hookDir: string | null
+  testDir: string | null
+  storybookDir: string | null
   storybook: boolean | null
   usestate: boolean | null
   useeffect: boolean | null
@@ -42,6 +45,8 @@ export const defaultReactConfig: Readonly<ReactConfig> = {
   pageDir: 'pages',
   containerDir: 'containers',
   hookDir: 'hooks',
+  testDir: null,
+  storybookDir: null,
   cssinjs: null,
   storybook: null,
   type: null,
@@ -58,6 +63,8 @@ export const allowedArgs = [
   'pageDir',
   'containerDir',
   'hookDir',
+  'testDir',
+  'storybookDir',
   'cssinjs',
   'storybook',
   'type',
@@ -74,6 +81,8 @@ export const prefilledArgs = [
   'pageDir',
   'containerDir',
   'hookDir',
+  'testDir',
+  'storybookDir',
   'cssinjs',
   'storybook',
   'type',

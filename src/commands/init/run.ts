@@ -19,7 +19,7 @@ export function runInit() {
   } else {
     const source = path.join(
       distPath,
-      'templates/script/templates/',
+      'templates/commands/init/templates/',
       CONFIG_FILE_NAME
     )
     const destination = pathJoin(cwd, CONFIG_FILE_NAME)
