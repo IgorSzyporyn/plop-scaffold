@@ -14,7 +14,6 @@ const command = 'react'
 export function run() {
   const { argv, cwd } = getShared()
 
-  print.title()
   print.subtitle('Create a React component')
 
   const { config } = getConfig(command, defaultReactConfig, argv, allowedArgs)
