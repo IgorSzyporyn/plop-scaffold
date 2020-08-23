@@ -117,9 +117,10 @@ export default (plop) => {
           ],
         },
       ],
-      actions: ({ typescript, testing, storybook }) => {
+      actions: ({ typescript: _typescript, testing, storybook }) => {
         const path = getTemplatePath(generator)
         const actions = []
+        const typescript = _typescript === 'yes'
 
         // Add the component template
         actions.push({
