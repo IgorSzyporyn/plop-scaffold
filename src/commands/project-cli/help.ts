@@ -2,11 +2,7 @@ import chalk from 'chalk'
 import { print } from '../../utils/print'
 
 export function helpProjectCli() {
-  print(
-    `${chalk.yellow('plop-scaffold')} ${chalk.blueBright(
-      'project-cli'
-    )} ${chalk.white('[<args>]')}`
-  )
+  print.titleWithCommand(`project-cli ${chalk.white('[<args>]')}`)
   print.newline()
   print('Create an empty Node Cli based project ready for NPM release.')
   print.newline()

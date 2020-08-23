@@ -10,7 +10,7 @@ export function runInit() {
   const { cwd, distPath } = getShared()
   const initFileExists = getConfigFileExists()
 
-  print.header()
+  print.title()
 
   if (initFileExists) {
     print.newline()

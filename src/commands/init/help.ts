@@ -1,18 +1,16 @@
-import chalk from 'chalk'
 import { print } from '../../utils/print'
+import { getPckJson } from '../../utils/get-version'
+import { CONFIG_FILE_NAME } from '../../constants'
 
 export function helpInit() {
-  print(`${chalk.yellow.bold('plop-scaffold')} ${chalk.blue.bold('init')}`)
+  const { name } = getPckJson()
+
+  print.titleWithCommand('init')
+  print.newline()
+  print(`Attempt to create a ${CONFIG_FILE_NAME} in your folder.`)
   print.newline()
   print(
-    'Attempt to create a config file with the default settings for you in the folder you are in.'
+    `You can also add your configuration to your package.json file under the key "${name}"`
   )
-  print.newline()
-  print('Will refuse if a .plop-scaffold.json file is already present.')
-  print.newline()
-  print(
-    'Remember you can also add your configuration to your package.json file if you should wish,'
-  )
-  print('under the key "plop-scaffold".')
   print.newline()
 }

@@ -1,5 +1,5 @@
-export function getVersion() {
-  const { version } = require('../../package.json')
+export function getPckJson() {
+  const pckJson = require('../../package.json')
 
-  return version as string
+  return pckJson as Record<string, any>
 }

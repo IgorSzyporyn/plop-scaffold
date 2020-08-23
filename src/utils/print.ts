@@ -1,19 +1,35 @@
 import chalk from 'chalk'
-import { getVersion } from './get-version'
+import { getPckJson } from './get-version'
 
 export const newline = () => {
   print('  ')
 }
 
-export const title = () => {
-  const version = getVersion()
-  const title = chalk.yellow(`Plop Scaffold ${version}`)
+export const titleWithCommand = (command?: string) => {
+  const { name } = getPckJson()
+  const title = chalk.white(`${name}`)
+  const suffixText = command ? chalk.blueBright(command) : ' '
 
-  print(title)
+  print(`${title} ${suffixText}`)
+}
+
+export const titleWithSuffix = (suffix?: string) => {
+  const { name } = getPckJson()
+  const title = chalk.white(`${name}`)
+  const suffixText = suffix ? chalk.white(suffix) : ' '
+
+  print(`${title} ${suffixText}`)
+}
+
+export const title = () => {
+  const { name } = getPckJson()
+  const title = chalk.white(`${name}`)
+
+  print(`${title}`)
 }
 
 export const subtitle = (name: string) => {
-  const subtitle = chalk.blue(`${name}`)
+  const subtitle = chalk.white(`${name}`)
 
   print(subtitle)
 }
@@ -58,15 +74,15 @@ export const border = (props: BorderProps, type: BorderType = '-') => {
 }
 
 export const task = (text: string) => {
-  print(`\u23F1  ${chalk.grey(text)}`)
+  print(`${chalk.grey(text)}`)
 }
 
 export const success = (text: string) => {
-  print(`\u2705  ${chalk.green.bold(text)}`)
+  print(`${chalk.greenBright(text)}`)
 }
 
 export const failure = (text: string) => {
-  print(`\u26D4  ${chalk.red.bold(text)}`)
+  print(`${chalk.redBright(text)}`)
 }
 
 export type PrintType = 'log' | 'info' | 'warn' | 'error' | 'task'
@@ -94,7 +110,9 @@ export const print = (source: any, type: PrintType = 'log') => {
 }
 
 print.newline = newline
-print.header = title
+print.title = title
+print.titleWithCommand = titleWithCommand
+print.titleWithSuffix = titleWithSuffix
 print.border = border
 print.task = task
 print.success = success

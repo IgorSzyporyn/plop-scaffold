@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import { print } from '../../utils/print'
 
 export function helpReact() {
-  print(`${chalk.yellow('plop-scaffold')} ${chalk.blueBright('react')} [<args>]`)
+  print.titleWithCommand(`react ${chalk.white('[<args>]')}`)
   print.newline()
   print(
     'Creates a React component scaffold with optional typescript support, useState and/or useEffect,'

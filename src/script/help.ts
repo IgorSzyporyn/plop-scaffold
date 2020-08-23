@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import { print } from '../utils/print'
 
 export function helpMain() {
-  print(`${chalk.yellow('plop-scaffold')} [--version] [--help]`)
+  print.titleWithSuffix(`[--version] [--help]`)
   print(`              <command> [<args>]`)
   print.newline()
   print('List of commands')

@@ -14,7 +14,7 @@ const command = 'react'
 export function run() {
   const { argv, cwd } = getShared()
 
-  print.header()
+  print.title()
   print.subtitle('Create a React scaffold')
 
   const { config } = getConfig(command, defaultReactConfig, argv, allowedArgs)
