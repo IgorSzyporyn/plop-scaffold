@@ -1,14 +1,5 @@
-import { ProcessEnvOptions } from 'child_process'
-import { PROJECT_ID } from '../../../constants'
-
-export function getTestTemplatePath(env: ProcessEnvOptions['env'] = {}) {
+export function getTestTemplatePath(type: string) {
   let testTemplatePath = ''
-
-  const type = env[`${PROJECT_ID}-testing`]
-
-  if (!type || type === 'NULL') {
-    return testTemplatePath
-  }
 
   switch (type) {
     case '@testing-library/react':

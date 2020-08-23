@@ -150,7 +150,7 @@ export default (plop) => {
 
         // If testing is not "no" then we add a testing template
         if (testing !== 'no') {
-          const testTemplate = getTestTemplatePath(process.env)
+          const testTemplate = getTestTemplatePath(testing)
 
           actions.push({
             type: 'add',
