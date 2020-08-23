@@ -2,7 +2,7 @@ export function getPlopExecArgs(
   prefilled: Record<string, any>,
   prefilledArgs: string[]
 ) {
-  const execArgs: string[] = []
+  const execArgs: string[] = ['component']
 
   prefilledArgs.forEach((_, index) => {
     switch (index) {
