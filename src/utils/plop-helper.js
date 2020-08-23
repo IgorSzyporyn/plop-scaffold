@@ -10,6 +10,9 @@ export function plopHelper(plop) {
     return hooks && hooks.length > 0 ? options.fn(this) : options.inverse(this)
   })
 
+  plop.setHelper('hasBothHooks', function (hooks, options) {
+    return hooks && hooks.length > 1 ? options.fn(this) : options.inverse(this)
+  })
   plop.setHelper('ifEqual', function (elem, match, options) {
     const isEqual = elem === match
     return isEqual ? options.fn(this) : options.inverse(this)

@@ -1,5 +1,14 @@
 {{#hasHook hooks}}
-import React, { {{#ifIn "usestate" hooks}}useState{{#ifIn "useEffect" hooks}}, {{/ifIn}}{{/ifIn}}{{#ifIn "useEffect" hooks}}useEffect{{/ifIn}} } from 'react'
+  {{#hasBothHooks hooks}}
+import React, { useEffect, useState } from 'react'
+  {{else}}
+    {{#ifIn  "useEffect" hooks}}
+import React, { useEffect } from 'react'
+    {{/ifIn}}
+    {{#ifIn  "useState" hooks}}
+import React, { useState } from 'react'
+    {{/ifIn}}
+  {{/hasBothHooks}}
 {{else}}
 import React from 'react'
 {{/hasHook}}
