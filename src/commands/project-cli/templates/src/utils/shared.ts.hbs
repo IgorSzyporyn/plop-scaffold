@@ -4,6 +4,7 @@ import minimist from 'minimist'
 export type Shared = {
   cwd: string
   distPath: string
+  argv: minimist.ParsedArgs
   {{#ifEqual "yes" liftoff}}
   configPath: string
   liftoffEnv: LiftoffEnv
@@ -13,6 +14,7 @@ export type Shared = {
 const root: Record<string, any> = global
 
 root[PROJECT_ID] = {
+  argv: {},
   cwd: '',
   distPath: '',
   {{#ifEqual "yes" liftoff}}

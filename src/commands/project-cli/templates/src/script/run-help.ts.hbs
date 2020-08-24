@@ -1,19 +1,37 @@
-import minimist from 'minimist'
+{{#ifEqual "yes" commands}}
+import { getShared } from '../utils/shared'
+{{/ifEqual}}
+{{#ifEqual "yes" init}}
 import { helpInit } from '../commands/init/help'
+{{/ifEqual}}
+{{#ifEqual "yes" liftoff}}
+import { helpInit } from '../commands/init/help'
+{{/ifEqual}}
 import { helpMain } from './help'
 
-export function runHelp(argv: minimist.ParsedArgs) {
+export function runHelp() {
+  {{#ifEqual "yes" commands}}
+  const { argv } = getShared()
   const key = argv.help ? 'help' : 'h'
-  const command: true | CommandTypes = argv[key]
+  const command: true | Command = argv[key]
 
   switch (command) {
+   {{#ifEqual "yes" init}}
     case 'init':
       helpInit()
       break
-
+    {{/ifEqual}}
+   {{#ifEqual "yes" liftoff}}
+    case 'init':
+      helpInit()
+      break
+    {{/ifEqual}}
     case true:
     default:
       helpMain()
       break
   }
+  {{else}}
+  helpMain()
+  {{/ifEqual}}
 }

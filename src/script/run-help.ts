@@ -9,7 +9,7 @@ import { helpMain } from './help'
 export function runHelp() {
   const { argv } = getShared()
   const key = argv.help ? 'help' : 'h'
-  const type: true | CommandTypes = argv[key]
+  const type: true | Command = argv[key]
 
   switch (type) {
     case 'init':

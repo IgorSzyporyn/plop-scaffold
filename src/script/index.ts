@@ -10,7 +10,7 @@
  *
  **/
 
-export const allowedCommands: CommandTypes[] = [
+export const allowedCommands: Command[] = [
   'init',
   'project-cli',
   'react',

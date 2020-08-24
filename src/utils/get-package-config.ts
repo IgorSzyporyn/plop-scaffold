@@ -2,7 +2,7 @@ import path from 'path'
 import { getShared } from './shared'
 import { print } from './print'
 
-export function getPackageConfig(name: CommandTypes) {
+export function getPackageConfig(name: Command) {
   const { cwd } = getShared()
   const pckJsonPath = path.join(cwd, 'package.json')
   let pckJson: false | Record<string, any> = false

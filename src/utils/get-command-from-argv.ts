@@ -13,5 +13,5 @@ export function getCommandFromArgv({ _ }: minimist.ParsedArgs, allowed: string[]
     return argIsAllowedRoute
   })
 
-  return command as CommandTypes
+  return command as Command
 }

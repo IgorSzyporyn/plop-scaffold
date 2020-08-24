@@ -12,21 +12,19 @@ export const title = (text = '') => {
   print(`${title} ${text}`)
 }
 
-export const task = (text: string) => {
+export const task = (text) => {
   print(`${chalk.grey(text)}`)
 }
 
-export const success = (text: string) => {
+export const success = (text) => {
   print(`${chalk.greenBright(text)}`)
 }
 
-export const failure = (text: string) => {
+export const failure = (text) => {
   print(`${chalk.redBright(text)}`)
 }
 
-export type PrintType = 'log' | 'info' | 'warn' | 'error' | 'task'
-
-export const print = (source: any, type: PrintType = 'log') => {
+export const print = (source, type) => {
   switch (type) {
     case 'error':
       // eslint-disable-next-line no-console

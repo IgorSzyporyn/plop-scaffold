@@ -1,16 +1,7 @@
 import { PROJECT_ID } from '../constants'
-import minimist from 'minimist'
-
-export type Shared = {
-  cwd: string
-  distPath: string
-  {{#ifEqual "yes" liftoff}}
-  configPath: string
-  liftoffEnv: LiftoffEnv
-  {{/ifEqual}}
-}
 
 global[PROJECT_ID] = {
+  argv: {},
   cwd: '',
   distPath: '',
   {{#ifEqual "yes" liftoff}}

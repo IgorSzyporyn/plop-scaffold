@@ -13,7 +13,7 @@ const {{pascalCase name}} = new Liftoff({
   v8flags,
 })
 
-PlopScaffold.launch({ configPath: CONFIG_FILE_NAME }, run)
+{{pascalCase name}}.launch({ configPath: CONFIG_FILE_NAME }, run)
 {{else}}
 import { run } from '../script'
 

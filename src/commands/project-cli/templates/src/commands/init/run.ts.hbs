@@ -1,3 +1,4 @@
+{{#ifEqual "yes" liftoff}}
 import {join as pathJoin } from 'path'
 import { CONFIG_FILE_NAME } from '../../constants'
 import { copyFileSync } from 'fs'
@@ -30,14 +31,19 @@ export function runInit() {
 
     if (didCopyFile) {
       print.newline()
-      print.success(`Succesfully copied ${CONFIG_FILE_NAME} to your folder`)
+      print.success(`Succesfully created ${CONFIG_FILE_NAME}`)
       print.newline()
     } else {
       print.newline()
       print.failure(
-        `Something went wrong copying ${CONFIG_FILE_NAME} to your folder`
+        `Something went wrong creating ${CONFIG_FILE_NAME}`
       )
       print.newline()
     }
   }
 }
+{{else}}
+export function runInit() {
+  // Your init code here
+}
+{{/ifEqual}}

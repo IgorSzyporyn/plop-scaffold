@@ -40,23 +40,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/{{username}}/{{lowerCase name}}.git"
+    "url": "git+https://github.com/{{author}}/{{lowerCase name}}.git"
   },
   "keywords": [
     "nodejs",
     "cli"
   ],
   "author": {
-    "name": "{{username}}",
-    "email": "{{useremail}}"
+    "name": "{{author}}",
+    "email": "{{authoremail}}"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/{{username}}/{{lowerCase name}}/issues"
+    "url": "https://github.com/{{author}}/{{lowerCase name}}/issues"
   },
   "devDependencies": {},
-  "dependencies": {},
-  {{#ifEqual "yes" commitlint}}
+  "dependencies": {}{{#ifEqual "yes" commitlint}},
   "commitlint": {
     "extends": ["@commitlint/config-conventional"],
     "rules": {

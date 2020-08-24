@@ -1,15 +1,24 @@
 {{#ifEqual "yes" liftoff}}
 import minimist from 'minimist'
 import path from 'path'
-import { allowedRoutes } from './index'
+import { setShared } from '../utils/shared'
+import { allowedCommands } from './index'
 import { runInit } from '../commands/init/run'
 import { runHelp } from './run-help'
-import { runCommand } from './run-route'
+import { runCommand } from './run-command'
 import { runVersion } from './run-version'
 
-export function run(env) {
+export function run({ configPath = '', cwd }) {
   const args = process.argv.slice(2)
   const argv = minimist(args)
+
+  setShared({
+    argv,
+    configPath,
+    cwd,
+    distPath: path.join(__dirname, '../'),
+    liftoffEnv: env,
+  })
 
   const hasInit = argv._.indexOf('init') > -1
   const command = getCommandFromArgv(argv._, allowedCommands)
@@ -19,11 +28,73 @@ export function run(env) {
   } else if (argv.version || argv.v) {
     runVersion()
   } else if (argv.help || argv.h || !command) {
-    runHelp(argv)
+    runHelp()
   } else if (command) {
     runCommand(command)
   }
 }
 {{else}}
+import minimist from 'minimist'
+import path from 'path'
+import { setShared } from '../utils/shared'
+{{#ifEqual "yes" commands}}
+import { allowedCommands } from './index'
+  {{#ifEqual "yes" init}}
+import { runInit } from '../commands/init/run'
+  {{/ifEqual}}
+import { runHelp } from './run-help'
+import { runVersion } from './run-version'
+import { runCommand } from './run-command'
+{{else}}
+import { runExecute } from './run-execute'
+import { runHelp } from './run-help'
+import { runVersion } from './run-version'
+{{/ifEqual}}
 
+export function run() {
+  const args = process.argv.slice(2)
+  const argv = minimist(args)
+  const { cwd } = process
+
+  setShared({
+    argv,
+    cwd,
+    distPath: path.join(__dirname, '../'),
+  })
+
+  {{#ifEqual "yes" commands}}
+    {{#ifEqual "yes" init}}
+  const hasInit = argv._.indexOf('init') > -1
+    {{/ifEqual}}
+  const command = getCommandFromArgv(argv._, allowedCommands)
+
+    {{#ifEqual "yes" init}}
+  if (hasInit) {
+    runInit()
+  } else if (argv.version || argv.v) {
+    runVersion()
+  } else if (argv.help || argv.h || !command) {
+    runHelp()
+  } else if (command) {
+    runCommand(command)
+  }
+    {{else}}
+  if (argv.version || argv.v) {
+    runVersion()
+  } else if (argv.help || argv.h || !command) {
+    runHelp()
+  } else if (command) {
+    runCommand(command)
+  }
+    {{/ifEqual}}
+  {{else}}
+  if (argv.version || argv.v) {
+    runVersion()
+  } else if (argv.help || argv.h) {
+    runHelp()
+  } else {
+    runExecute()
+  }
+  {{/ifEqual}}
+}
 {{/ifEqual}}

@@ -1,7 +1,7 @@
 import { run as projectCliRun } from '../commands/project-cli/run'
 import { run as reactRun } from '../commands/react/run'
 
-export function runCommand(command: CommandTypes) {
+export function runCommand(command: Command) {
   switch (command) {
     case 'react':
       reactRun()

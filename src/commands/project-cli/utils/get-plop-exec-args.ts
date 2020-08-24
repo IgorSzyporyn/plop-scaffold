@@ -13,6 +13,27 @@ export function getPlopExecArgs(prefilledConfig: Record<string, any>) {
     execArgs.push('_')
   }
 
+  if (prefilledConfig.liftoff) {
+    const reply = prefilledConfig.liftoff === 'yes' ? 'yes' : 'no'
+    execArgs.push(reply)
+  } else {
+    execArgs.push('_')
+  }
+
+  if (prefilledConfig.commands) {
+    const reply = prefilledConfig.commands === 'yes' ? 'yes' : 'no'
+    execArgs.push(reply)
+  } else {
+    execArgs.push('_')
+  }
+
+  if (prefilledConfig.init) {
+    const reply = prefilledConfig.init === 'yes' ? 'yes' : 'no'
+    execArgs.push(reply)
+  } else {
+    execArgs.push('_')
+  }
+
   if (prefilledConfig.typescript) {
     const reply = prefilledConfig.typescript === 'yes' ? 'yes' : 'no'
     execArgs.push(reply)
@@ -22,13 +43,6 @@ export function getPlopExecArgs(prefilledConfig: Record<string, any>) {
 
   if (prefilledConfig.commitlint) {
     const reply = prefilledConfig.commitlint === 'yes' ? 'yes' : 'no'
-    execArgs.push(reply)
-  } else {
-    execArgs.push('_')
-  }
-
-  if (prefilledConfig.liftoff) {
-    const reply = prefilledConfig.liftoff === 'yes' ? 'yes' : 'no'
     execArgs.push(reply)
   } else {
     execArgs.push('_')

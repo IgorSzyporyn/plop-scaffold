@@ -1,9 +1,10 @@
+{{#ifEqual "yes" liftoff}}
 import chalk from 'chalk'
-import { CONFIG_FILE_NAME } from '../constants'
 import { print } from '../utils/print'
+import { CONFIG_FILE_NAME } from '../constants'
 
 export function helpMain() {
-  print.titleWithSuffix(`[--version] [--help]`)
+  print.title(`[--version] [--help]`)
   print(`              <command> [<args>]`)
   print.newline()
   print('List of commands')
@@ -19,3 +20,29 @@ export function helpMain() {
   )
   print.newline()
 }
+{{else}}
+import { print } from '../utils/print'
+
+export function helpMain() {
+  print.title(`[--version] [--help]`)
+  {{#ifEqual "yes" commands}}
+  print(`              <command> [<args>]`)
+  print.newline()
+  print('List of commands')
+  print.newline()
+    {{#ifEqual "yes" init}}
+  print(
+    `${chalk.blueBright(
+      '  init'
+    )}                        Initialize a ${CONFIG_FILE_NAME} config file in your folder`
+  )
+  print.newline()
+    {{/ifEqual}}
+  print(
+    "'{{lowerCase name}} --help <command>' lists available arguments for the command."
+  )
+  print.newline()
+  {{/ifEqual}}
+}
+{{/ifEqual}}
+

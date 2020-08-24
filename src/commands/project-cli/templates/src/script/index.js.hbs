@@ -4,12 +4,31 @@
  * -h, --help
  * -v, --version
  *
+{{#ifEqual "yes" liftoff}}
  * Commands
  *
  * init
  *
+{{else}}
+  {{#ifEqual "yes" commands}}
+ * Commands
+ *
+      {{#ifEqual "yes" init}}
+ * init
+ *
+    {{/ifEqual}}
+  {{/ifEqual}}
+{{/ifEqual}}
  **/
+
+{{#ifEqual "yes" liftoff}}
 
 export const allowedCommands = ['init']
 
+{{else}}
+  {{#ifEqual "yes" commands}}
+export const allowedCommands = [{{#ifEqual "yes" init}}'init'{{/ifEqual}}]
+
+  {{/ifEqual}}
+{{/ifEqual}}
 export * from './run'

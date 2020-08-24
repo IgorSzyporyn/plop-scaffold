@@ -30,6 +30,53 @@ export default (plop) => {
       },
       {
         type: 'list',
+        name: 'liftoff',
+        message: `Use Liftoff as launcher?`,
+        choices: [
+          {
+            name: 'Yes',
+            value: 'yes',
+          },
+          {
+            name: 'No',
+            value: 'no',
+          },
+        ],
+      },
+      {
+        type: 'list',
+        name: 'commands',
+        message: `Commands?`,
+        when: ({ liftoff }) => liftoff === 'no',
+        choices: [
+          {
+            name: 'Yes',
+            value: 'yes',
+          },
+          {
+            name: 'No',
+            value: 'no',
+          },
+        ],
+      },
+      {
+        type: 'list',
+        name: 'init',
+        message: `Init Command?`,
+        when: ({ commands }) => commands === 'yes',
+        choices: [
+          {
+            name: 'Yes',
+            value: 'yes',
+          },
+          {
+            name: 'No',
+            value: 'no',
+          },
+        ],
+      },
+      {
+        type: 'list',
         name: 'typescript',
         message: `Typescript?`,
         choices: [
@@ -59,39 +106,31 @@ export default (plop) => {
         ],
       },
       {
-        type: 'list',
-        name: 'liftoff',
-        message: `Use Liftoff as launcher?`,
-        choices: [
-          {
-            name: 'Yes',
-            value: 'yes',
-          },
-          {
-            name: 'No',
-            value: 'no',
-          },
-        ],
-      },
-      {
         type: 'input',
         name: 'author',
-        message: 'Author',
+        message: 'Author Git Username',
         default: username,
         validate: requireField('author'),
       },
       {
         type: 'input',
         name: 'authoremail',
-        message: 'Author email',
+        message: 'Author Email',
         default: useremail,
       },
     ],
-    actions: ({ typescript: _typescript, liftoff: _liftoff }) => {
+    actions: ({
+      typescript: _typescript,
+      liftoff: _liftoff,
+      commands: _commands,
+      init: _init,
+    }) => {
       const cwd = getEnvConst('cwd')
 
       const typescript = _typescript === 'yes' ? true : false
       const liftoff = _liftoff === 'yes' ? true : false
+      const commands = _commands === 'yes' ? true : false
+      const init = _init === 'yes' ? true : false
       const ext = typescript ? 'ts' : 'js'
       const actions = []
 
@@ -148,8 +187,8 @@ export default (plop) => {
       // Copy in bin file
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/bin/main.ts`,
-        templateFile: `../../../dist/templates/project-cli/bin/main.${ext}.hbs`,
+        path: `${cwd}/{{lowerCase name}}/src/bin/main.${ext}`,
+        templateFile: `../../../dist/templates/project-cli/bin/main.ts.hbs`,
         skipIfExists: true,
       })
 
@@ -160,12 +199,14 @@ export default (plop) => {
         templateFile: `../../../dist/templates/project-cli/src/script/index.${ext}.hbs`,
         skipIfExists: true,
       })
+
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/script/help.ts`,
-        templateFile: `../../../dist/templates/project-cli/src/script/help.${ext}.hbs`,
+        path: `${cwd}/{{lowerCase name}}/src/script/help.${ext}`,
+        templateFile: `../../../dist/templates/project-cli/src/script/help.ts.hbs`,
         skipIfExists: true,
       })
+
       actions.push({
         type: 'add',
         path: `${cwd}/{{lowerCase name}}/src/script/run.${ext}`,
@@ -174,8 +215,8 @@ export default (plop) => {
       })
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/script/run-version.ts`,
-        templateFile: `../../../dist/templates/project-cli/src/script/run-version.${ext}.hbs`,
+        path: `${cwd}/{{lowerCase name}}/src/script/run-version.${ext}`,
+        templateFile: `../../../dist/templates/project-cli/src/script/run-version.ts.hbs`,
         skipIfExists: true,
       })
       actions.push({
@@ -184,32 +225,49 @@ export default (plop) => {
         templateFile: `../../../dist/templates/project-cli/src/script/run-help.${ext}.hbs`,
         skipIfExists: true,
       })
-      actions.push({
-        type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/script/run-command.${ext}`,
-        templateFile: `../../../dist/templates/project-cli/src/script/run-command.${ext}.hbs`,
-        skipIfExists: true,
-      })
 
-      // Copy init command folder files
-      actions.push({
-        type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/commands/init/run.ts`,
-        templateFile: `../../../dist/templates/project-cli/src/commands/init/run.${ext}.hbs`,
-        skipIfExists: true,
-      })
-      actions.push({
-        type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/commands/init/help.ts`,
-        templateFile: `../../../dist/templates/project-cli/src/commands/init/help.${ext}.hbs`,
-        skipIfExists: true,
-      })
-      actions.push({
-        type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/commands/init/templates/.{{lowerCase name}}.json`,
-        templateFile: `../../../dist/templates/project-cli/src/commands/init/help.${ext}.hbs`,
-        skipIfExists: true,
-      })
+      if (commands) {
+        actions.push({
+          type: 'add',
+          path: `${cwd}/{{lowerCase name}}/src/script/run-command.${ext}`,
+          templateFile: `../../../dist/templates/project-cli/src/script/run-command.${ext}.hbs`,
+          skipIfExists: true,
+        })
+      }
+
+      if (!liftoff && !commands) {
+        actions.push({
+          type: 'add',
+          path: `${cwd}/{{lowerCase name}}/src/script/run-execute.${ext}`,
+          templateFile: `../../../dist/templates/project-cli/src/script/run-execute.ts.hbs`,
+          skipIfExists: true,
+        })
+      }
+
+      // Copy init command folder files if init is set
+      if (init) {
+        actions.push({
+          type: 'add',
+          path: `${cwd}/{{lowerCase name}}/src/commands/init/run.${ext}`,
+          templateFile: `../../../dist/templates/project-cli/src/commands/init/run.ts.hbs`,
+          skipIfExists: true,
+        })
+        actions.push({
+          type: 'add',
+          path: `${cwd}/{{lowerCase name}}/src/commands/init/help.${ext}`,
+          templateFile: `../../../dist/templates/project-cli/src/commands/init/help.ts.hbs`,
+          skipIfExists: true,
+        })
+      }
+
+      if (liftoff) {
+        actions.push({
+          type: 'add',
+          path: `${cwd}/{{lowerCase name}}/src/commands/init/templates/.{{lowerCase name}}.json`,
+          templateFile: `../../../dist/templates/project-cli/src/commands/init/templates/.config-file.json.hbs`,
+          skipIfExists: true,
+        })
+      }
 
       // Copy utils folder files
       actions.push({
@@ -237,25 +295,49 @@ export default (plop) => {
         skipIfExists: true,
       })
 
-      // Copy typings folder files
-      if (typescript && liftoff) {
+      if (liftoff) {
         actions.push({
           type: 'add',
-          path: `${cwd}/{{lowerCase name}}/src/typings/liftoff-env.d.ts`,
-          templateFile: `../../../dist/templates/project-cli/src/typings/liftoff-env.d.ts.hbs`,
+          path: `${cwd}/{{lowerCase name}}/src/utils/get-config-file.${ext}`,
+          templateFile: `../../../dist/templates/project-cli/src/utils/get-config-file.ts.hbs`,
+          skipIfExists: true,
+        })
+        actions.push({
+          type: 'add',
+          path: `${cwd}/{{lowerCase name}}/src/utils/get-config-file-exists.${ext}`,
+          templateFile: `../../../dist/templates/project-cli/src/utils/get-config-file-exists.ts.hbs`,
           skipIfExists: true,
         })
       }
 
-      // Copy constants file
-      if (typescript && liftoff) {
-        actions.push({
-          type: 'add',
-          path: `${cwd}/{{lowerCase name}}/src/constants.${ext}`,
-          templateFile: `../../../dist/templates/project-cli/src/constants.${ext}.hbs`,
-          skipIfExists: true,
-        })
+      // Copy typings folder files
+      if (typescript) {
+        if (liftoff) {
+          actions.push({
+            type: 'add',
+            path: `${cwd}/{{lowerCase name}}/src/typings/liftoff-env.d.ts`,
+            templateFile: `../../../dist/templates/project-cli/src/typings/liftoff-env.d.ts.hbs`,
+            skipIfExists: true,
+          })
+        }
+
+        if (commands) {
+          actions.push({
+            type: 'add',
+            path: `${cwd}/{{lowerCase name}}/src/typings/command.d.ts`,
+            templateFile: `../../../dist/templates/project-cli/src/typings/command.d.ts.hbs`,
+            skipIfExists: true,
+          })
+        }
       }
+
+      // Copy constants file
+      actions.push({
+        type: 'add',
+        path: `${cwd}/{{lowerCase name}}/src/constants.${ext}`,
+        templateFile: `../../../dist/templates/project-cli/src/constants.${ext}.hbs`,
+        skipIfExists: true,
+      })
 
       actions.push({
         type: 'executeInstallation',
