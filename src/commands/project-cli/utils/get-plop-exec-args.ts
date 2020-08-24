@@ -27,6 +27,13 @@ export function getPlopExecArgs(prefilledConfig: Record<string, any>) {
     execArgs.push('_')
   }
 
+  if (prefilledConfig.liftoff) {
+    const reply = prefilledConfig.liftoff === 'yes' ? 'yes' : 'no'
+    execArgs.push(reply)
+  } else {
+    execArgs.push('_')
+  }
+
   if (prefilledConfig.author) {
     execArgs.push(`${prefilledConfig.author}`)
   } else {

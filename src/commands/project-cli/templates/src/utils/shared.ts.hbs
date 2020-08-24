@@ -1,0 +1,32 @@
+import { PROJECT_ID } from '../constants'
+import minimist from 'minimist'
+
+export type Shared = {
+  cwd: string
+  distPath: string
+  {{#ifEqual "yes" liftoff}}
+  configPath: string
+  liftoffEnv: LiftoffEnv
+  {{/ifEqual}}
+}
+
+const root: Record<string, any> = global
+
+root[PROJECT_ID] = {
+  cwd: '',
+  distPath: '',
+  {{#ifEqual "yes" liftoff}}
+  configPath: '',
+  liftoffEnv: {},
+  {{/ifEqual}}
+}
+
+export function getShared() {
+  return root[PROJECT_ID] as Shared
+}
+
+export function setShared(toSet: Record<string, any>) {
+  Object.keys(toSet).forEach((key) => {
+    root[PROJECT_ID][key] = toSet[key]
+  })
+}

@@ -1,0 +1,18 @@
+import { helpInit } from '../commands/init/help'
+import { helpMain } from './help'
+
+export function runHelp(argv) {
+  const key = argv.help ? 'help' : 'h'
+  const command: true | CommandTypes = argv[key]
+
+  switch (command) {
+    case 'init':
+      helpInit()
+      break
+
+    case true:
+    default:
+      helpMain()
+      break
+  }
+}

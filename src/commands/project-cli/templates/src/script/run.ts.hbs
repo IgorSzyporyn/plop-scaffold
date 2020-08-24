@@ -1,0 +1,57 @@
+{{#ifEqual "yes" liftoff}}
+import minimist from 'minimist'
+import path from 'path'
+import { allowedRoutes } from './index'
+import { runInit } from '../commands/init/run'
+import { runHelp } from './run-help'
+import { runCommand } from './run-command'
+import { runVersion } from './run-version'
+
+export function run({ configPath = '', cwd }: LiftoffEnv) {
+  const args = process.argv.slice(2)
+  const argv = minimist(args)
+
+  setShared({
+    configPath,
+    cwd,
+    distPath: path.join(__dirname, '../'),
+    liftoffEnv: env,
+  })
+
+  const hasInit = argv._.indexOf('init') > -1
+  const command = getCommandFromArgv(argv._, allowedCommands)
+
+  if (hasInit) {
+    runInit()
+  } else if (argv.version || argv.v) {
+    runVersion()
+  } else if (argv.help || argv.h || !command) {
+    runHelp()
+  } else if (command) {
+    runCommand(command)
+  }
+}
+{{else}}
+export function run() {
+  const args = process.argv.slice(2)
+  const argv = minimist(args)
+
+  setShared({
+    cwd,
+    distPath: path.join(__dirname, '../'),
+  })
+
+  const hasInit = argv._.indexOf('init') > -1
+  const command = getCommandFromArgv(argv._, allowedCommands)
+
+  if (hasInit) {
+    runInit()
+  } else if (argv.version || argv.v) {
+    runVersion()
+  } else if (argv.help || argv.h || !command) {
+    runHelp()
+  } else if (command) {
+    runCommand(command)
+  }
+}
+{{/ifEqual}}

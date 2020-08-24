@@ -1,5 +1,9 @@
 {
-  "extends": ["prettier/@typescript-eslint", "plugin:prettier/recommended"],
+  {{#ifEqual "yes" typescript}}
+  "extends": [
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 6,
@@ -8,11 +12,18 @@
       "modules": true
     }
   },
+  {{else}}
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ]
+  {{/ifEqual}}
   "env": {
     "es6": true,
     "node": true
   },
   "overrides": [
+    {{#ifEqual "yes" typescript}}
     {
       "files": ["**/*.ts"],
       "rules": {
@@ -22,9 +33,10 @@
     {
       "files": ["**/*.d.ts"],
       "rules": {
-        "no-var": "off" // this is how typescript works
+        "no-var": "off", // this is how typescript works
       }
     }
+    {{/ifEqual}}
   ],
   "rules": {
     "no-console": [

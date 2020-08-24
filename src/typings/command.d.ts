@@ -1,4 +1,4 @@
-type RouteTypes =
+type CommandTypes =
   | 'init'
   | 'react'
   | 'project-cli'

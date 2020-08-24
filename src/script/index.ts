@@ -7,18 +7,14 @@
  * Commands
  *
  * init
- * react
- * react-next-page
- * project-cli
- * project-react-component
  *
  **/
 
-export const allowedRoutes: RouteTypes[] = [
+export const allowedCommands: CommandTypes[] = [
   'init',
+  'project-cli',
   'react',
   'react-next-page',
-  'project-cli',
   'project-react-component',
 ]
 

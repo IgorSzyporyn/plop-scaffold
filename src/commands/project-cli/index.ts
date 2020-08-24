@@ -3,6 +3,7 @@
  *
  * --name
  * --description
+ * --liftoff
  * --author
  * --authoremail
  * --typescript
@@ -15,6 +16,7 @@ export type ProjectCliConfig = {
   description: 'yes' | 'no' | null
   typescript: 'yes' | 'no' | null
   commitlint: 'yes' | 'no' | null
+  liftoff: 'yes' | 'no' | null
   author: string | null
   authoremail: string | null
 }
@@ -24,6 +26,7 @@ export type ProjectCliAnswers = {
   description: 'yes' | 'no'
   typescript: 'yes' | 'no'
   commitlint: 'yes' | 'no'
+  liftoff: 'yes' | 'no'
   author: string
   authoremail: string
 }
@@ -33,6 +36,7 @@ export const defaultProjectCliConfig: Readonly<ProjectCliConfig> = {
   description: null,
   typescript: null,
   commitlint: null,
+  liftoff: null,
   author: null,
   authoremail: null,
 }
@@ -42,6 +46,7 @@ export const allowedArgs: Readonly<(keyof ProjectCliConfig)[]> = [
   'description',
   'typescript',
   'commitlint',
+  'liftoff',
   'author',
   'authoremail',
 ]
@@ -51,6 +56,7 @@ export const prefilledArgs: Readonly<(keyof ProjectCliConfig)[]> = [
   'description',
   'typescript',
   'commitlint',
+  'liftoff',
   'author',
   'authoremail',
 ]

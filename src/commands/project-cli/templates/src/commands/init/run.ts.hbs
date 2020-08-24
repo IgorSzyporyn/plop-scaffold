@@ -1,10 +1,9 @@
-import { getConfigFileExists } from '../../utils/get-config-file-exists'
-import { print } from '../../utils/print'
-import { copyFileSync } from 'fs'
-import { join as pathJoin } from 'path'
-import { getShared } from '../../utils/shared'
+import {join as pathJoin } from 'path'
 import { CONFIG_FILE_NAME } from '../../constants'
-import path from 'path'
+import { copyFileSync } from 'fs'
+import { getConfigFileExists } from '../../utils/get-config-file-exists'
+import { getShared } from '../../utils/shared'
+import { print } from '../../utils/print'
 
 export function runInit() {
   const { cwd, distPath } = getShared()
@@ -15,7 +14,11 @@ export function runInit() {
     print(`Folder already has a configuration file`, 'error')
     print.newline()
   } else {
-    const source = path.join(distPath, 'templates/init/', CONFIG_FILE_NAME)
+    const source = pathJoin(
+      distPath,
+      'templates/commands/init/templates/',
+      CONFIG_FILE_NAME
+    )
     const destination = pathJoin(cwd, CONFIG_FILE_NAME)
 
     let didCopyFile = false

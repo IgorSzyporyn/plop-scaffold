@@ -1,7 +1,7 @@
 import path from 'path'
 import { getShared } from './shared'
 
-export function getPlopConfigPath(name: RouteTypes) {
+export function getPlopConfigPath(name: CommandTypes) {
   const { distPath } = getShared()
 
   const plopConfigPath = path.join(distPath, 'commands/', name)

@@ -154,7 +154,7 @@ export default (plop) => {
         path: `${scaffoldPath}/{{pascalCase name}}/{{pascalCase name}}.${
           typescript ? 'tsx' : 'jsx'
         }`,
-        templateFile: `../../../dist/templates/commands/react/templates/component.${
+        templateFile: `../../../dist/templates/react/component.${
           typescript ? 'tsx' : 'jsx'
         }.hbs`,
         skipIfExists: true,
@@ -170,7 +170,7 @@ export default (plop) => {
           path: `${scaffoldPath}/{{pascalCase name}}/${storybookTemplatePath}/{{pascalCase name}}.stories.${
             typescript ? 'tsx' : 'jsx'
           }`,
-          templateFile: `../../../dist/templates/commands/react/templates/storybook.${
+          templateFile: `../../../dist/templates/react/storybook.${
             typescript ? 'tsx' : 'jsx'
           }.hbs`,
           skipIfExists: true,
@@ -187,7 +187,7 @@ export default (plop) => {
           path: `${scaffoldPath}/{{pascalCase name}}/${testTemplatePath}/{{pascalCase name}}.test.${
             typescript ? 'tsx' : 'jsx'
           }`,
-          templateFile: `../../../dist/templates/commands/react/templates/test.${testTemplateName}.${
+          templateFile: `../../../dist/templates/react/test.${testTemplateName}.${
             typescript ? 'tsx' : 'jsx'
           }.hbs`,
           skipIfExists: true,

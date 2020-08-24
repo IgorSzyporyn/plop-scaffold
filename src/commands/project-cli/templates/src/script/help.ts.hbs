@@ -1,0 +1,21 @@
+import chalk from 'chalk'
+import { CONFIG_FILE_NAME } from '../constants'
+import { print } from '../utils/print'
+
+export function helpMain() {
+  print.titleWithSuffix(`[--version] [--help]`)
+  print(`              <command> [<args>]`)
+  print.newline()
+  print('List of commands')
+  print.newline()
+  print(
+    `${chalk.blueBright(
+      '  init'
+    )}                        Initialize a ${CONFIG_FILE_NAME} config file in your folder`
+  )
+  print.newline()
+  print(
+    "'{{lowerCase name}} --help <command>' lists available arguments for the command."
+  )
+  print.newline()
+}

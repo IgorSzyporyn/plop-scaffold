@@ -19,5 +19,5 @@ export function execute(answers: ProjectCliAnswers) {
   installDevDependencies(answers)
   print.newline()
   print('Installing Dependencies....', 'info')
-  installDependencies()
+  installDependencies(answers)
 }

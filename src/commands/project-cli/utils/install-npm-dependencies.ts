@@ -1,32 +1,43 @@
 import { execSync } from 'child_process'
 import { ProjectCliConfig } from '../index'
 
-export function installDevDependencies({ typescript }: ProjectCliConfig) {
+export function installDevDependencies({
+  typescript,
+  commitlint,
+}: ProjectCliConfig) {
   let success = false
   let response = ''
 
   let devDependencies = [
-    '@commitlint/cli',
-    '@commitlint/config-conventional',
     'eslint',
     'eslint-config-prettier',
     'eslint-plugin-prettier',
     'generate-changelog',
-    'husky',
-    'lint-staged',
     'prettier',
     'rimraf',
     'typescript',
   ]
 
-  if (typescript === 'yes') {
+  if (commitlint === 'yes') {
     const tsDevDependencies = [
       '@types/node',
+      '@types/v8flags',
       '@typescript-eslint/eslint-plugin',
       '@typescript-eslint/parser',
     ]
 
     devDependencies = [...devDependencies, ...tsDevDependencies]
+  }
+
+  if (typescript === 'yes') {
+    const commitlintDevDependencies = [
+      '@commitlint/cli',
+      '@commitlint/config-conventional',
+      'husky',
+      'lint-staged',
+    ]
+
+    devDependencies = [...devDependencies, ...commitlintDevDependencies]
   }
 
   const devDependenciesString = devDependencies.join(' ')
@@ -41,20 +52,15 @@ export function installDevDependencies({ typescript }: ProjectCliConfig) {
   return { success, response }
 }
 
-export function installDependencies() {
+export function installDependencies({ liftoff }: ProjectCliConfig) {
   let success = false
   let response = ''
+  let dependencies = ['chalk']
 
-  const dependencies = [
-    '@types/v8flags',
-    'chalk',
-    'interpret',
-    'liftoff',
-    'minimist',
-    'plop',
-    'ts-deepmerge',
-    'v8flags',
-  ]
+  if (liftoff === 'yes') {
+    const liftoffDependencies = ['interpret', 'liftoff', 'minimist', 'v8flags']
+    dependencies = [...dependencies, ...liftoffDependencies]
+  }
 
   const dependenciesString = dependencies.join(' ')
 

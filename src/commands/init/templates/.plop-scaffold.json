@@ -15,6 +15,15 @@
     "useeffect": null,
     "usestate": null
   },
+  "project-cli": {
+    "name": null,
+    "description": null,
+    "typescript": null,
+    "commitlint": null,
+    "liftoff": null,
+    "author": null,
+    "authoremail": null
+  },
   "react-next-page": {
     "baseDir": "src",
     "typescript": null,
