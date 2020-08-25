@@ -2,15 +2,84 @@
 export default (plop) => {
   const { plopHelper, requireField } = require('../../utils/plop-helper')
   const { getEnvConst } = require('../../utils/get-env-const')
+  const { print } = require('../../utils/print')
 
   const username = getEnvConst('gituser')
   const useremail = getEnvConst('gitemail')
 
   plopHelper(plop)
 
-  plop.setActionType('executeInstallation', function (answers) {
-    const { execute } = require('./execute')
-    execute(answers)
+  plop.setActionType('Install NPM Dependencies', function (answers) {
+    const path = require('path')
+    const { getEnv } = require('../../utils/get-env')
+    const { closeSync, openSync } = require('fs')
+    const {
+      installDependencies,
+      installDevDependencies,
+    } = require('./utils/install-npm-dependencies')
+
+    const { name } = answers
+    const { cwd } = getEnv()
+    const workingDir = path.join(cwd, name)
+
+    process.chdir(workingDir)
+
+    const pckJsonLock = path.join(workingDir, 'package-lock.json')
+    closeSync(openSync(pckJsonLock, 'w'))
+
+    print(' All files created successfully')
+    print.newline()
+
+    print.info('Installing NPM dependencies....')
+    installDevDependencies(answers)
+    installDependencies(answers)
+
+    print.newline()
+  })
+
+  plop.setActionType('Configure tsconfig.json', function (answers) {
+    const path = require('path')
+    const { getEnv } = require('../../utils/get-env')
+    const { installTsConfig } = require('./utils/install-tsconfig')
+
+    print(' NPM dependencies successfully installed')
+    print.newline()
+    print.info('Configuring tsconfig.json....')
+
+    const { name } = answers
+    const { cwd } = getEnv()
+    const workingDir = path.join(cwd, name)
+
+    process.chdir(workingDir)
+
+    installTsConfig(answers)
+
+    print.newline()
+  })
+
+  plop.setActionType('Setup git', function (answers) {
+    print(' tsconfig.json sucessfully configured')
+
+    const git = answers.git === 'yes'
+
+    if (git) {
+      const path = require('path')
+      const { getEnv } = require('../../utils/get-env')
+      const { setupGit } = require('./utils/setup-git')
+
+      print.newline()
+      print.info('Configuring git....')
+
+      const { name } = answers
+      const { cwd } = getEnv()
+      const workingDir = path.join(cwd, name)
+
+      process.chdir(workingDir)
+
+      setupGit(answers)
+
+      print.newline()
+    }
   })
 
   plop.setGenerator('project-cli', {
@@ -118,19 +187,59 @@ export default (plop) => {
         message: 'Author Email',
         default: useremail,
       },
+      {
+        type: 'list',
+        name: 'git',
+        message: 'Initialize git',
+        choices: [
+          {
+            name: 'Yes',
+            value: 'yes',
+          },
+          {
+            name: 'No',
+            value: 'no',
+          },
+        ],
+      },
+      {
+        type: 'list',
+        name: 'gitproxy',
+        message: 'Git proxy',
+        when: ({ git }) => git === 'yes',
+        choices: [
+          {
+            name: 'SSH',
+            value: 'ssh',
+          },
+          {
+            name: 'HTTPS',
+            value: 'https',
+          },
+        ],
+      },
     ],
-    actions: ({
-      typescript: _typescript,
-      liftoff: _liftoff,
-      commands: _commands,
-      init: _init,
-    }) => {
+    actions: (answers) => {
+      const {
+        typescript: _typescript,
+        liftoff: _liftoff,
+        commands: _commands,
+        init: _init,
+        git: _git,
+      } = answers
+
+      print('Answers collected succesfully')
+      print.newline()
+      print.info('Creating project file structure')
+      print.newline()
+
       const cwd = getEnvConst('cwd')
 
       const typescript = _typescript === 'yes' ? true : false
       const liftoff = _liftoff === 'yes' ? true : false
       const commands = _commands === 'yes' ? true : false
       const init = _init === 'yes' ? true : false
+      const git = _git === 'yes' ? true : false
       const ext = typescript ? 'ts' : 'js'
       const actions = []
 
@@ -141,6 +250,16 @@ export default (plop) => {
         templateFile: `../../../dist/templates/project-cli/package.json.hbs`,
         skipIfExists: true,
       })
+
+      // Copy in .gitignore if git is chosen
+      if (git) {
+        actions.push({
+          type: 'add',
+          path: `${cwd}/{{lowerCase name}}/.gitignore`,
+          templateFile: `../../../dist/templates/project-cli/.gitignore.hbs`,
+          skipIfExists: true,
+        })
+      }
 
       // Copy in eslint files
       actions.push({
@@ -339,9 +458,9 @@ export default (plop) => {
         skipIfExists: true,
       })
 
-      actions.push({
-        type: 'executeInstallation',
-      })
+      actions.push({ type: 'Install NPM Dependencies' })
+      actions.push({ type: 'Configure tsconfig.json' })
+      actions.push({ type: 'Setup git' })
 
       return actions
     },

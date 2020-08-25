@@ -12,7 +12,7 @@ export function runInit() {
 
   if (initFileExists) {
     print.newline()
-    print(`Folder already has a configuration file`, 'error')
+    print.error(`Folder already has a configuration file`)
     print.newline()
   } else {
     const source = pathJoin(
@@ -35,7 +35,7 @@ export function runInit() {
       print.newline()
     } else {
       print.newline()
-      print.failure(
+      print.error(
         `Something went wrong creating ${CONFIG_FILE_NAME}`
       )
       print.newline()

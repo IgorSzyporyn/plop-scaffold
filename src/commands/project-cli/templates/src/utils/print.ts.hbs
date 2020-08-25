@@ -1,55 +1,37 @@
-import chalk from 'chalk'
+import chalk, { Color } from 'chalk'
 import { getPckJson } from './get-pck-json'
 
-export const newline = () => {
+type ColorMap = Record<string, typeof Color>
+
+const color: ColorMap = {
+  title: 'white',
+  task: 'grey',
+  success: 'green',
+  error: 'red',
+  info: 'blue',
+  warn: 'yellow',
+  message: 'cyan',
+}
+
+export const print = (text: string) => {
+  // eslint-disable-next-line no-console
+  console.log(text)
+}
+
+print.newline = () => {
   print('  ')
 }
 
-export const title = (text = '') => {
+print.title = (suffix = '') => {
   const { name } = getPckJson()
-  const title = chalk.white(`${name}`)
+  const title = chalk[color.title](`${name} ${suffix}`)
 
-  print(`${title} ${text}`)
+  print(title)
 }
 
-export const task = (text: string) => {
-  print(`${chalk.grey(text)}`)
-}
-
-export const success = (text: string) => {
-  print(`${chalk.greenBright(text)}`)
-}
-
-export const failure = (text: string) => {
-  print(`${chalk.redBright(text)}`)
-}
-
-export type PrintType = 'log' | 'info' | 'warn' | 'error' | 'task'
-
-export const print = (source: any, type: PrintType = 'log') => {
-  switch (type) {
-    case 'error':
-      // eslint-disable-next-line no-console
-      console.log(`${chalk.yellow(source)}`)
-      break
-    case 'warn':
-      // eslint-disable-next-line no-console
-      console.log(`${chalk.red(source)}`)
-      break
-    case 'info':
-      // eslint-disable-next-line no-console
-      console.log(`${chalk.blue(source)}`)
-      break
-    case 'log':
-    default:
-      // eslint-disable-next-line no-console
-      console.log(source)
-      break
-  }
-}
-
-print.newline = newline
-print.title = title
-print.task = task
-print.success = success
-print.failure = failure
+print.task = (text: string) => print(chalk[color.task](text))
+print.success = (text: string) => print(chalk[color.success](text))
+print.info = (text: string) => print(chalk[color.info](text))
+print.warn = (text: string) => print(chalk[color.warn](text))
+print.error = (text: string) => print(chalk[color.error](text))
+print.message = (text: string) => print(chalk[color.message](text))

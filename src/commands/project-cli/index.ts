@@ -10,6 +10,8 @@
  * --commitlint
  * --commands
  * --init
+ * --git
+ * --gitproxy
  *
  **/
 
@@ -23,6 +25,8 @@ export type ProjectCliConfig = {
   liftoff: 'yes' | 'no' | null
   author: string | null
   authoremail: string | null
+  git: 'yes' | 'no' | null
+  gitproxy: 'ssh' | 'https' | null
 }
 
 export type ProjectCliAnswers = {
@@ -35,6 +39,8 @@ export type ProjectCliAnswers = {
   liftoff: 'yes' | 'no'
   author: string
   authoremail: string
+  git: 'yes' | 'no'
+  gitproxy: 'ssh' | 'https'
 }
 
 export const defaultProjectCliConfig: Readonly<ProjectCliConfig> = {
@@ -47,6 +53,8 @@ export const defaultProjectCliConfig: Readonly<ProjectCliConfig> = {
   liftoff: null,
   author: null,
   authoremail: null,
+  git: null,
+  gitproxy: null,
 }
 
 export const allowedArgs: Readonly<(keyof ProjectCliConfig)[]> = [
@@ -59,6 +67,8 @@ export const allowedArgs: Readonly<(keyof ProjectCliConfig)[]> = [
   'liftoff',
   'author',
   'authoremail',
+  'git',
+  'gitproxy',
 ]
 
 export const prefilledArgs: Readonly<(keyof ProjectCliConfig)[]> = [
@@ -71,6 +81,8 @@ export const prefilledArgs: Readonly<(keyof ProjectCliConfig)[]> = [
   'liftoff',
   'author',
   'authoremail',
+  'git',
+  'gitproxy',
 ]
 
 export * from './run'

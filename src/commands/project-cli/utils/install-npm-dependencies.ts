@@ -5,9 +5,6 @@ export function installDevDependencies({
   typescript,
   commitlint,
 }: ProjectCliConfig) {
-  let success = false
-  let response = ''
-
   let devDependencies = [
     'eslint',
     'eslint-config-prettier',
@@ -43,18 +40,11 @@ export function installDevDependencies({
   const devDependenciesString = devDependencies.join(' ')
 
   try {
-    const npmInstall = execSync(`npm i -D ${devDependenciesString}`)
-    response = npmInstall.toString()
-
-    success = true
+    execSync(`npm i -D ${devDependenciesString}`)
   } catch (e) {}
-
-  return { success, response }
 }
 
 export function installDependencies({ liftoff }: ProjectCliConfig) {
-  let success = false
-  let response = ''
   let dependencies = ['chalk']
 
   if (liftoff === 'yes') {
@@ -65,11 +55,6 @@ export function installDependencies({ liftoff }: ProjectCliConfig) {
   const dependenciesString = dependencies.join(' ')
 
   try {
-    const npmInstall = execSync(`npm i ${dependenciesString}`)
-    response = npmInstall.toString()
-
-    success = true
+    execSync(`npm i ${dependenciesString}`)
   } catch (e) {}
-
-  return { success, response }
 }

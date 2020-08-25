@@ -60,6 +60,20 @@ export function getPlopExecArgs(prefilledConfig: Record<string, any>) {
     execArgs.push('_')
   }
 
+  if (prefilledConfig.git) {
+    const reply = prefilledConfig.git === 'yes' ? 'yes' : 'no'
+    execArgs.push(reply)
+  } else {
+    execArgs.push('_')
+  }
+
+  if (prefilledConfig.gitproxy) {
+    const reply = prefilledConfig.gitproxy === 'ssh' ? 'ssh' : 'https'
+    execArgs.push(reply)
+  } else {
+    execArgs.push('_')
+  }
+
   // If args are just full of _ then it should be empty
   let isEmpty = true
 

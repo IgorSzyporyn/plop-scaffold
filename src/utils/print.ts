@@ -1,120 +1,190 @@
-import chalk from 'chalk'
+import chalk, { Color } from 'chalk'
 import { getPckJson } from './get-pck-json'
 
-export const newline = () => {
-  print('  ')
+type ColorMap = Record<string, typeof Color>
+
+const color: ColorMap = {
+  title: 'white',
+  task: 'grey',
+  success: 'green',
+  error: 'red',
+  info: 'blue',
+  warn: 'yellow',
+  message: 'cyan',
+  command: 'white',
+  commandDescription: 'white',
+  arg: 'white',
+  argDescription: 'white',
+  argOption: 'white',
 }
 
-export const titleWithCommand = (command?: string) => {
+// eslint-disable-next-line no-console
+export const print = (text: any) => console.log(text)
+
+print.newline = () => print('  ')
+print.task = (text: string) => print(chalk[color.task](text))
+print.success = (text: string) => print(chalk[color.success](text))
+print.info = (text: string) => print(chalk[color.info](text))
+print.warn = (text: string) => print(chalk[color.warn](text))
+print.error = (text: string) => print(chalk[color.error](text))
+print.message = (text: string) => print(chalk[color.message](text))
+
+print.title = (suffix = '') => {
   const { name } = getPckJson()
-  const title = chalk.white(`${name}`)
-  const suffixText = command ? chalk.blueBright(command) : ' '
+  const title = chalk[color.title](`${name} ${suffix}`)
 
-  print(`${title} ${suffixText}`)
+  print(title)
 }
 
-export const titleWithSuffix = (suffix?: string) => {
-  const { name } = getPckJson()
-  const title = chalk.white(`${name}`)
-  const suffixText = suffix ? chalk.white(suffix) : ' '
-
-  print(`${title} ${suffixText}`)
+type HelpEntry = {
+  name: string
+  description: string
+  optionsName?: string
+  options?: string[]
 }
 
-export const title = () => {
-  const { name } = getPckJson()
-  const title = chalk.white(`${name}`)
-
-  print(`${title}`)
+type HelpOptions = {
+  type: 'main' | 'command'
+  name?: string
+  message?: string[]
+  commands?: HelpEntry[]
+  args?: HelpEntry[]
+  padding?: number
 }
 
-export const subtitle = (name: string) => {
-  const subtitle = chalk.white(`${name}`)
-
-  print(subtitle)
+const defaultHelpOptions: Partial<HelpOptions> = {
+  padding: 60,
 }
 
-export type BorderType = '_' | '-' | string
+print.help = ({
+  name,
+  type,
+  args,
+  message,
+  commands,
+  padding: _padding,
+}: HelpOptions) => {
+  const { name: pckName } = getPckJson()
 
-export type BorderProps =
-  | number
-  | {
-      text?: string
-      length?: number
-      type?: string
-    }
+  const suffix = type === 'main' ? 'command' : name
+  const argsSuffix = args && args.length > 0 ? `[<args>]` : ''
+  print(`usage: ${pckName} ${suffix} ${argsSuffix}`)
 
-const renderBorder = (length: number, type: BorderType) => {
-  let border = ''
-  for (let i = 0; i < length; i++) {
-    border = `${border}${type}`
+  if (message) {
+    print.newline()
+    message.forEach((msg) => print.message(msg))
   }
 
-  return border
-}
+  let maxEntryNameLength = 0
+  let padding = _padding || 37
 
-export const border = (props: BorderProps, type: BorderType = '-') => {
-  let borderLine = ''
-  let text = ''
-
-  if (typeof props === 'number') {
-    borderLine = renderBorder(props, type)
-  } else {
-    text = props.text || ''
-    const length = props.length || (text ? text.length : 0)
-
-    borderLine = renderBorder(length, props.type || type)
+  if (commands) {
+    commands.forEach((command) => {
+      if (command.name.length > maxEntryNameLength) {
+        maxEntryNameLength = command.name.length
+      }
+    })
   }
 
-  if (text) {
-    print(text)
+  if (args) {
+    args.forEach(({ name, optionsName }) => {
+      const text = optionsName ? `${name} <${optionsName}>` : name
+
+      if (text.length > maxEntryNameLength) {
+        maxEntryNameLength = text.length
+      }
+    })
   }
 
-  print(borderLine)
-}
+  if (padding < maxEntryNameLength) {
+    padding = maxEntryNameLength + 6
+  }
 
-export const task = (text: string) => {
-  print(`${chalk.grey(text)}`)
-}
+  if (commands) {
+    print.newline()
+    print('Available commands:')
+    print.newline()
 
-export const success = (text: string) => {
-  print(`${chalk.greenBright(text)}`)
-}
+    commands.forEach(({ name, description }) => {
+      const spacing = padding - name.length
+      const spacer = new Array(spacing).join(' ')
 
-export const failure = (text: string) => {
-  print(`${chalk.redBright(text)}`)
-}
+      print(
+        `  ${chalk[color.command](name)}${spacer}${chalk[color.commandDescription](
+          description
+        )}`
+      )
+    })
 
-export type PrintType = 'log' | 'info' | 'warn' | 'error' | 'task'
+    print.newline()
+  }
 
-export const print = (source: any, type: PrintType = 'log') => {
-  switch (type) {
-    case 'error':
-      // eslint-disable-next-line no-console
-      console.log(`${chalk.yellow(source)}`)
-      break
-    case 'warn':
-      // eslint-disable-next-line no-console
-      console.log(`${chalk.red(source)}`)
-      break
-    case 'info':
-      // eslint-disable-next-line no-console
-      console.log(`${chalk.blue(source)}`)
-      break
-    case 'log':
-    default:
-      // eslint-disable-next-line no-console
-      console.log(source)
-      break
+  if (args) {
+    const paddingSpacer = new Array(padding).join(' ')
+
+    print.newline()
+    print('Available arguments:')
+    print.newline()
+
+    args.forEach(({ name, description, optionsName, options }) => {
+      const title = optionsName ? `${name} <${optionsName}>` : name
+      const spacing = padding - title.length
+      const spacer = new Array(spacing).join(' ')
+
+      print(
+        `  ${chalk[color.arg](title)}${spacer}${chalk[color.argDescription](
+          description
+        )}`
+      )
+
+      if (options && options.length > 0) {
+        let optionsText = ''
+
+        options.forEach((option, i) => {
+          if (i === 0) {
+            optionsText = `${chalk[color.argOption](option)}`
+          } else {
+            optionsText = `${optionsText} | ${chalk[color.argOption](option)}`
+          }
+        })
+
+        print(`  ${paddingSpacer}${optionsText}`)
+      }
+
+      print.newline()
+    })
   }
 }
 
-print.newline = newline
-print.title = title
-print.titleWithCommand = titleWithCommand
-print.titleWithSuffix = titleWithSuffix
-print.border = border
-print.task = task
-print.success = success
-print.failure = failure
-print.subtitle = subtitle
+/*
+$> plop-scaffold --help
+usage: plop-scaffold command [<arguments>] (help-title)
+
+Start a scaffold generator by a command (message)
+
+Available commands: (help-subtitle)
+react             asdadadadads (command)
+project-cli       asdadadasd (command)
+
+Available arguments: (help-subtitle)
+--init <option>   asda a dasd a as dada asd ads (argument)
+--typescript      asdasdasdasdasd (argument)
+*/
+
+/*
+$> plop-scaffold --help react
+usage: plop-scaffold react [<arguments>] (help-title)
+
+Create a react component scaffold in your current folder (message)
+
+Available arguments: (help-arguments-title)
+--init            asda a dasd a as dada asd ads
+--typescript      asdasdasdasdasd
+*/
+
+/*
+$> plop-scaffold react
+Create a react component scaffold in your current folder (message)
+
+? Name: 
+*/

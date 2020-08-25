@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import { print } from '../../utils/print'
 
 export function helpReactNextPage() {
-  print.titleWithCommand(`react-next-page ${chalk.white('[<args>]')}`)
+  print.title(`react-next-page ${chalk.white('[<args>]')}`)
   print.newline()
   print('Create an empty Node Cli based project ready for NPM release.')
   print.newline()

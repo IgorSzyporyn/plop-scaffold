@@ -1,5 +1,5 @@
 {
-  "editor.formatOnSave": true,
   "typescript.preferences.importModuleSpecifier": "relative",
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "editor.formatOnSave": true
 }

@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import { print } from '../../utils/print'
 
 export function helpProjectReactComponent() {
-  print.titleWithCommand(`project-react-component ${chalk.white('[<args>]')}`)
+  print.title(`project-react-component ${chalk.white('[<args>]')}`)
   print.newline()
   print('Create a NPM release ready scaffold project for a React Component.')
   print.newline()

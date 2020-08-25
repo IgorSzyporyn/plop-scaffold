@@ -12,7 +12,7 @@ export function runInit() {
 
   if (initFileExists) {
     print.newline()
-    print(`Folder already has a configuration file`, 'error')
+    print.error(`Folder already has a configuration file`)
     print.newline()
   } else {
     const source = path.join(distPath, 'templates/init/', CONFIG_FILE_NAME)
@@ -31,9 +31,7 @@ export function runInit() {
       print.newline()
     } else {
       print.newline()
-      print.failure(
-        `Something went wrong copying ${CONFIG_FILE_NAME} to your folder`
-      )
+      print.error(`Something went wrong copying ${CONFIG_FILE_NAME} to your folder`)
       print.newline()
     }
   }

@@ -32,15 +32,13 @@ export function getConfig(
 
   if (hasPackageConfig && hasRcConfig) {
     print.newline()
-    print(
+    print.error(
       ` \u261D  You have configurations in both ${chalk.white.bold(
         'package.json'
-      )} and ${chalk.white.bold(CONFIG_FILE_NAME)}`,
-      'error'
+      )} and ${chalk.white.bold(CONFIG_FILE_NAME)}`
     )
-    print(
-      `    Please only use one or the other (${CONFIG_FILE_NAME} will overwrite package.json)`,
-      'error'
+    print.error(
+      `    Please only use one or the other (${CONFIG_FILE_NAME} will overwrite package.json)`
     )
   }
 
