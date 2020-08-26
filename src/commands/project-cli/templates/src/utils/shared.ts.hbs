@@ -1,12 +1,14 @@
 import { PROJECT_ID } from '../constants'
 import minimist from 'minimist'
 
-export type Shared = {
-  cwd: string
-  distPath: string
+export type Shared<T = Record<string, any>> = {
   argv: minimist.ParsedArgs
   {{#ifEqual "yes" liftoff}}
   configPath: string
+  {{/ifEqual}}
+  cwd: string
+  distPath: string
+  {{#ifEqual "yes" liftoff}}
   liftoffEnv: LiftoffEnv
   {{/ifEqual}}
 }
@@ -15,16 +17,18 @@ const root: Record<string, any> = global
 
 root[PROJECT_ID] = {
   argv: {},
+  {{#ifEqual "yes" liftoff}}
+  configPath: '',
+  {{/ifEqual}}
   cwd: '',
   distPath: '',
   {{#ifEqual "yes" liftoff}}
-  configPath: '',
   liftoffEnv: {},
   {{/ifEqual}}
 }
 
-export function getShared() {
-  return root[PROJECT_ID] as Shared
+export function getShared<T>() {
+  return root[PROJECT_ID] as Shared<T>
 }
 
 export function setShared(toSet: Record<string, any>) {

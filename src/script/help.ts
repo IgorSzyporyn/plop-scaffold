@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import { print } from '../utils/print'
 import { allowedCommands } from '.'
 import { CONFIG_FILE_NAME } from '../constants'
@@ -43,6 +42,4 @@ export function helpMain() {
       },
     ],
   })
-
-  print.newline()
 }

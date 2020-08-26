@@ -1,29 +1,26 @@
 {{#ifEqual "yes" liftoff}}
 import minimist from 'minimist'
 import path from 'path'
+import { runInit } from '../commands/init/run'
+import { getCommandFromArgv } from '../utils/get-command-from-argv'
 import { setShared } from '../utils/shared'
 import { allowedCommands } from './index'
-import { runInit } from '../commands/init/run'
-import { runHelp } from './run-help'
 import { runCommand } from './run-command'
+import { runHelp } from './run-help'
 import { runVersion } from './run-version'
 
-export function run({ configPath = '', cwd }: LiftoffEnv) {
+export function run(liftoffEnv: LiftoffEnv) {
   const args = process.argv.slice(2)
   const argv = minimist(args)
+  const { configPath = '', cwd } = liftoffEnv
+  const distPath = path.join(__dirname, '../')
 
-  setShared({
-    argv,
-    configPath,
-    cwd,
-    distPath: path.join(__dirname, '../'),
-    liftoffEnv: env,
-  })
+  setShared({ argv, configPath, cwd, liftoffEnv, distPath })
 
-  const hasInit = argv._.indexOf('init') > -1
-  const command = getCommandFromArgv(argv._, allowedCommands)
+  const hasInitCommand = argv._.indexOf('init') > -1
+  const command = getCommandFromArgv(argv, allowedCommands)
 
-  if (hasInit) {
+  if (hasInitCommand) {
     runInit()
   } else if (argv.version || argv.v) {
     runVersion()
@@ -55,21 +52,18 @@ export function run() {
   const args = process.argv.slice(2)
   const argv = minimist(args)
   const { cwd } = process
+  const distPath = path.join(__dirname, '../')
 
-  setShared({
-    argv,
-    cwd,
-    distPath: path.join(__dirname, '../'),
-  })
+  setShared({ argv, cwd, distPath })
 
   {{#ifEqual "yes" commands}}
     {{#ifEqual "yes" init}}
-  const hasInit = argv._.indexOf('init') > -1
+  const hasInitCommand = argv._.indexOf('init') > -1
     {{/ifEqual}}
   const command = getCommandFromArgv(argv._, allowedCommands)
 
     {{#ifEqual "yes" init}}
-  if (hasInit) {
+  if (hasInitCommand) {
     runInit()
   } else if (argv.version || argv.v) {
     runVersion()

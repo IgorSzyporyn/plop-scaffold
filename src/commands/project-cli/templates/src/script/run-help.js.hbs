@@ -1,37 +1,56 @@
-{{#ifEqual "yes" commands}}
-import { getShared } from '../utils/shared'
-{{/ifEqual}}
 {{#ifEqual "yes" init}}
 import { helpInit } from '../commands/init/help'
 {{/ifEqual}}
+{{#ifEqual "yes" commands}}
+import { getShared } from '../utils/shared'
+{{/ifEqual}}
 {{#ifEqual "yes" liftoff}}
 import { helpInit } from '../commands/init/help'
+import { getShared } from '../utils/shared'
 {{/ifEqual}}
 import { helpMain } from './help'
 
 export function runHelp() {
-  {{#ifEqual "yes" commands}}
+  {{#ifEqual "yes" liftoff}}
   const { argv } = getShared()
   const key = argv.help ? 'help' : 'h'
-  const command = argv[key]
+  const type = argv[key]
 
-  switch (command) {
-   {{#ifEqual "yes" init}}
+  switch (type) {
     case 'init':
       helpInit()
       break
-    {{/ifEqual}}
-   {{#ifEqual "yes" liftoff}}
-    case 'init':
-      helpInit()
-      break
-    {{/ifEqual}}
+
     case true:
     default:
       helpMain()
       break
   }
   {{else}}
+    {{#ifEqual "yes" commands}}
+  const { argv } = getShared()
+  const key = argv.help ? 'help' : 'h'
+  const command = argv[key]
+
+  switch (command) {
+      {{#ifEqual "yes" init}}
+    case 'init':
+      helpInit()
+      break
+      {{/ifEqual}}
+      {{#ifEqual "yes" liftoff}}
+    case 'init':
+      helpInit()
+      break
+      {{/ifEqual}}
+    case true:
+    default:
+      helpMain()
+      break
+  }
+    {{else}}
   helpMain()
+    {{/ifEqual}}
   {{/ifEqual}}
+
 }

@@ -37,28 +37,8 @@ export default (plop) => {
     print.newline()
   })
 
-  plop.setActionType('Configure tsconfig.json', function (answers) {
-    const path = require('path')
-    const { getEnv } = require('../../utils/get-env')
-    const { installTsConfig } = require('./utils/install-tsconfig')
-
-    print(' NPM dependencies successfully installed')
-    print.newline()
-    print.info('Configuring tsconfig.json....')
-
-    const { name } = answers
-    const { cwd } = getEnv()
-    const workingDir = path.join(cwd, name)
-
-    process.chdir(workingDir)
-
-    installTsConfig(answers)
-
-    print.newline()
-  })
-
   plop.setActionType('Setup git', function (answers) {
-    print(' tsconfig.json sucessfully configured')
+    print(' NPM dependencies successfully installed')
 
     const git = answers.git === 'yes'
 
@@ -224,6 +204,7 @@ export default (plop) => {
         typescript: _typescript,
         liftoff: _liftoff,
         commands: _commands,
+        commitlint: _commitlint,
         init: _init,
         git: _git,
       } = answers
@@ -238,16 +219,41 @@ export default (plop) => {
       const typescript = _typescript === 'yes' ? true : false
       const liftoff = _liftoff === 'yes' ? true : false
       const commands = _commands === 'yes' ? true : false
+      const commitlint = _commitlint === 'yes' ? true : false
       const init = _init === 'yes' ? true : false
       const git = _git === 'yes' ? true : false
       const ext = typescript ? 'ts' : 'js'
       const actions = []
+
+      // Copy in .vscode config
+      actions.push({
+        type: 'add',
+        path: `${cwd}/{{lowerCase name}}/.vscode/settings.json`,
+        templateFile: `../../../dist/templates/project-cli/.vscode/settings.json.hbs`,
+        skipIfExists: true,
+      })
 
       // Copy in the package.json file
       actions.push({
         type: 'add',
         path: `${cwd}/{{lowerCase name}}/package.json`,
         templateFile: `../../../dist/templates/project-cli/package.json.hbs`,
+        skipIfExists: true,
+      })
+
+      // Copy in project level tsconfig.json
+      actions.push({
+        type: 'add',
+        path: `${cwd}/{{lowerCase name}}/tsconfig.json`,
+        templateFile: `../../../dist/templates/project-cli/tsconfig.json.hbs`,
+        skipIfExists: true,
+      })
+
+      // Copy in source level tsconfig.json
+      actions.push({
+        type: 'add',
+        path: `${cwd}/{{lowerCase name}}/src/tsconfig.json`,
+        templateFile: `../../../dist/templates/project-cli/src/tsconfig.json.hbs`,
         skipIfExists: true,
       })
 
@@ -288,6 +294,16 @@ export default (plop) => {
         templateFile: `../../../dist/templates/project-cli/.prettierrc.hbs`,
         skipIfExists: true,
       })
+
+      // Copy in commitlint config file
+      if (commitlint) {
+        actions.push({
+          type: 'add',
+          path: `${cwd}/{{lowerCase name}}/.commitlintrc.json`,
+          templateFile: `../../../dist/templates/project-cli/.commitlintrc.json.hbs`,
+          skipIfExists: true,
+        })
+      }
 
       // Copy in markdown files
       actions.push({
@@ -345,7 +361,7 @@ export default (plop) => {
         skipIfExists: true,
       })
 
-      if (commands) {
+      if (commands || liftoff) {
         actions.push({
           type: 'add',
           path: `${cwd}/{{lowerCase name}}/src/script/run-command.${ext}`,
@@ -364,7 +380,7 @@ export default (plop) => {
       }
 
       // Copy init command folder files if init is set
-      if (init) {
+      if (init || liftoff) {
         actions.push({
           type: 'add',
           path: `${cwd}/{{lowerCase name}}/src/commands/init/run.${ext}`,
@@ -418,7 +434,7 @@ export default (plop) => {
         actions.push({
           type: 'add',
           path: `${cwd}/{{lowerCase name}}/src/utils/get-config-file.${ext}`,
-          templateFile: `../../../dist/templates/project-cli/src/utils/get-config-file.ts.hbs`,
+          templateFile: `../../../dist/templates/project-cli/src/utils/get-config-file.${ext}.hbs`,
           skipIfExists: true,
         })
         actions.push({
@@ -440,7 +456,7 @@ export default (plop) => {
           })
         }
 
-        if (commands) {
+        if (commands || liftoff) {
           actions.push({
             type: 'add',
             path: `${cwd}/{{lowerCase name}}/src/typings/command.d.ts`,
@@ -459,7 +475,6 @@ export default (plop) => {
       })
 
       actions.push({ type: 'Install NPM Dependencies' })
-      actions.push({ type: 'Configure tsconfig.json' })
       actions.push({ type: 'Setup git' })
 
       return actions

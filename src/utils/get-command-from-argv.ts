@@ -4,13 +4,13 @@ export function getCommandFromArgv({ _ }: minimist.ParsedArgs, allowed: string[]
   let command = ''
 
   _.some((argvCommand) => {
-    const argIsAllowedRoute = allowed.indexOf(argvCommand) > -1
+    const argIsAllowedCommand = allowed.indexOf(argvCommand) > -1
 
-    if (argIsAllowedRoute) {
+    if (argIsAllowedCommand) {
       command = argvCommand
     }
 
-    return argIsAllowedRoute
+    return argIsAllowedCommand
   })
 
   return command as Command

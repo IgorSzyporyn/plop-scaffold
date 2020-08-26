@@ -1,48 +1,57 @@
 {{#ifEqual "yes" liftoff}}
-import chalk from 'chalk'
-import { print } from '../utils/print'
-import { CONFIG_FILE_NAME } from '../constants'
-
-export function helpMain() {
-  print.title(`[--version] [--help]`)
-  print(`              <command> [<args>]`)
-  print.newline()
-  print('List of commands')
-  print.newline()
-  print(
-    `${chalk.blueBright(
-      '  init'
-    )}                        Initialize a ${CONFIG_FILE_NAME} config file in your folder`
-  )
-  print.newline()
-  print(
-    "'{{lowerCase name}} --help <command>' lists available arguments for the command."
-  )
-  print.newline()
-}
-{{else}}
-import { print } from '../utils/print'
-
-export function helpMain() {
-  print.title(`[--version] [--help]`)
-  {{#ifEqual "yes" commands}}
-  print(`              <command> [<args>]`)
-  print.newline()
-  print('List of commands')
-  print.newline()
-    {{#ifEqual "yes" init}}
-  print(
-    `${chalk.blueBright(
-      '  init'
-    )}                        Initialize a ${CONFIG_FILE_NAME} config file in your folder`
-  )
-  print.newline()
-    {{/ifEqual}}
-  print(
-    "'{{lowerCase name}} --help <command>' lists available arguments for the command."
-  )
-  print.newline()
-  {{/ifEqual}}
-}
+import { allowedCommands } from '.'
 {{/ifEqual}}
+{{#ifEqual "yes" commands}}
+import { allowedCommands } from '.'
+{{/ifEqual}}
+import { CONFIG_FILE_NAME } from '../constants'
+import { getPckJson } from '../utils/get-pck-json'
+import { print } from '../utils/print'
+
+export function helpMain() {
+  const { name } = getPckJson()
+
+  print.help({
+    type: 'main',
+    message: ['Add a description about your program here'],
+    {{#ifEqual "yes" liftoff}}
+    commands: [
+      {
+        name: 'init',
+        description: `Initialize a ${CONFIG_FILE_NAME} config file in your folder`,
+      },
+    ],
+    {{/ifEqual}}
+    {{#ifEqual "yes" init}}
+    commands: [
+      {
+        name: 'init',
+        description: 'Add a description about your init command here',
+      },
+    ],
+    {{/ifEqual}}
+    args: [
+      {
+        name: '--help, -h',
+        {{#ifEqual "yes" liftoff}}
+        description: `Show the help for ${name} or for a command`,
+        optionsName: 'command',
+        options: allowedCommands,
+        {{else}}
+          {{#ifEqual "yes" commands}}
+        description: `Show the help for ${name} or for a command`,
+        optionsName: 'command',
+        options: allowedCommands,
+          {{else}}
+          description: `Show the help for ${name}`
+          {{/ifEqual}}
+        {{/ifEqual}}
+      },
+      {
+        name: '--version, -v',
+        description: 'Show the current version',
+      },
+    ],
+  })
+}
 

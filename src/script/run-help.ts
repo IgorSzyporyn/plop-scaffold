@@ -1,9 +1,9 @@
+import { getShared } from '../utils/shared'
 import { helpInit } from '../commands/init/help'
 import { helpProjectCli } from '../commands/project-cli/help'
 import { helpProjectReactComponent } from '../commands/project-react-component/help'
 import { helpReactNextPage } from '../commands/react-next-page/help'
 import { helpReact } from '../commands/react/help'
-import { getShared } from '../utils/shared'
 import { helpMain } from './help'
 
 export function runHelp() {

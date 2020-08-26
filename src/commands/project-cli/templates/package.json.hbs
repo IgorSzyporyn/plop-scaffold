@@ -15,8 +15,8 @@
     "{{lowerCase name}}": "dist/bin/main.js"
   },
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "npm run build:pre && tsc",
+    "dev": "tsc --watch -p src",
+    "build": "npm run build:pre && tsc -p src",
     "build:pre": "rimraf dist",
     {{#ifEqual "yes" typescript}}
     "format": "prettier --write **/*.{js,ts}",
@@ -56,12 +56,6 @@
   },
   "devDependencies": {},
   "dependencies": {}{{#ifEqual "yes" commitlint}},
-  "commitlint": {
-    "extends": ["@commitlint/config-conventional"],
-    "rules": {
-      "scope-case": [0]
-    }
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",

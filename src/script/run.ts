@@ -9,19 +9,19 @@ import { runCommand } from './run-command'
 import { runHelp } from './run-help'
 import { runVersion } from './run-version'
 
-export function run(env: LiftoffEnv) {
+export function run(liftoffEnv: LiftoffEnv) {
   const args = process.argv.slice(2)
   const argv = minimist(args)
-  const { configPath = '', cwd } = env
+  const { configPath = '', cwd } = liftoffEnv
+  const distPath = path.join(__dirname, '../')
   const { username, useremail } = getGitInfo()
 
   setShared({
-    argv: argv,
+    argv,
     configPath,
     cwd,
-    liftoffEnv: env,
-    running: true,
-    distPath: path.join(__dirname, '../'),
+    liftoffEnv,
+    distPath,
     username,
     useremail,
   })

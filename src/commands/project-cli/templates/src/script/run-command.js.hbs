@@ -1,9 +1,12 @@
 import { allowedCommands } from './index'
 
 export function runCommand(command) {
-  switch (command) {
-    default:
-      break
+  const allowedCommand = allowedCommands.indexOf(command) > -1
+
+  if (allowedCommand) {
+    switch (command) {
+      default:
+        break
+    }
   }
 }
-

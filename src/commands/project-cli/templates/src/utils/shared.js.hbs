@@ -2,10 +2,12 @@ import { PROJECT_ID } from '../constants'
 
 global[PROJECT_ID] = {
   argv: {},
+  {{#ifEqual "yes" liftoff}}
+  configPath: '',
+  {{/ifEqual}}
   cwd: '',
   distPath: '',
   {{#ifEqual "yes" liftoff}}
-  configPath: '',
   liftoffEnv: {},
   {{/ifEqual}}
 }

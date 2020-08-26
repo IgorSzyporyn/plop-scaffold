@@ -1,6 +1,4 @@
-const { name } = require('../package.json')
-
-export const PROJECT_ID: string = name
+export const PROJECT_ID: string = '{{lowerCase name}}'
 {{#ifEqual "yes" liftoff}}
-export const CONFIG_FILE_NAME = `.${name}.json`
+export const CONFIG_FILE_NAME = '{{lowerCase name}}.json'
 {{/ifEqual}}
