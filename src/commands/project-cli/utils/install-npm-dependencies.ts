@@ -41,6 +41,12 @@ export function installDevDependencies({
     devDependencies = [...devDependencies, ...commitlintDevDependencies]
   }
 
+  if (liftoff === 'yes') {
+    const liftoffDevDependencies = ['@types/liftoff', '@types/interpret']
+
+    devDependencies = [...devDependencies, ...liftoffDevDependencies]
+  }
+
   const devDependenciesString = devDependencies.join(' ')
 
   try {

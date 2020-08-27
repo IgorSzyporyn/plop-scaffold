@@ -1,1 +1,5 @@
+{{#ifEqual "yes" liftoff}}
+type Command = 'init'
+{{else}}
 type Command = {{#ifEqual "yes" init}}'init'{{else}}''{{/ifEqual}}
+{{/ifEqual}}
