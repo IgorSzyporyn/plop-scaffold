@@ -1,5 +1,5 @@
 {
-  "name": "{{lowerCase name}}",
+  "name": "{{kebabCase name}}",
   "version": "0.1.0",
   "description": "{{description}}",
   "main": "dist/index.js",
@@ -12,7 +12,7 @@
     "CHANGELOG.md"
   ],
   "bin": {
-    "{{lowerCase name}}": "dist/bin/main.js"
+    "{{kebabCase name}}": "dist/bin/main.js"
   },
   "scripts": {
     "dev": "tsc --watch -p src",
@@ -40,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/{{author}}/{{lowerCase name}}.git"
+    "url": "git+https://github.com/{{author}}/{{kebabCase name}}.git"
   },
   "keywords": [
     "nodejs",
@@ -52,7 +52,7 @@
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/{{author}}/{{lowerCase name}}/issues"
+    "url": "https://github.com/{{author}}/{{kebabCase name}}/issues"
   },
   "devDependencies": {},
   "dependencies": {}{{#ifEqual "yes" commitlint}},

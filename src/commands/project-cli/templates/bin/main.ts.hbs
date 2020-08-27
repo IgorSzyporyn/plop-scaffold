@@ -8,9 +8,9 @@ import { jsVariants } from 'interpret'
 import { run } from '../script'
 
 const {{pascalCase name}} = new Liftoff({
-  name: '{{lowerCase name}}',
-  extensions: jsVariants,
-  v8flags,
+name: '{{kebabCase name}}',
+extensions: jsVariants,
+v8flags,
 })
 
 {{pascalCase name}}.launch({ configPath: CONFIG_FILE_NAME }, run)

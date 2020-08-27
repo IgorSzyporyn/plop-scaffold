@@ -1,10 +1,10 @@
 {{#ifEqual "yes" liftoff}}
 import { allowedCommands } from '.'
+import { CONFIG_FILE_NAME } from '../constants'
 {{/ifEqual}}
 {{#ifEqual "yes" commands}}
 import { allowedCommands } from '.'
 {{/ifEqual}}
-import { CONFIG_FILE_NAME } from '../constants'
 import { getPckJson } from '../utils/get-pck-json'
 import { print } from '../utils/print'
 

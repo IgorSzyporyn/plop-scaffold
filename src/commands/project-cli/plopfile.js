@@ -37,6 +37,12 @@ export default (plop) => {
     print.newline()
   })
 
+  plop.setActionType('No git setup', function () {
+    print(' NPM dependencies successfully installed')
+
+    print.newline()
+  })
+
   plop.setActionType('Setup git', function (answers) {
     print(' NPM dependencies successfully installed')
 
@@ -228,7 +234,7 @@ export default (plop) => {
       // Copy in .vscode config
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/.vscode/settings.json`,
+        path: `${cwd}/{{kebabCase name}}/.vscode/settings.json`,
         templateFile: `../../../dist/templates/project-cli/.vscode/settings.json.hbs`,
         skipIfExists: true,
       })
@@ -236,7 +242,7 @@ export default (plop) => {
       // Copy in the package.json file
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/package.json`,
+        path: `${cwd}/{{kebabCase name}}/package.json`,
         templateFile: `../../../dist/templates/project-cli/package.json.hbs`,
         skipIfExists: true,
       })
@@ -244,7 +250,7 @@ export default (plop) => {
       // Copy in project level tsconfig.json
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/tsconfig.json`,
+        path: `${cwd}/{{kebabCase name}}/tsconfig.json`,
         templateFile: `../../../dist/templates/project-cli/tsconfig.json.hbs`,
         skipIfExists: true,
       })
@@ -252,7 +258,7 @@ export default (plop) => {
       // Copy in source level tsconfig.json
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/tsconfig.json`,
+        path: `${cwd}/{{kebabCase name}}/src/tsconfig.json`,
         templateFile: `../../../dist/templates/project-cli/src/tsconfig.json.hbs`,
         skipIfExists: true,
       })
@@ -261,7 +267,7 @@ export default (plop) => {
       if (git) {
         actions.push({
           type: 'add',
-          path: `${cwd}/{{lowerCase name}}/.gitignore`,
+          path: `${cwd}/{{kebabCase name}}/.gitignore`,
           templateFile: `../../../dist/templates/project-cli/.gitignore.hbs`,
           skipIfExists: true,
         })
@@ -270,13 +276,13 @@ export default (plop) => {
       // Copy in eslint files
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/.eslintignore`,
+        path: `${cwd}/{{kebabCase name}}/.eslintignore`,
         templateFile: `../../../dist/templates/project-cli/.eslintignore.hbs`,
         skipIfExists: true,
       })
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/.eslintrc`,
+        path: `${cwd}/{{kebabCase name}}/.eslintrc`,
         templateFile: `../../../dist/templates/project-cli/.eslintrc.hbs`,
         skipIfExists: true,
       })
@@ -284,13 +290,13 @@ export default (plop) => {
       // Copy in prettier files
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/.prettierignore`,
+        path: `${cwd}/{{kebabCase name}}/.prettierignore`,
         templateFile: `../../../dist/templates/project-cli/.prettierignore.hbs`,
         skipIfExists: true,
       })
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/.prettierrc`,
+        path: `${cwd}/{{kebabCase name}}/.prettierrc`,
         templateFile: `../../../dist/templates/project-cli/.prettierrc.hbs`,
         skipIfExists: true,
       })
@@ -299,7 +305,7 @@ export default (plop) => {
       if (commitlint) {
         actions.push({
           type: 'add',
-          path: `${cwd}/{{lowerCase name}}/.commitlintrc.json`,
+          path: `${cwd}/{{kebabCase name}}/.commitlintrc.json`,
           templateFile: `../../../dist/templates/project-cli/.commitlintrc.json.hbs`,
           skipIfExists: true,
         })
@@ -308,13 +314,13 @@ export default (plop) => {
       // Copy in markdown files
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/README.md`,
+        path: `${cwd}/{{kebabCase name}}/README.md`,
         templateFile: `../../../dist/templates/project-cli/README.md.hbs`,
         skipIfExists: true,
       })
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/CHANGELOG.md`,
+        path: `${cwd}/{{kebabCase name}}/CHANGELOG.md`,
         templateFile: `../../../dist/templates/project-cli/CHANGELOG.md.hbs`,
         skipIfExists: true,
       })
@@ -322,7 +328,7 @@ export default (plop) => {
       // Copy in bin file
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/bin/main.${ext}`,
+        path: `${cwd}/{{kebabCase name}}/src/bin/main.${ext}`,
         templateFile: `../../../dist/templates/project-cli/bin/main.ts.hbs`,
         skipIfExists: true,
       })
@@ -330,33 +336,33 @@ export default (plop) => {
       // Copy in script folder files
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/script/index.${ext}`,
+        path: `${cwd}/{{kebabCase name}}/src/script/index.${ext}`,
         templateFile: `../../../dist/templates/project-cli/src/script/index.${ext}.hbs`,
         skipIfExists: true,
       })
 
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/script/help.${ext}`,
+        path: `${cwd}/{{kebabCase name}}/src/script/help.${ext}`,
         templateFile: `../../../dist/templates/project-cli/src/script/help.ts.hbs`,
         skipIfExists: true,
       })
 
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/script/run.${ext}`,
+        path: `${cwd}/{{kebabCase name}}/src/script/run.${ext}`,
         templateFile: `../../../dist/templates/project-cli/src/script/run.${ext}.hbs`,
         skipIfExists: true,
       })
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/script/run-version.${ext}`,
+        path: `${cwd}/{{kebabCase name}}/src/script/run-version.${ext}`,
         templateFile: `../../../dist/templates/project-cli/src/script/run-version.ts.hbs`,
         skipIfExists: true,
       })
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/script/run-help.${ext}`,
+        path: `${cwd}/{{kebabCase name}}/src/script/run-help.${ext}`,
         templateFile: `../../../dist/templates/project-cli/src/script/run-help.${ext}.hbs`,
         skipIfExists: true,
       })
@@ -364,7 +370,7 @@ export default (plop) => {
       if (commands || liftoff) {
         actions.push({
           type: 'add',
-          path: `${cwd}/{{lowerCase name}}/src/script/run-command.${ext}`,
+          path: `${cwd}/{{kebabCase name}}/src/script/run-command.${ext}`,
           templateFile: `../../../dist/templates/project-cli/src/script/run-command.${ext}.hbs`,
           skipIfExists: true,
         })
@@ -373,7 +379,7 @@ export default (plop) => {
       if (!liftoff && !commands) {
         actions.push({
           type: 'add',
-          path: `${cwd}/{{lowerCase name}}/src/script/run-execute.${ext}`,
+          path: `${cwd}/{{kebabCase name}}/src/script/run-execute.${ext}`,
           templateFile: `../../../dist/templates/project-cli/src/script/run-execute.ts.hbs`,
           skipIfExists: true,
         })
@@ -383,13 +389,13 @@ export default (plop) => {
       if (init || liftoff) {
         actions.push({
           type: 'add',
-          path: `${cwd}/{{lowerCase name}}/src/commands/init/run.${ext}`,
+          path: `${cwd}/{{kebabCase name}}/src/commands/init/run.${ext}`,
           templateFile: `../../../dist/templates/project-cli/src/commands/init/run.ts.hbs`,
           skipIfExists: true,
         })
         actions.push({
           type: 'add',
-          path: `${cwd}/{{lowerCase name}}/src/commands/init/help.${ext}`,
+          path: `${cwd}/{{kebabCase name}}/src/commands/init/help.${ext}`,
           templateFile: `../../../dist/templates/project-cli/src/commands/init/help.ts.hbs`,
           skipIfExists: true,
         })
@@ -398,34 +404,36 @@ export default (plop) => {
       if (liftoff) {
         actions.push({
           type: 'add',
-          path: `${cwd}/{{lowerCase name}}/src/commands/init/templates/.{{lowerCase name}}.json`,
+          path: `${cwd}/{{kebabCase name}}/src/commands/init/templates/.{{kebabCase name}}.json`,
           templateFile: `../../../dist/templates/project-cli/src/commands/init/templates/.config-file.json.hbs`,
           skipIfExists: true,
         })
       }
 
       // Copy utils folder files
+      if (liftoff || commands) {
+        actions.push({
+          type: 'add',
+          path: `${cwd}/{{kebabCase name}}/src/utils/get-command-from-argv.${ext}`,
+          templateFile: `../../../dist/templates/project-cli/src/utils/get-command-from-argv.${ext}.hbs`,
+          skipIfExists: true,
+        })
+      }
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/utils/get-command-from-argv.${ext}`,
-        templateFile: `../../../dist/templates/project-cli/src/utils/get-command-from-argv.${ext}.hbs`,
-        skipIfExists: true,
-      })
-      actions.push({
-        type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/utils/get-pck-json.${ext}`,
+        path: `${cwd}/{{kebabCase name}}/src/utils/get-pck-json.${ext}`,
         templateFile: `../../../dist/templates/project-cli/src/utils/get-pck-json.${ext}.hbs`,
         skipIfExists: true,
       })
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/utils/shared.${ext}`,
+        path: `${cwd}/{{kebabCase name}}/src/utils/shared.${ext}`,
         templateFile: `../../../dist/templates/project-cli/src/utils/shared.${ext}.hbs`,
         skipIfExists: true,
       })
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/utils/print.${ext}`,
+        path: `${cwd}/{{kebabCase name}}/src/utils/print.${ext}`,
         templateFile: `../../../dist/templates/project-cli/src/utils/print.${ext}.hbs`,
         skipIfExists: true,
       })
@@ -433,13 +441,13 @@ export default (plop) => {
       if (liftoff) {
         actions.push({
           type: 'add',
-          path: `${cwd}/{{lowerCase name}}/src/utils/get-config-file.${ext}`,
+          path: `${cwd}/{{kebabCase name}}/src/utils/get-config-file.${ext}`,
           templateFile: `../../../dist/templates/project-cli/src/utils/get-config-file.${ext}.hbs`,
           skipIfExists: true,
         })
         actions.push({
           type: 'add',
-          path: `${cwd}/{{lowerCase name}}/src/utils/get-config-file-exists.${ext}`,
+          path: `${cwd}/{{kebabCase name}}/src/utils/get-config-file-exists.${ext}`,
           templateFile: `../../../dist/templates/project-cli/src/utils/get-config-file-exists.ts.hbs`,
           skipIfExists: true,
         })
@@ -450,7 +458,7 @@ export default (plop) => {
         if (liftoff) {
           actions.push({
             type: 'add',
-            path: `${cwd}/{{lowerCase name}}/src/typings/liftoff-env.d.ts`,
+            path: `${cwd}/{{kebabCase name}}/src/typings/liftoff-env.d.ts`,
             templateFile: `../../../dist/templates/project-cli/src/typings/liftoff-env.d.ts.hbs`,
             skipIfExists: true,
           })
@@ -459,7 +467,7 @@ export default (plop) => {
         if (commands || liftoff) {
           actions.push({
             type: 'add',
-            path: `${cwd}/{{lowerCase name}}/src/typings/command.d.ts`,
+            path: `${cwd}/{{kebabCase name}}/src/typings/command.d.ts`,
             templateFile: `../../../dist/templates/project-cli/src/typings/command.d.ts.hbs`,
             skipIfExists: true,
           })
@@ -469,13 +477,18 @@ export default (plop) => {
       // Copy constants file
       actions.push({
         type: 'add',
-        path: `${cwd}/{{lowerCase name}}/src/constants.${ext}`,
+        path: `${cwd}/{{kebabCase name}}/src/constants.${ext}`,
         templateFile: `../../../dist/templates/project-cli/src/constants.${ext}.hbs`,
         skipIfExists: true,
       })
 
       actions.push({ type: 'Install NPM Dependencies' })
-      actions.push({ type: 'Setup git' })
+
+      if (git) {
+        actions.push({ type: 'Setup git' })
+      } else {
+        actions.push({ type: 'No git setup' })
+      }
 
       return actions
     },

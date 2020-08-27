@@ -1,21 +1,25 @@
+{{#ifEqual "yes" liftoff}}
 import { CONFIG_FILE_NAME } from '../../constants'
 import { getPckJson } from '../../utils/get-pck-json'
+{{/ifEqual}}
 import { print } from '../../utils/print'
 
 export function helpInit() {
+  {{#ifEqual "yes" liftoff}}
   const { name } = getPckJson()
 
+  {{/ifEqual}}
   print.help({
     name: 'init',
     type: 'command',
     {{#ifEqual "yes" liftoff}}
     message: [
       `Attempt to create a ${CONFIG_FILE_NAME} in your folder`,
-      '',
-      `You can also add your configuration to your package.json file under the key "${name}"`,
     ],
     {{else}}
     message: ['Add your init command description here'],
     {{/ifEqual}}
   })
+
+  print.newline()
 }

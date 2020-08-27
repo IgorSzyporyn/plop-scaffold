@@ -1,3 +1,4 @@
+import fs from 'fs'
 import { fork } from 'child_process'
 import { checkForPrefilledValues } from '../../utils/check-for-prefilled-values'
 import { getCommandEnv } from '../../utils/get-command-env'
@@ -16,6 +17,13 @@ export const run = async () => {
   const { argv, cwd } = getShared()
 
   print.message('Create a NPM release ready a NodeJS client project scaffold')
+
+  if (fs.existsSync(cwd)) {
+    print.newline()
+    print.error('A folder with that name already exists')
+    print.newline()
+    process.exit(0)
+  }
 
   const { config } = getConfig(command, defaultProjectCliConfig, argv, allowedArgs)
   const plopBin = getPlopFilepath()

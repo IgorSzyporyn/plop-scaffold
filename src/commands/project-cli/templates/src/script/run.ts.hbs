@@ -17,7 +17,7 @@ export function run(liftoffEnv: LiftoffEnv) {
 
   setShared({ argv, configPath, cwd, liftoffEnv, distPath })
 
-  const hasInitCommand = argv._.indexOf('init') > -1
+  const hasInitCommand = indexOf('init') > -1
   const command = getCommandFromArgv(argv, allowedCommands)
 
   if (hasInitCommand) {
@@ -36,6 +36,7 @@ import path from 'path'
 import { setShared } from '../utils/shared'
 {{#ifEqual "yes" commands}}
 import { allowedCommands } from './index'
+import { getCommandFromArgv } from '../utils/get-command-from-argv'
   {{#ifEqual "yes" init}}
 import { runInit } from '../commands/init/run'
   {{/ifEqual}}
@@ -60,7 +61,7 @@ export function run() {
     {{#ifEqual "yes" init}}
   const hasInitCommand = argv._.indexOf('init') > -1
     {{/ifEqual}}
-  const command = getCommandFromArgv(argv._, allowedCommands)
+  const command = getCommandFromArgv(argv, allowedCommands)
 
     {{#ifEqual "yes" init}}
   if (hasInitCommand) {

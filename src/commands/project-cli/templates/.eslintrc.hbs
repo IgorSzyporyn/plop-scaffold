@@ -5,6 +5,12 @@
     "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
+  {{else}}
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended"
+  ],
+  {{/ifEqual}}
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
@@ -12,12 +18,6 @@
       "modules": true
     }
   },
-  {{else}}
-  "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended"
-  ],
-  {{/ifEqual}}
   "env": {
     "es6": true,
     "node": true
@@ -33,7 +33,7 @@
     {
       "files": ["**/*.d.ts"],
       "rules": {
-        "no-var": "off", // this is how typescript works
+        "no-var": "off" // this is how typescript works
       }
     }
     {{/ifEqual}}

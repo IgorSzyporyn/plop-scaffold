@@ -14,9 +14,19 @@ export function setupGit({ author, name, gitproxy }: ProjectCliAnswers) {
   const remoteUrl = sshProxy
     ? `git@github.com:${author}/${name}.git`
     : ` https://github.com/${author}/${name}.git`
-  const remoteCommand = `remote add origin ${remoteUrl}`
+  const remoteCommand = `git remote add origin ${remoteUrl}`
 
-  print(`- Remember to create repository online and add remote to local`)
-  print(`  ${chalk.bold(remoteCommand)}`)
-  print(`  ${chalk.bold('git push -u origin master')}`)
+  let remoteExists = false
+  try {
+    print('- attempting to connect to remote')
+    execSync(remoteCommand, { stdio: 'ignore' })
+    execSync('git push -u origin master')
+    remoteExists = true
+  } catch (e) {}
+
+  if (!remoteExists) {
+    print(`- no remote repository found - remember to create online and add`)
+    print(`  ${chalk.bold(remoteCommand)}`)
+    print(`  ${chalk.bold('git push -u origin master')}`)
+  }
 }

@@ -4,6 +4,7 @@ import { ProjectCliConfig } from '../index'
 export function installDevDependencies({
   typescript,
   commitlint,
+  liftoff,
 }: ProjectCliConfig) {
   let devDependencies = [
     'eslint',
@@ -15,18 +16,21 @@ export function installDevDependencies({
     'typescript',
   ]
 
-  if (commitlint === 'yes') {
+  if (typescript === 'yes') {
     const tsDevDependencies = [
       '@types/node',
-      '@types/v8flags',
       '@typescript-eslint/eslint-plugin',
       '@typescript-eslint/parser',
     ]
 
+    if (liftoff === 'yes') {
+      tsDevDependencies.push('@types/v8flags')
+    }
+
     devDependencies = [...devDependencies, ...tsDevDependencies]
   }
 
-  if (typescript === 'yes') {
+  if (commitlint === 'yes') {
     const commitlintDevDependencies = [
       '@commitlint/cli',
       '@commitlint/config-conventional',

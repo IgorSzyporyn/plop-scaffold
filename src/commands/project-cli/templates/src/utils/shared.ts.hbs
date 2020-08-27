@@ -1,7 +1,7 @@
 import { PROJECT_ID } from '../constants'
 import minimist from 'minimist'
 
-export type Shared<T = Record<string, any>> = {
+export type Shared = {
   argv: minimist.ParsedArgs
   {{#ifEqual "yes" liftoff}}
   configPath: string
@@ -27,8 +27,8 @@ root[PROJECT_ID] = {
   {{/ifEqual}}
 }
 
-export function getShared<T>() {
-  return root[PROJECT_ID] as Shared<T>
+export function getShared() {
+  return root[PROJECT_ID] as Shared
 }
 
 export function setShared(toSet: Record<string, any>) {
