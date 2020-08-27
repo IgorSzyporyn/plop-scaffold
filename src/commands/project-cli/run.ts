@@ -1,4 +1,4 @@
-import fs from 'fs'
+import { paramCase } from 'change-case'
 import { fork } from 'child_process'
 import { checkForPrefilledValues } from '../../utils/check-for-prefilled-values'
 import { getCommandEnv } from '../../utils/get-command-env'
@@ -14,18 +14,22 @@ import { getPlopExecArgs } from './utils/get-plop-exec-args'
 const command = 'project-cli'
 
 export const run = async () => {
-  const { argv, cwd } = getShared()
-
   print.message('Create a NPM release ready a NodeJS client project scaffold')
 
-  if (fs.existsSync(cwd)) {
-    print.newline()
-    print.error('A folder with that name already exists')
-    print.newline()
-    process.exit(0)
+  const { argv, cwd } = getShared()
+  const { config } = getConfig(command, defaultProjectCliConfig, argv, allowedArgs)
+
+  // Only allow config.name as a paramCased string if it comes in as a config
+  if (config.name) {
+    try {
+      config.name = JSON.stringify(config.name)
+    } catch (e) {}
+
+    if (typeof config.name === 'string') {
+      config.name = paramCase(config.name)
+    }
   }
 
-  const { config } = getConfig(command, defaultProjectCliConfig, argv, allowedArgs)
   const plopBin = getPlopFilepath()
   const plopConfigPath = getPlopConfigPath(command)
   const commandEnv = getCommandEnv(config)

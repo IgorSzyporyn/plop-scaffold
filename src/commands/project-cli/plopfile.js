@@ -1,6 +1,10 @@
 // Inspiration and help https://blog.logrocket.com/automatically-generate-your-own-reacts-with-plop-js-2da3b39914f3/
 export default (plop) => {
-  const { plopHelper, requireField } = require('../../utils/plop-helper')
+  const {
+    plopHelper,
+    requireField,
+    requiredButNoFolderExists,
+  } = require('../../utils/plop-helper')
   const { getEnvConst } = require('../../utils/get-env-const')
   const { print } = require('../../utils/print')
 
@@ -75,7 +79,7 @@ export default (plop) => {
         type: 'input',
         name: 'name',
         message: 'Project name',
-        validate: requireField('name'),
+        validate: requiredButNoFolderExists('Project name'),
       },
       {
         type: 'input',

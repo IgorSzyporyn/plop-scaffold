@@ -9,6 +9,7 @@
  * --storybookDir "name of test folder"
  * --cssinjs
  * --examples
+ * --name
  * --storybook
  * --test
  * --type (component/page/hook/container)
@@ -17,22 +18,6 @@
  * --usestate
  *
  **/
-
-export type ReactConfigTypes =
-  | 'baseDir'
-  | 'componentDir'
-  | 'containerDir'
-  | 'pageDir'
-  | 'storybookDir'
-  | 'testDir'
-  | 'cssinjs'
-  | 'examples'
-  | 'storybook'
-  | 'test'
-  | 'type'
-  | 'typescript'
-  | 'useeffect'
-  | 'usestate'
 
 export type ReactConfig = {
   baseDir: string | null
@@ -43,6 +28,7 @@ export type ReactConfig = {
   testDir: string | null
   cssinjs: 'no' | 'styled-components' | '@emotion/styled' | null
   examples: 'yes' | 'no' | null
+  name: string | null
   storybook: 'yes' | 'no' | null
   test: 'no' | '@testing-library/react' | 'react-test-renderer' | 'enzyme' | null
   type: 'component' | 'container' | 'page' | null
@@ -60,6 +46,7 @@ export const defaultReactConfig: Readonly<ReactConfig> = {
   testDir: null,
   cssinjs: null,
   examples: null,
+  name: null,
   storybook: null,
   test: null,
   type: null,
@@ -68,7 +55,7 @@ export const defaultReactConfig: Readonly<ReactConfig> = {
   usestate: null,
 }
 
-export const allowedArgs: Readonly<ReactConfigTypes[]> = [
+export const allowedArgs: Readonly<(keyof ReactConfig)[]> = [
   'baseDir',
   'componentDir',
   'containerDir',
@@ -77,6 +64,7 @@ export const allowedArgs: Readonly<ReactConfigTypes[]> = [
   'testDir',
   'cssinjs',
   'examples',
+  'name',
   'storybook',
   'test',
   'type',
@@ -85,7 +73,7 @@ export const allowedArgs: Readonly<ReactConfigTypes[]> = [
   'usestate',
 ]
 
-export const prefilledArgs: Readonly<ReactConfigTypes[]> = [
+export const prefilledArgs: Readonly<(keyof ReactConfig)[]> = [
   'baseDir',
   'componentDir',
   'containerDir',
@@ -94,6 +82,7 @@ export const prefilledArgs: Readonly<ReactConfigTypes[]> = [
   'testDir',
   'cssinjs',
   'examples',
+  'name',
   'storybook',
   'test',
   'type',

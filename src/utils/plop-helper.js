@@ -46,3 +46,27 @@ export function requireField(fieldName) {
     return true
   }
 }
+
+export function requiredButNoFolderExists(fieldName) {
+  return (value) => {
+    if (String(value).length === 0) {
+      return fieldName + ' is required'
+    }
+
+    const { paramCase } = require('change-case')
+    const fs = require('fs')
+    const path = require('path')
+    const { getEnvConst } = require('./get-env-const')
+    const cwd = getEnvConst('cwd')
+
+    const asParamCase = paramCase(value)
+    const folder = path.join(cwd, asParamCase)
+    const folderExits = fs.existsSync(folder)
+
+    if (folderExits) {
+      return `${folder} already exists`
+    }
+
+    return true
+  }
+}
