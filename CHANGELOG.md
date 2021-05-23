@@ -1,6 +1,6 @@
-#### 0.20.2 (2020-08-27)
+#### 0.20.3 (2021-05-23)
 
 ##### Bug Fixes
 
-*  yeah yeah ([f7472c72](https://github.com/IgorSzyporyn/plop-scaffold/commit/f7472c727e6f2a55c42f93e330df811afa9722e1))
+*  updated react templates ([5c613137](https://github.com/IgorSzyporyn/plop-scaffold/commit/5c6131374122fa77055887e4db9ed1d001de0cec))
 
