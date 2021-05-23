@@ -33,10 +33,10 @@ export function getPlopExecArgs(
     if (prefilledConfig[arg] !== undefined) {
       switch (arg) {
         case 'useeffect':
-          hooks.push('useeffect')
+          prefilledConfig[arg] && hooks.push('useeffect')
           break
         case 'usestate':
-          hooks.push('usestate')
+          prefilledConfig[arg] && hooks.push('usestate')
           break
       }
     }
