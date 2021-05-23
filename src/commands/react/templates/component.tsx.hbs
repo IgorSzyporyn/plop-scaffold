@@ -15,7 +15,6 @@ import React from 'react'
 {{#ifNotEqual "no" cssinjs}}
 import styled from '{{cssinjs}}'
 
-const Wrapper = styled.div``
 {{/ifNotEqual}}
 {{#ifIn "usestate" hooks}}
   {{#ifEqual "yes" examples}}
@@ -31,29 +30,28 @@ const initialState: {{pascalCase name}}State = {
 
 // @NOTE: Linter will most likely complain and suggest Record<string, unknown>
 // But left as {} for your to fill in your state signature
-type {{pascalCase name}}State = {}
+type MyState = {}
 
-const initialState: {{pascalCase name}}State = {}
+const initialMyState: MyState = {}
   {{/ifEqual}}
 {{/ifIn}}
 {{#ifEqual "yes" examples}}
 
 export type {{pascalCase name}}Props = {
   title?: string
-  children?: React.ReactNode
-}
+} & React.HTMLAttributes<HTMLDivElement></HTMLDivElement>
 
-const {{pascalCase name}} = ({ children, title }: {{pascalCase name}}Props) => {
+export const {{pascalCase name}} = ({ children, title, ...rest }: {{pascalCase name}}Props) => {
 {{else}}
 
 // @NOTE: Linter will most likely complain and suggest Record<string, unknown>
 // But left as {} for your to fill in your props signature
-export type {{pascalCase name}}Props = {}
+export type {{pascalCase name}}Props = {} & React.HTMLAttributes<HTMLDivElement>
 
-const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
+export const {{pascalCase name}} = ({ ...rest }: {{pascalCase name}}Props) => {
 {{/ifEqual}}
 {{#ifIn "usestate" hooks}}
-  const [myState, setMyState] = useState({ ...initialState })
+  const [myState, setMyState] = useState({ ...initialMyState })
 
 {{/ifIn}}
 {{#ifIn "useeffect" hooks}}
@@ -72,12 +70,12 @@ const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
   return (
   {{#ifNotEqual "no" cssinjs}}
     {{#ifEqual "yes" examples}}
-    <Wrapper>
+    <Wrapper {...rest}>
       <h1>{title}</h1>
       {children}
     </Wrapper>
     {{else}}
-    <Wrapper>Here more TSX</Wrapper>
+    <Wrapper {...rest}>Here more JSX</Wrapper>
     {{/ifEqual}}
   {{else}}
     {{#ifEqual "yes" examples}}
@@ -86,19 +84,12 @@ const {{pascalCase name}} = (props: {{pascalCase name}}Props) => {
       {children}
     </div>
     {{else}}
-    <div>Here more TSX</div>
+    <div>Here more JSX</div>
     {{/ifEqual}}
   {{/ifNotEqual}}
   )
 }
 
-{{pascalCase name}}.displayName = '{{pascalCase name}}'
-{{#ifEqual "yes" examples}}
-{{pascalCase name}}.defaultProps = {
-  title: 'Hello World'
-}
-{{else}}
-{{pascalCase name}}.defaultProps = {}
-{{/ifEqual}}
-
-export default {{pascalCase name}}
+{{#ifNotEqual "no" cssinjs}}
+const Wrapper = styled.div``
+{{/ifNotEqual}}

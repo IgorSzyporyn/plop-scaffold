@@ -15,28 +15,27 @@ import React from 'react'
 {{#ifNotEqual "no" cssinjs}}
 import styled from '{{cssinjs}}'
 
-const Wrapper = styled.div``
 {{/ifNotEqual}}
 {{#ifIn "usestate" hooks}}
   {{#ifEqual "yes" examples}}
 
-const initialState = {
+const initialMyState = {
   mounted: false,
 }
   {{else}}
 
-const initialState = {}
+const initialMyState = {}
   {{/ifEqual}}
 {{/ifIn}}
 {{#ifEqual "yes" examples}}
 
-const {{pascalCase name}} = ({ children }) => {
+export const {{pascalCase name}} = ({ children, title, ...rest }) => {
 {{else}}
 
-const {{pascalCase name}} = (props) => {
+export const {{pascalCase name}} = ({ ...rest }) => {
 {{/ifEqual}}
 {{#ifIn "usestate" hooks}}
-  const [myState, setMyState] = useState({ ...initialState })
+  const [myState, setMyState] = useState({ ...initialMyState })
 
 {{/ifIn}}
 {{#ifIn "useeffect" hooks}}
@@ -55,12 +54,12 @@ const {{pascalCase name}} = (props) => {
   return (
   {{#ifNotEqual "no" cssinjs}}
     {{#ifEqual "yes" examples}}
-    <Wrapper>
+    <Wrapper {...rest}>
       <h1>{title}</h1>
       {children}
     </Wrapper>
     {{else}}
-    <Wrapper>Here more TSX</Wrapper>
+    <Wrapper {...rest}>Here more JSX</Wrapper>
     {{/ifEqual}}
   {{else}}
     {{#ifEqual "yes" examples}}
@@ -69,7 +68,7 @@ const {{pascalCase name}} = (props) => {
       {children}
     </div>
     {{else}}
-    <div>Here more TSX</div>
+    <div>Here more JSX</div>
     {{/ifEqual}}
   {{/ifNotEqual}}
   )
@@ -83,5 +82,3 @@ const {{pascalCase name}} = (props) => {
 {{else}}
 {{pascalCase name}}.defaultProps = {}
 {{/ifEqual}}
-
-export default {{pascalCase name}}
