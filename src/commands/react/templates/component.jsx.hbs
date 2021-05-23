@@ -35,9 +35,9 @@ export const {{pascalCase name}} = ({ ...rest }) => {
 {{/ifEqual}}
 {{#ifIn "usestate" hooks}}
   const [myState, setMyState] = useState({ ...initialMyState })
+
 {{/ifIn}}
 {{#ifIn "useeffect" hooks}}
-  
   useEffect(() => {
   {{#ifEqual "yes" examples}}
     // Do stuff on mount here
@@ -48,8 +48,8 @@ export const {{pascalCase name}} = ({ ...rest }) => {
     return () => {}
   {{/ifEqual}}
   }, [])
-{{/ifIn}}
 
+{{/ifIn}}
   return (
   {{#ifNotEqual "no" cssinjs}}
     {{#ifEqual "yes" examples}}

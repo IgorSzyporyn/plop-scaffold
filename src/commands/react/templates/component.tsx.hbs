@@ -41,17 +41,15 @@ export type {{pascalCase name}}Props = {
 export const {{pascalCase name}} = ({ children, title, ...rest }: {{pascalCase name}}Props) => {
 {{else}}
 
-// @NOTE: Linter will most likely complain and suggest Record<string, unknown>
-// But left as {} for your to fill in your props signature
 export type {{pascalCase name}}Props = {} & React.HTMLAttributes<HTMLDivElement>
 
 export const {{pascalCase name}} = ({ ...rest }: {{pascalCase name}}Props) => {
 {{/ifEqual}}
 {{#ifIn "usestate" hooks}}
   const [myState, setMyState] = useState({ ...initialMyState })
+
 {{/ifIn}}
 {{#ifIn "useeffect" hooks}}
-  
   useEffect(() => {
   {{#ifEqual "yes" examples}}
     // Do stuff on mount here
@@ -62,8 +60,8 @@ export const {{pascalCase name}} = ({ ...rest }: {{pascalCase name}}Props) => {
     return () => {}
   {{/ifEqual}}
   }, [])
-{{/ifIn}}
 
+{{/ifIn}}
   return (
   {{#ifNotEqual "no" cssinjs}}
     {{#ifEqual "yes" examples}}
