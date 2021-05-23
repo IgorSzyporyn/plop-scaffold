@@ -58,7 +58,9 @@ export const {{pascalCase name}} = ({ ...rest }) => {
       {children}
     </Wrapper>
     {{else}}
-    <Wrapper {...rest}>Here more JSX</Wrapper>
+    <Wrapper {...rest}>
+      <div>Here more JSX</div>
+    </Wrapper>
     {{/ifEqual}}
   {{else}}
     {{#ifEqual "yes" examples}}
