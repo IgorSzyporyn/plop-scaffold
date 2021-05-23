@@ -1,5 +1,6 @@
 {
   "typescript.preferences.importModuleSpecifier": "relative",
   "git.ignoreLimitWarning": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

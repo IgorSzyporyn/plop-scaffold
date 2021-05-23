@@ -31,12 +31,17 @@ export function getPlopExecArgs(
     }
 
     if (prefilledConfig[arg] !== undefined) {
+      const value = prefilledConfig[arg]
       switch (arg) {
         case 'useeffect':
-          prefilledConfig[arg] && hooks.push('useeffect')
+          if (value === 'yes') {
+            hooks.push('useeffect')
+          }
           break
         case 'usestate':
-          prefilledConfig[arg] && hooks.push('usestate')
+          if (value === 'yes') {
+            hooks.push('usestate')
+          }
           break
       }
     }
