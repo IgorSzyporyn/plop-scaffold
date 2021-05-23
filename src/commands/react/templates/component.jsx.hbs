@@ -14,7 +14,6 @@ import React from 'react'
 {{/hasHook}}
 {{#ifNotEqual "no" cssinjs}}
 import styled from '{{cssinjs}}'
-
 {{/ifNotEqual}}
 {{#ifIn "usestate" hooks}}
   {{#ifEqual "yes" examples}}
@@ -23,7 +22,7 @@ const initialMyState = {
   mounted: false,
 }
   {{else}}
-
+  
 const initialMyState = {}
   {{/ifEqual}}
 {{/ifIn}}

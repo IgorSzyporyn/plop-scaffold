@@ -14,7 +14,6 @@ import React from 'react'
 {{/hasHook}}
 {{#ifNotEqual "no" cssinjs}}
 import styled from '{{cssinjs}}'
-
 {{/ifNotEqual}}
 {{#ifIn "usestate" hooks}}
   {{#ifEqual "yes" examples}}
@@ -27,7 +26,7 @@ const initialState: {{pascalCase name}}State = {
   mounted: false,
 }
   {{else}}
-
+  
 // @NOTE: Linter will most likely complain and suggest Record<string, unknown>
 // But left as {} for your to fill in your state signature
 type MyState = {}
