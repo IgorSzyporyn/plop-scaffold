@@ -1,6 +1,6 @@
-#### 0.20.5 (2021-05-23)
+#### 0.20.6 (2021-05-23)
 
 ##### Bug Fixes
 
-*  react themes had empty line ([7b828814](https://github.com/IgorSzyporyn/plop-scaffold/commit/7b828814206f1151a105dca294195e5b0cf96038))
+*  bad spacing in conditions for react templates ([24751d5d](https://github.com/IgorSzyporyn/plop-scaffold/commit/24751d5d50f2c0bc087fa97185b971cb410cf638))
 
