@@ -33,8 +33,8 @@ export type ReactConfig = {
   test: 'no' | '@testing-library/react' | 'react-test-renderer' | 'enzyme' | null
   type: 'component' | 'container' | 'page' | null
   typescript: 'yes' | 'no' | null
-  useeffect: 'yes' | 'no' | null
-  usestate: 'yes' | 'no' | null
+  useeffect: boolean | null
+  usestate: boolean | null
 }
 
 export const defaultReactConfig: Readonly<ReactConfig> = {
