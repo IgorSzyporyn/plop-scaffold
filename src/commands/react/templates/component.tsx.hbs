@@ -26,9 +26,7 @@ const initialState: {{pascalCase name}}State = {
   mounted: false,
 }
   {{else}}
-  
-// @NOTE: Linter will most likely complain and suggest Record<string, unknown>
-// But left as {} for your to fill in your state signature
+
 type MyState = {}
 
 const initialMyState: MyState = {}
@@ -51,9 +49,9 @@ export const {{pascalCase name}} = ({ ...rest }: {{pascalCase name}}Props) => {
 {{/ifEqual}}
 {{#ifIn "usestate" hooks}}
   const [myState, setMyState] = useState({ ...initialMyState })
-
 {{/ifIn}}
 {{#ifIn "useeffect" hooks}}
+  
   useEffect(() => {
   {{#ifEqual "yes" examples}}
     // Do stuff on mount here
